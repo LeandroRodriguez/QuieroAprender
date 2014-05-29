@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+a.navbar-brand  {
+  padding: 10px 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+div.error input {
+  border: 2px solid #a94442;
+}
+
+div.error small {
+  color: #a94442;
+}
+
+h3 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#footer {
+  background-color: black;
+  color: white;
+}
+
+#footer .container {
+  text-align: center;
+}
+
+#footer a, footer a:hover {
+  color: #31708f;
+}
+
+#footer .container span {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+  background-color: #eee;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+}
+
+.dropdown-settings {
+  padding: 8px 0;
+}

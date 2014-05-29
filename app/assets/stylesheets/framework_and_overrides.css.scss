@@ -1,0 +1,107 @@
+// import the CSS framework
+@import "bootstrap";
+
+// make all images responsive by default
+img {
+  @extend .img-responsive;
+  margin: 0 auto;
+  }
+// override for the 'Home' navigation link
+.navbar-brand {
+  font-size: inherit;
+  }
+
+// THESE ARE EXAMPLES YOU CAN MODIFY
+// create your own classes
+// to make views framework-neutral
+.column {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+.form {
+  @extend .col-md-6;
+  }
+.form-centered {
+  @extend .col-md-6;
+  @extend .text-center;
+  }
+.submit {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .btn-lg;
+  }
+// apply styles to HTML elements
+// to make views framework-neutral
+main {
+  @extend .container;
+  background-color: #eee;
+  padding-bottom: 80px;
+  width: 100%;
+  margin-top: 90px; // accommodate the navbar
+  }
+section {
+  @extend .row;
+  margin-top: 20px;
+  }
+  
+.navbar-inverse .navbar-nav > li > a,
+.navbar-nav a {
+  color: #31708f;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: inline-block;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-nav a:hover {
+  color: #31708f;
+}
+
+.navbar-inverse .navbar-nav > li.current > a,
+.navbar-nav.current a {
+  color: #31708f;
+}
+
+.navbar .navbar-nav.navbar_centered {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.dropdown-menu .divider {
+  margin: 3px 0;
+}
+
+.alert {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.btn a {
+  color: white;
+}
+
+.btn a:hover {
+  color: white;
+}
+
+.page-header {
+  padding-bottom: 0px;
+  margin: 15px 0 25px;
+  border-bottom: 1px solid #333333;
+}

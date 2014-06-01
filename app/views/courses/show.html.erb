@@ -10,5 +10,20 @@
   <%= @course.description %>
 </p>
 
+<p>
+  <strong>Longitude:</strong>
+  <%= @course.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @course.latitude %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @course.address %>
+</p>
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

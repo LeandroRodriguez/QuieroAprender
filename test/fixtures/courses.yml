@@ -2,8 +2,14 @@
 
 one:
   name: MyString
-  description: MyString
+  description: MyText
+  longitude: 1.5
+  latitude: 1.5
+  address: MyString
 
 two:
   name: MyString
-  description: MyString
+  description: MyText
+  longitude: 1.5
+  latitude: 1.5
+  address: MyString

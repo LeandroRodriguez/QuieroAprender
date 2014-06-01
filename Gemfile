@@ -47,3 +47,7 @@ end
 gem 'bootstrap-sass'
 
 gem 'therubyracer'
+
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'geocoder'

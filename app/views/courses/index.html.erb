@@ -5,6 +5,9 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
+      <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Address</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +19,9 @@
       <tr>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
+        <td><%= course.longitude %></td>
+        <td><%= course.latitude %></td>
+        <td><%= course.address %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -3,7 +3,7 @@
 <!-- 34.6037232, -58.3815931 es BS AS -->
 <div class="container">
 	<div class="col-md-6">
-		<div id="basic_map" style='width: 600px; height: 400px;'></div>
+		<div id="home_map" style='width: 600px; height: 400px;'></div>
 	</div>
 	<div class="col-md-6"></div>
 </div>
@@ -13,9 +13,9 @@
   handler.buildMap(
   	{ 
   		provider: 
-  			{zoom:15, center: new google.maps.LatLng(-34.6037232, -58.3815931), styles: mapStyle}, 
+  			{zoom:8, center: new google.maps.LatLng(-34.6037232, -58.3815931), styles: mapStyle}, 
   		internal: 
-  			{id: 'basic_map'}
+  			{id: 'home_map'}
   	}
   	, function(){
 		  markers = handler.addMarkers(<%= raw @hash.to_json %>);

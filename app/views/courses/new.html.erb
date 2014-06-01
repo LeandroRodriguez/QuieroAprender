@@ -3,3 +3,18 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', courses_path %>
+
+<%= javascript_tag do %>
+var addressPicker = new AddressPicker();
+$('#course_address').typeahead(null, {
+  displayKey: 'description',
+  source: addressPicker.ttAdapter()
+});
+ 
+$(addressPicker).on('addresspicker:selected', function (event, result) {
+  $('#your_lat_input').val(result.lat());
+  $('#your_lng_input').val(result.lng());
+  $('#your_city_input').val(result.nameForType('locality'));
+});
+
+<% end %>

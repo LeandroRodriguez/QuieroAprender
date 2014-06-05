@@ -12,6 +12,9 @@
 /log/*.log
 /tmp
 
+# Ignore Aptana settings
+.settings
+
 *.rbc
 capybara-*.html
 .rspec

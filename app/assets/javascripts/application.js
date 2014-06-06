@@ -17,4 +17,7 @@
 //= require gmaps
 //= require bootstrap
 //= require bootstrap-select
+//= require typeahead
+//= require typeahead-addresspicker
+//= require star-rating
 //= require_tree .

@@ -1,5 +1,6 @@
 
 <!--  -34.6037232, -58.3815931 es BS AS -->
+
 <button id="map-button" type="button" class="btn btn-info">Mapa</button>
 <div class="container">
 
@@ -15,11 +16,11 @@
 	<div class="col-md-6">
     <div class="panel panel-default">
        <div class="panel-body">
-          <select name="category-id" id="category-select" class="selectpicker" data-live-search="true" title="Categoria">
+          <select id="category-select" title="Categoria" class="selectpicker" data-style="btn-primary">
            <%= options_from_collection_for_select(@categories, 'id', 'name') %>
            </select>
 
-          <select name="subcategory-id" id="subcategory-select" class="selectpicker" data-live-search="true" title="Subcategoria">
+          <select id="subcategory-select" title="Subcategoria" class="selectpicker" data-style="btn-primary">
            <%= options_from_collection_for_select(@subcategories, 'id', 'name') %>
            </select>
        </div>
@@ -36,18 +37,17 @@ map = new GMaps({
       lat: -34.6037232,
       lng: -58.3815931
     });
-
+google.maps.event.trigger(map, "resize");
 $("#home_map").hide();
 
 $('#map-button').click(function(){
-  google.maps.event.trigger(map, "resize");
   $("#home_icon").fadeToggle();
   $("#home_map").fadeToggle();
   $('#map-button').toggleClass("active");
 });
 
 $( document ).ready(function() {
-    $(".selectpicker").selectpicker();
+  $('.selectpicker').selectpicker();
 });
 
 

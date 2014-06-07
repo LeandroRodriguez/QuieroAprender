@@ -5,16 +5,11 @@
     <title><%= content_for?(:title) ? yield(:title) : "Quiero Aprender" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Test" %>">
     <%= favicon_link_tag 'logo_tiny.png', :rel => 'shortcut icon' %>
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "application", debug: true %>
+    <%= javascript_include_tag "application", debug: true %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:700,400" %>
-   <%= stylesheet_link_tag "typeahead" %>
-   <%= javascript_include_tag "typeahead.js" %>
-   <%= javascript_include_tag "typeahead-addresspicker.min.js" %>
-   <%= javascript_include_tag "map_handler.js" %>
-   <%= javascript_include_tag "star-rating.min.js" %>
-   <%= stylesheet_link_tag "star-rating.min.css" %>
+
 
 </head>
 <body>

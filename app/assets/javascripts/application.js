@@ -11,13 +11,14 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require jquery.ui.all
 //= require turbolinks
 //= require maps_library
 //= require gmaps
 //= require bootstrap
-//= require bootstrap-select
 //= require typeahead
 //= require typeahead-addresspicker
-//= require star-rating
+//= require jquery-star-rating
+//= require bootstrap-select
+
 //= require_tree .

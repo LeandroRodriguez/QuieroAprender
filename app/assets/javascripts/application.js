@@ -20,5 +20,4 @@
 //= require typeahead-addresspicker
 //= require jquery-star-rating
 //= require bootstrap-select
-
 //= require_tree .

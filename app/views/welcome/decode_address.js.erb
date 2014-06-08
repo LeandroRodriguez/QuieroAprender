@@ -1,0 +1,23 @@
+console.log("results: <%= @results %>;");
+<% if @results.empty? %>
+    $("#no-result").fadeIn();
+<% else %>
+    $("#no-result").hide();
+<% end %>
+
+<% @results.each do |r| %>
+    var lat = <%= r[:lat] %>;
+    var lng = <%= r[:lng] %>;
+    var name = <%= r[:name] %>;
+
+    map.addMarker({
+      lat: lat,
+      lng: lng,
+      title: name,
+      click: function(e) {
+            alert(name);
+        } 
+    });
+<% end %>
+
+map.setCenter(<%= @address[:lat] %>, <%= @address[:lng] %>);

@@ -9,6 +9,7 @@
 Category.create(:name => "Musica")
 Category.create(:name => "Idioma")
 Category.create(:name => "Baile")
+
 Subcategory.create(:name => "Guitarra", :category_id => 1)
 Subcategory.create(:name => "Piano", :category_id => 1)
 Subcategory.create(:name => "Bateria", :category_id => 1)

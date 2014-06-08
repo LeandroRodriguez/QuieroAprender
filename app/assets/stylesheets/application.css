@@ -11,6 +11,7 @@
  *= require_self
  *= require jquery.ui.all
  *= require jquery-star-rating
+ *= require typeahead
  *= require bootstrap-select
  *= require_tree .
  */

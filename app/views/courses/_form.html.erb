@@ -11,18 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="col-md-4">  
+      <div class="field">
+          <%= f.text_field :name %>
+      </div>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-4">     
+      <div class="field">
+        <%= f.text_area :description %>
+      </div>
+    </div>
+  </div>    
+  <div class="row">
+    <div class="col-md-4">  
+      <div class="field">
+        <%= f.text_field :address %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.text_area :description %>
+  <div class="row">
+    <div class="col-md-4"> 
+      <%= f.collection_select(:subcategory_id, @subcategories, :id, :name, {:include_blank => "Please select"}) %>
+    </div>  
   </div>
+  <hr>
+  <hr>
+  <div class="row">
+    <button type="submit" class="btn btn-primary">Crear</button>
 
-  <div class="field">
-    <%= f.text_field :address %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

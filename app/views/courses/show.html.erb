@@ -6,100 +6,70 @@
   }
 </style>
 
+<script type="text/javascript" >
+  $( document ).ready(function() {
+      $('.carousel').carousel();
+  });
+</script>
+
 <!-- Toque algo en bootstrap que hace que se vean feas las estrellas, asi que lo incluyo
-de vuelta para que se vean lindas pisando la config que toque arriba :P -->
+de vuelta para que se vean lindas pisando la config que toque arriba :P 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-
-<p id="notice"><%= notice %></p>
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <img src="http://wallpaperscraft.com/image/brad_pitt_actor_man_smile_celebrity_hollywood_18951_256x256.jpg?orig=1" class="img-responsive" alt="Image">
-    </div>
-
-    <div class="col-md-5">
-      <div class="jumbotron">
-        <h2><%= @course.name %></h2>
-        <p><%= @course.description %></p>
-        <p>
-          <a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
-          <!-- <h2> precio </h2> -->
-          <h2> <span class="glyphicon glyphicon-usd"></span> 100</h2>
-          <input id="input-id"class="rating">
-        </p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div id="course_map"></div>
+-->
+<div class="row">
+  <div class="col-md-4">
+    <hr>  
+    <div id="myCarousel" class="carousel slide">
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner"> <!-- All slides go inside .carousel-inner -->
+        <div class="item active">
+            <img src="http://ayudawp.com/wp-content/uploads/2008/08/imagen.jpg"  width="500" height="400" alt="..." />
+            <div class="carousel-caption">Primer imagen</div>
+        </div>
+        <div class="item">
+            <img src="http://4.bp.blogspot.com/_EZ16vWYvHHg/S-Bkb02W4_I/AAAAAAAAMIs/IZTcdgBJ5Js/s1600/www.BancodeImagenesGratuitas.com-Fantasticas-6.jpg"  width="500" height="400" alt="..." />
+            <div class="carousel-caption">Segunda imagen</div>
         </div>
       </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
-
-  <div class="row">
-  <div class="col-md-5 col-md-offset-3">
-      <div class="panel panel-default">
-        <ul class="nav nav-tabs nav-justified">
-        <li><a href="#">Reseñas</a></li>
-        <li><a href="#">Consultas</a></li>
-        </ul>
-        <div class="panel-body">
-        Brad es un tiragoma <input id="user-rating"class="rating">
-        </div>
+  </div>
+  <div class="col-md-5">
+      <h1 class="courseName" ><%= @course.name %></h1>
+      <hr>
+      <p><%= @course.description %></p>
+      <p><%= @course.address %></p>
+      <p><%= @course.subcategory.name %></p>
+      <p>
+        <a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
+        <!-- <h2> precio </h2> -->
+        <h2> <span class="glyphicon glyphicon-usd"></span> 100</h2>
+        <input id="input-id"class="rating">
+      </p>
+  </div>
+</div>
+<div class="row"> 
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-default">
+      <ul class="nav nav-tabs nav-justified">
+      <li><a href="#">Reseñas</a></li>
+      <li><a href="#">Consultas</a></li>
+      </ul>
+      <div class="panel-body">
+      Brad es un tiragoma <input id="user-rating"class="rating">
       </div>
     </div>
   </div>
 </div>
 
+
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>
+
 <%= javascript_tag do %>
-
-function initialize() {
-  var myLatlng = new google.maps.LatLng(<%= @course.latitude %>, <%= @course.longitude %>);
-  var mapOptions = {
-    center: myLatlng,
-    zoom:8, 
-    styles: mapStyle
-  }
-
-  var map = new google.maps.Map(document.getElementById('course_map'), mapOptions);
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: '<%= @course.name %>'
-  });
-
-  google.maps.event.addListener(marker, 'click', function() {
-    map.setZoom(8);
-    map.setCenter(marker.getPosition());
-  });
-}
-
-$("#user-rating").rating({'readonly': true, 'size': 'xs', 'showCaption' : false, 'showClear' : false})
-$("#user-rating").rating('update', 1);
-
-$("#input-id").rating(
-  {
-    'size':'sm',
-    'step': 1,
-    'starCaptions': {
-        0.5: 'Media Estrella',
-        1: 'Una Estrella',
-        1.5: 'Una y Media Estrella',
-        2: 'Dos Estrellas',
-        2.5: 'Dos Estrellas y Media',
-        3: 'Tres Estrellas',
-        3.5: 'Tres Estrellas y Media',
-        4: 'Cuatro Estrellas',
-        4.5: 'Cuatro Estrellas y Media',
-        5: 'Cinco Estrellas'
-      }
-  }
-);
-
-google.maps.event.addDomListener(window, 'load', initialize);
 <% end %>

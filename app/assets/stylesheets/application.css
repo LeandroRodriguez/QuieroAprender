@@ -21,6 +21,14 @@ a.navbar-brand  {
   display: inline-block;
 }
 
+.courseName{
+  font-family: Calibri, sans-serif;
+  font-size: 40px;
+  color: #2f96b4;
+  text-align: center;
+  font-weight: 100;
+}
+
 div.error input {
   border: 2px solid #a94442;
 }

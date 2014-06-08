@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607165530) do
+ActiveRecord::Schema.define(version: 20140608155120) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20140607165530) do
   end
 
   add_index "courses", ["subcategory_id"], name: "index_courses_on_subcategory_id"
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.decimal  "price"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "subcategories", force: true do |t|
     t.string   "name"

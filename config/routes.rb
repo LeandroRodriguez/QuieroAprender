@@ -4,6 +4,7 @@ QuieroAprender::Application.routes.draw do
   match 'home' => "welcome#index", :as => :home, via: [:get, :post]
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
+  get '/plans' => "plans#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

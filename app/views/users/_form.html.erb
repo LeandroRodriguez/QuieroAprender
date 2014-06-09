@@ -1,0 +1,35 @@
+<%= form_for @user, :url => users_path do |f| %>
+	
+	<div class="row">
+		<div class="col-md-4">
+	  		<%= f.label :email %>
+		</div>
+	  <div class="col-md-6">
+	  	<%= f.text_field :email, :class => 'form-control', :placeholder => @user.email %>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+		  	<%= f.label :password %>
+	  	</div>
+	  <div class="col-md-6">
+	  	<%= f.password_field :password, :class => 'form-control', :placeholder => '' %>
+	  </div>
+	</div>
+	<div class="row">
+	  	<div class="col-md-4">
+		  	<%= f.label :password_confirmation %>
+	  	</div>
+	  <div class="col-md-6">
+	  	<%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => '' %>
+	  </div>
+	</div>
+	
+	<div class="actions col-md-4">
+		<% if !defined? @submit_text then @submit_text = 'Save' end%>
+		<%= f.submit @submit_text, :class => 'btn btn-primary' %>
+		<% if defined? @back_link %>
+			<%= link_to 'Back', @back_link, {:class => 'btn btn-primary'} %>
+		<% end %>
+	</div>
+<% end %>

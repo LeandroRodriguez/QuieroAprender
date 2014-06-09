@@ -47,3 +47,10 @@ end
 gem 'bootstrap-sass'
 
 gem 'therubyracer'
+
+gem 'mysql2'
+
+gem 'authlogic'
+
+gem 'cancan'
+

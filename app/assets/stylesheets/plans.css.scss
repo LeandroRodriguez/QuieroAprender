@@ -1,13 +1,19 @@
 // Place all the styles related to the plans controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{
-     padding-top:0px;   
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+body {
+     padding-top:50px;   
 }
 
 .top-section {
-background:  url('http://25.media.tumblr.com/d55a509993790027240311c9f611aaf8/tumblr_n0hpzpKEfE1st5lhmo1_1280.jpg') top center fixed;
-  background-size:100% auto;
+//background:  url('http://25.media.tumblr.com/d55a509993790027240311c9f611aaf8/tumblr_n0hpzpKEfE1st5lhmo1_1280.jpg') top center fixed;
+//background:  url('http://parabuenosaires.com/wp-content/uploads/2013/10/Libros-Viejos-Apilados_Imagenes-de-Libros.jpg') top center fixed;
+background-image:  url('http://static.betazeta.com/www.belelu.com/up/2014/03/libros1.jpg'); //center center no-repeat;// fixed;
+//background-repeat: no-repeat;
+background-position: center center;
+background-size:100% auto;
 color: #fff;
 -webkit-border-radius: 0px;
 -moz-border-radius: 0px;
@@ -69,4 +75,12 @@ position:relative;
     margin-bottom: 0px;
     position:relative;
     padding:40px 0px;
+}
+
+.glyphicon-mission-vision-goals {
+    font-size: 40px; 
+}
+
+.glyphicon-3x {
+    font-size: 60px; 
 }

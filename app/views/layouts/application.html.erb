@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Quiero Aprender" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Test" %>">
-    <%= favicon_link_tag 'logo_tiny.png', :rel => 'shortcut icon' %>
-    <%= stylesheet_link_tag "application", debug: true %>
-    <%= javascript_include_tag "application", debug: true %>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:700,400" %>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><%= content_for?(:title) ? yield(:title) : "Quiero Aprender" %></title>
+		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Test" %>">
+		<%= favicon_link_tag 'logo_tiny.png', :rel => 'shortcut icon' %>
+		<%= stylesheet_link_tag "application", debug: true %>
+		<%= javascript_include_tag "application", debug: true %>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:700,400" %>
+	</head>
+	<body>
+		<!-- Wrap all page content here -->
+		<div id="wrap">
 
+			<!-- Begin page content -->
+			<div class="container-fluid">
+				<header>
+					<%= render 'layouts/navigation' %>
+				</header>
+				<div class="content">
+					<%= render 'layouts/messages' %>
+					<%= yield %>
+				</div>
+			</div>
+		</div>
 
-</head>
-<body>
-<!-- Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Begin page content -->
-      <div class="container">
-	<header>
-      <%= render 'layouts/navigation' %>
-    </header>
-    <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
-    </main>
-      </div>
-    </div>
-
-    <div id="footer">
-      <div class="container">
-			<span><p class="navbar-text">Copyright 2014 @ LGD-IT</a> - All Rights Reserved</p></span>
-      </div>
-    </div>
-
-
-  
-</body>
+		<div id="footer">
+			<div class="container">
+				<span>
+					<p class="navbar-text">
+						Copyright 2014 @ LGD-IT</a> - All Rights Reserved
+					</p></span>
+			</div>
+		</div>
+	</body>
 </html>

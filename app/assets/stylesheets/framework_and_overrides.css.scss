@@ -35,13 +35,13 @@ img {
 main {
   @extend .container;
   background-color: #eee;
-  padding-bottom: 80px;
+  padding-bottom: 0px;
   width: 100%;
-  margin-top: 90px; // accommodate the navbar
+  margin-top: 0px; // accommodate the navbar
   }
 section {
   @extend .row;
-  margin-top: 20px;
+  margin-top: 0px;
   }
   
 .navbar-inverse .navbar-nav > li > a,

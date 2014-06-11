@@ -15,6 +15,11 @@
  *= require bootstrap-select
  *= require_tree .
  */
+
+body {
+  padding-top:50px; /* Padding para que el contenido no quede debajo de la barra de navegacion */
+}
+
 a.navbar-brand  {
   padding: 10px 0;
   vertical-align: middle;

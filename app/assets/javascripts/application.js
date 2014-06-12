@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery.ui.all
 //= require turbolinks
-//= require maps_library
 //= require gmaps
 //= require bootstrap
 //= require typeahead

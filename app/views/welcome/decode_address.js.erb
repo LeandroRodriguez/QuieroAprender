@@ -20,4 +20,21 @@ console.log("results: <%= @results %>;");
     });
 <% end %>
 
+<% for i in 0..2 %>
+$("#resultados").append( "<div class=\"panel panel-info\"><div class=\"panel-body\"><div class=\"col-xs-3\"><img src=\"diegote.jpg\" height=\"100\" width=\"100\"></div><div class=\"col-xs-9\"><h3>Nombre del curso</h3><p>Descripcion del curso</p></div></div></div>" );
+
+map.addMarker({
+  lat: <%= -34.80123520000001 + i/100.0 %>, 
+  lng: <%= -58.3889046 + i/100.0 %>,
+  title: "Curso",
+});
+
+map.addMarker({
+  lat: <%= -34.80123520000001 + i/100.0 %>, 
+  lng: <%= -58.3889046 - i/100.0 %>,
+  title: "Curso",
+});
+<% end %>
+
 map.setCenter(<%= @address[:lat] %>, <%= @address[:lng] %>);
+map.setZoom(12);

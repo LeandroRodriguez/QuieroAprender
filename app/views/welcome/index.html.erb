@@ -10,74 +10,72 @@
 	}
 </style>
 
-<div class="container-fluid">
-	<div class="row">
+<div class="row">
 
-		<div class="col-xs-12 col-sm-9 col-md-6 col-md-push-6 col-lg-5 col-lg-push-7">
-			<div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-3">
-								<h4>Categoría</h4>
-								<select id="category-select" data-width="100%" class="selectpicker" data-style="btn-primary">
-									<%= options_from_collection_for_select(@categories, 'id', 'name') %>
-								</select>
-							</div>
-
-							<div class="col-md-3">
-								<h4>Subcategoría</h4>
-								<select id="subcategory-select" data-width="100%" class="selectpicker" data-style="btn-primary">
-									<%= options_from_collection_for_select(@subcategories, 'id', 'name') %>
-								</select>
-							</div>
-
-							<div class="col-md-6">
-								<h4>Dirección</h4>
-								<input id="address" name="address" data-width="100%" type="text"  class="form-control" placeholder="Ingrese una dirección">
-							</div>
+	<div class="col-xs-12 col-sm-9 col-md-6 col-md-push-6 col-lg-5 col-lg-push-7">
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3">
+							<h4>Categoría</h4>
+							<select id="category-select" data-width="100%" class="selectpicker" data-style="btn-primary">
+								<%= options_from_collection_for_select(@categories, 'id', 'name') %>
+							</select>
 						</div>
 
-						<div class="row">
-							<div class="col-md-3">
-								<button id="map-button" type="button" class="btn btn-lg btn-success">
-									Mapa
-								</button>
-							</div>
+						<div class="col-md-3">
+							<h4>Subcategoría</h4>
+							<select id="subcategory-select" data-width="100%" class="selectpicker" data-style="btn-primary">
+								<%= options_from_collection_for_select(@subcategories, 'id', 'name') %>
+							</select>
+						</div>
 
-							<div class="col-md-3">
-								<button id="buscar" type="button" class="btn btn-lg btn-primary">
-									Buscar
-								</button>
-							</div>
-
-							<div class="col-md-3">
-								<button id="busqueda-avanzada" type="button" class="btn btn-lg btn-primary">
-									Búsqueda avanzada
-								</button>
-							</div>
+						<div class="col-md-6">
+							<h4>Dirección</h4>
+							<input id="address" name="address" data-width="100%" type="text"  class="form-control" placeholder="Ingrese una dirección">
 						</div>
 					</div>
-				</div>
-			</div>
 
-			<div class="row">
-				<div class="panel panel-default">
-					<div class="panel-body" id ="resultados">
-						<div id="no-result" class="alert alert-danger alert-dismissable">
-							No se encontraron resultados que coincidan con la búsqueda.
+					<div class="row">
+						<div class="col-md-3">
+							<button id="map-button" type="button" class="btn btn-lg btn-success">
+								Mapa
+							</button>
+						</div>
+
+						<div class="col-md-3">
+							<button id="buscar" type="button" class="btn btn-lg btn-primary">
+								Buscar
+							</button>
+						</div>
+
+						<div class="col-md-3">
+							<button id="busqueda-avanzada" type="button" class="btn btn-lg btn-primary">
+								Búsqueda avanzada
+							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="hidden-xs col-sm-3 col-md-6 col-md-pull-6 col-lg-7 col-lg-pull-5 ">
-			<div class="panel panel-default" style="width:100%;height:auto;">
-				<div class="panel-body" style="width:100%;height:auto;">
-					<%= image_tag "college.png", size: "500", id: "home_icon" %>
-					<div id="home_map"></div>
+		<div class="row">
+			<div class="panel panel-default">
+				<div class="panel-body" id ="resultados">
+					<div id="no-result" class="alert alert-danger alert-dismissable">
+						No se encontraron resultados que coincidan con la búsqueda.
+					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="hidden-xs col-sm-3 col-md-6 col-md-pull-6 col-lg-7 col-lg-pull-5 ">
+		<div class="panel panel-default" style="width:100%;height:auto;">
+			<div class="panel-body" style="width:100%;height:auto;">
+				<%= image_tag "college.png", size: "500", id: "home_icon" %>
+				<div id="home_map"></div>
 			</div>
 		</div>
 	</div>

@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,11 +44,15 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Use Bootstrap
 gem 'bootstrap-sass'
-
-gem 'therubyracer'
-
-gem 'geocoder'
-gem 'bootstrap_form'
-gem 'jquery-star-rating-rails'
 gem 'bootstrap-select-rails'
+gem 'bootstrap_form'
+
+# Use Koala for Facebook API
+gem 'koala'
+
+# Use geocoder for Google Maps API
+gem 'geocoder'
+
+gem 'jquery-star-rating-rails'

@@ -37,12 +37,17 @@ main {
   background-color: #eee;
   padding-bottom: 0px;
   width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-top: 0px; // accommodate the navbar
-  }
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
 section {
   @extend .row;
   margin-top: 0px;
-  }
+}
   
 .navbar-inverse .navbar-nav > li > a,
 .navbar-nav a {

@@ -1,3 +1,33 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.login-index {
+  width: auto;
+  background: url('https://tunessence.com/blog/wp-content/uploads/2013/08/Electric_guitar_477101105.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-right: 0 px;
+  margin-left: -15px;
+  margin-right: -15 px;
+}
+
+.panel-default {
+  opacity: 0.9;
+  margin-top:30px;
+}
+
+.login-method-separator {
+  display: block;
+  font-size: 0.875em;
+  margin-bottom: 1em;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.form-group.last {
+  margin-bottom:0px;
+}

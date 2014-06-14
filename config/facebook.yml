@@ -1,0 +1,12 @@
+development:
+  app_id: '588960494557654'
+  secret_key: '2b589b1ee76c68848b9cbb19bee0fcdc'
+  site_url: 'http://localhost:3000/'
+test:
+  app_id: '588960494557654'
+  secret_key: '2b589b1ee76c68848b9cbb19bee0fcdc'
+  site_url: 'http://localhost:3000/'
+production:
+  app_id: '588960494557654'
+  secret_key: '2b589b1ee76c68848b9cbb19bee0fcdc'
+  site_url: 'http://localhost:3000/'

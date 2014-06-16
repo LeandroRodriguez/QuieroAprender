@@ -34,6 +34,10 @@ a.navbar-brand  {
   font-weight: 100;
 }
 
+a.iconContainer {
+	max-width: 100%;
+}
+
 div.error input {
   border: 2px solid #a94442;
 }

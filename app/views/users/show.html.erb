@@ -1,0 +1,27 @@
+<div class="user-edit col-md-8">
+	<div class="page-header">
+  		<h2>User details</h2>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+		  	<%= label_tag :password %>
+	  	</div>
+	  <div class="col-md-6">
+	  	<%= label_tag :password, '********' %>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+	  		<%= label_tag :email %>
+		</div>
+	  <div class="col-md-6">
+	  	<%= label_tag :email, @user.email %>
+	  </div>
+	</div>
+
+	<div class="actions col-md-4">
+		<%= link_to 'Edit', edit_user_path(@user), {:class => 'btn btn-primary'} %>
+		<%= link_to 'Back', users_path, {:class => 'btn btn-primary'} %>
+	</div>
+</div>

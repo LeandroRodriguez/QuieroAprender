@@ -1,20 +1,35 @@
 QuieroAprender::Application.routes.draw do
-  resources :courses
 
+  resources :courses
+  resources :user_sessions
+  resources :users  # give us our some normal resource routes for users
+  resource :user, :as => 'account'  # a convenience route
+
+  match 'login' => "user_sessions#new",      :as => :login, via: [:get, :post]
+  match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
   match 'home' => "welcome#index", :as => :home, via: [:get, :post]
+#new
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
   get '/user' => "user#index"
-  get '/login' => "user#login"
+  get '/login2' => "user#login"
   get '/user/facebook_login' => "user#facebook_login"
   get '/user/facebook_authorization' => "user#facebook_authorization"
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/plans' => "plans#index"
+#end new
+  match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root :to => "welcome#index"
+  #if current_user
+  if defined?(current_user_session.user)
+    root :to => "welcome#index"
+  else
+    root :to => 'user#login'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, :only => [:show, :edit, :update, :destroy]
   before_filter :require_user, :only => [:show, :edit, :update]
 
   def new
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated

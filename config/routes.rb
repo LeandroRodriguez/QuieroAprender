@@ -16,7 +16,7 @@ QuieroAprender::Application.routes.draw do
   # root 'welcome#index'
   #if current_user
   if defined?(current_user_session.user)
-    root :to => "welcome#index"
+    root :to => "courses#index"
   else
     root :to => 'user_sessions#new'
   end

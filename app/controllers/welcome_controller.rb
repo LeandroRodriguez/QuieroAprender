@@ -1,5 +1,10 @@
 class WelcomeController < ApplicationController
 	def index
+	  # borrar esto despues
+	  #if !current_user
+	   #  redirect_to login_url
+	  #end
+	  
 		# Aca deberian estar los cursos que matchean lo que el user busca
 		@courses = Course.all
 		@categories = Category.all

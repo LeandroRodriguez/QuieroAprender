@@ -49,7 +49,7 @@ class UserSessionsController < ApplicationController
     rescue Exception=>ex
       puts ex.message
       #if user is not logged in and an exception is caught, redirect to the page where logging in is requested
-      redirect_to '/user/facebook_authorization' and return
+      redirect_to '/user_sessions/facebook_authorization' and return
     end
 
     respond_to do |format|

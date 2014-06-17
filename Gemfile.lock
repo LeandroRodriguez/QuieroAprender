@@ -31,6 +31,8 @@ GEM
       activerecord (>= 3.2)
       activesupport (>= 3.2)
       request_store (~> 1.0)
+    authlogic_facebook_shim (0.5.1)
+      authlogic (~> 3.0)
     bcrypt (3.1.7)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
@@ -145,6 +147,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  authlogic_facebook_shim
   bcrypt (~> 3.1.7)
   bootstrap-sass
   bootstrap-select-rails

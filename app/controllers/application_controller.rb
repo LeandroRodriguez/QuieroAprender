@@ -35,6 +35,18 @@ class ApplicationController < ActionController::Base
       @current_user = current_user_session && current_user_session.user
     end
 
+    def facebook_user
+      current_user_session.try(:facebook_user)
+    end
+    
+    def facebook_user?
+      !facebook_user.nil?
+    end
+    
+    def facebook_session?
+      current_user_session.try(:facebook_session?)
+    end
+
     def require_user
       logger.debug "ApplicationController::require_user"
       unless current_user

@@ -63,6 +63,8 @@ gem 'mysql2'
 
 gem 'authlogic'
 
+gem 'authlogic_facebook_shim'
+
 gem 'bcrypt', '~> 3.1.7'
 gem 'scrypt', '1.2.1'
 

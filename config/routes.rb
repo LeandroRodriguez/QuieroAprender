@@ -11,7 +11,7 @@ QuieroAprender::Application.routes.draw do
 #new
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
   get '/user' => "user#index"
-  get '/login2' => "user#login"
+  #get '/login2' => "user#login"
   get '/user/facebook_login' => "user#facebook_login"
   get '/user/facebook_authorization' => "user#facebook_authorization"
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'

@@ -3,10 +3,10 @@ QuieroAprender::Application.routes.draw do
 
   match 'home' => "welcome#index", :as => :home, via: [:get, :post]
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
-  get '/user' => "user#index"
-  get '/login' => "user#login"
-  get '/user/facebook_login' => "user#facebook_login"
-  get '/user/facebook_authorization' => "user#facebook_authorization"
+  get '/user_sessions' => "user_sessions#index"
+  get '/login' => "user_sessions#login"
+  get '/user_sessions/facebook_login' => "user_sessions#facebook_login"
+  get '/user_sessions/facebook_authorization' => "user_sessions#facebook_authorization"
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/plans' => "plans#index"
   # The priority is based upon order of creation: first created -> highest priority.

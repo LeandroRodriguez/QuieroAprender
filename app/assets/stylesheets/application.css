@@ -17,10 +17,18 @@
  *= require_tree .
  */
 
-@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Lobster|Droid+Sans:400,700);
 
 body {
   padding-top:50px; /* Padding para que el contenido no quede debajo de la barra de navegacion */
+}
+
+body h1 {
+  font-family: 'Lobster', verdana, sans-serif;
+}
+
+body h2, h3 {
+  font-family: 'Open Sans', verdana, sans-serif;
 }
 
 a.navbar-brand  {
@@ -43,10 +51,6 @@ div.error input {
 
 div.error small {
   color: #a94442;
-}
-
-h3 {
-  font-family: 'Open Sans', sans-serif;
 }
 
 #footer {

@@ -17,6 +17,8 @@
  *= require_tree .
  */
 
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
 body {
   padding-top:50px; /* Padding para que el contenido no quede debajo de la barra de navegacion */
 }

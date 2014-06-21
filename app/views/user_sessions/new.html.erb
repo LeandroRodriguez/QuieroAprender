@@ -6,23 +6,27 @@
 			</div>
 			<div class="panel-body">
 				<div align="center">
-					<a href="/user_facebook_sessions/facebook_login">
+					<a href="/user_sessions/facebook_login">
 						<%=image_tag("fb_boton.png", class: "facebook-login-image-button")%>
 					</a>
 				</div>
 				<strong class="login-method-separator">o</strong>
-				<form class="form-horizontal" role="form">
+
+				<%= form_for @user_session, :as => :user_session, :url => { :action => "create" } , :html => {:class => 'form-login'} do |f| %>
+				<!-- <form class="form-horizontal" role="form"> -->		
 					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-3 control-label">Correo electrónico</label>
+						<%= f.text_field :email, :class => 'form-control', :placeholder => 'Correo electrónico' %>
+						<!-- <label for="inputEmail3" class="col-sm-3 control-label">Correo electrónico</label>
 						<div class="col-sm-9">
 							<input class="form-control" id="inputEmail3" placeholder="Email" required="" type="email">
-						</div>
+						</div> -->
 					</div>
 					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-3 control-label">Contraseña</label>
+						<%= f.password_field :password, :class => 'form-control', :placeholder => 'Contraseña' %>
+						<!-- <label for="inputPassword3" class="col-sm-3 control-label">Contraseña</label>
 						<div class="col-sm-9">
 							<input class="form-control" id="inputPassword3" placeholder="Password" required="" type="password">
-						</div>
+						</div> -->
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-3 col-sm-9">
@@ -35,12 +39,14 @@
 					</div>
 					<div class="form-group last">
 						<div class="col-sm-offset-3 col-sm-9">
-							<button type="submit" class="btn btn-success btn-sm">
+							<%= f.submit 'Iniciar sesión', :class => 'btn btn-success btn-sm' %>
+							<!-- <button type="submit" class="btn btn-success btn-sm">
 								Iniciar sesión
-							</button>
+							</button> -->
 						</div>
 					</div>
-				</form>
+				<!-- </form> -->
+				<% end %>
 			</div>
 			<div class="panel-footer">
 				¿No se encuentra registrado? <a href="#" class="">Regístrese ahora</a>

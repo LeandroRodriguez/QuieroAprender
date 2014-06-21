@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140620230207) do
+ActiveRecord::Schema.define(version: 20140621225648) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20140620230207) do
     t.datetime "updated_at"
   end
 
-  add_index "course_students", ["course_id"], name: "index_course_students_on_course_id"
-  add_index "course_students", ["user_id"], name: "index_course_students_on_user_id"
+  add_index "course_students", ["course_id"], name: "index_course_students_on_course_id", using: :btree
+  add_index "course_students", ["user_id"], name: "index_course_students_on_user_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140620230207) do
     t.integer  "subcategory_id"
   end
 
-  add_index "courses", ["subcategory_id"], name: "index_courses_on_subcategory_id"
+  add_index "courses", ["subcategory_id"], name: "index_courses_on_subcategory_id", using: :btree
 
   create_table "courses_tags", id: false, force: true do |t|
     t.integer "course_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140620230207) do
   create_table "plans", force: true do |t|
     t.string   "name"
     t.string   "type"
-    t.decimal  "price"
+    t.decimal  "price",      precision: 10, scale: 0
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,6 +65,11 @@ ActiveRecord::Schema.define(version: 20140620230207) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_sessions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -20,4 +20,6 @@
 //= require jquery-star-rating
 //= require bootstrap-select
 //= require bootstrap-tokenfield
+//= require bootstrap-switch
+//= require map_style
 //= require_tree .

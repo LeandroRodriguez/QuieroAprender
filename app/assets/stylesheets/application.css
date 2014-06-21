@@ -13,12 +13,23 @@
  *= require jquery-star-rating
  *= require typeahead
  *= require bootstrap-select
+ *= require bootstrap-tokenfield
  *= require bootstrap-switch
  *= require_tree .
  */
 
+@import url(http://fonts.googleapis.com/css?family=Lobster|Droid+Sans:400,700);
+
 body {
   padding-top:50px; /* Padding para que el contenido no quede debajo de la barra de navegacion */
+}
+
+body h1 {
+  font-family: 'Lobster', verdana, sans-serif;
+}
+
+body h2, h3 {
+  font-family: 'Open Sans', verdana, sans-serif;
 }
 
 a.navbar-brand  {
@@ -27,24 +38,12 @@ a.navbar-brand  {
   display: inline-block;
 }
 
-.courseName{
-  font-family: Calibri, sans-serif;
-  font-size: 40px;
-  color: #2f96b4;
-  text-align: center;
-  font-weight: 100;
-}
-
 div.error input {
   border: 2px solid #a94442;
 }
 
 div.error small {
   color: #a94442;
-}
-
-h3 {
-  font-family: 'Open Sans', sans-serif;
 }
 
 #footer {

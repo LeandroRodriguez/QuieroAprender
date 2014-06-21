@@ -1,0 +1,51 @@
+<html>
+<head>
+<style>
+div.ex {
+    width: 700px;
+    height: 500px;
+    padding 10px;
+    border: 2px solid gray;
+    margin: 0px;
+}
+</style>
+</head>
+<body>
+
+
+	<div class="row">
+		<div class="col-md-4">
+
+			<br><br>
+
+			<p>
+				<font size = 6><b> <%= @user.name %> </b></font>
+			</p>
+
+			<br>
+            			<img src= "<%= @user.image %>" width="400" height="200" alt="..." />
+			<br><br>
+	
+			<p>
+				<b> Fecha de nacimiento: <%= @user.birthdate.strftime("%d/%m/%Y") %></b>
+			</p>	
+			<p>
+				<b> Email: <%= @user.email %></b>
+			</p>
+		</div>
+	<div class="col-md-5">
+		<br>Cursos realizados
+		<div class = "ex"/>
+			 <% @user.courses.each do |course| %>
+			<tr>
+			<td>Curso: <%= course.name %></td><br>
+			<td>Descripción: <%= course.description %></td><br>
+			</tr>
+				----------------------------------------------<br>
+			<% end %>
+		</div>
+	</div>
+	
+</body>
+</html>
+

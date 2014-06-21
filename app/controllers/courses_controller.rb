@@ -10,16 +10,27 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+   @course = Course.find(params[:id])
   end
 
   # GET /courses/new
   def new
     @course = Course.new
-    @subcategories = Subcategory.all
+    @categories = Category.all
+    @subcategories = Category.find(1).subcategories
+  end
+
+  # GET /courses/update_subcategories_courses
+  def update_subcategories_courses
+    category = Category.find(params[:category_id])
+    @subcategories = category.subcategories.map{|a| [a.name, a.id]}
   end
 
   # GET /courses/1/edit
   def edit
+    @course = Course.find(params[:id])
+    @categories = Category.all
+    @subcategories = Category.find(1).subcategories
   end
 
   # POST /courses
@@ -40,6 +51,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @course = Course.find(params[:id])
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -54,6 +66,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course = Course.find(params[:id])
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url }
@@ -62,9 +75,9 @@ class CoursesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+   # Use callbacks to share common setup or constraints between actions.
     def set_course
-      @course = Course.find(params[:id])
+ #     @course = Course.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -33,4 +33,5 @@ class UserSessionsController < ApplicationController
 
     redirect_to @auth_url
   end
+  
 end

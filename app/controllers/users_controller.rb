@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user]) #user_params)
+    @user = User.new(user_params)
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated

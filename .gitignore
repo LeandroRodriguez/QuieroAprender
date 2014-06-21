@@ -15,6 +15,9 @@
 # Ignore Aptana settings
 .settings
 
+#Gems
+Gemfile.lock
+
 *.rbc
 capybara-*.html
 .rspec

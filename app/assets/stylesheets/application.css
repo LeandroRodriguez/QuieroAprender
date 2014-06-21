@@ -13,6 +13,7 @@
  *= require jquery-star-rating
  *= require typeahead
  *= require bootstrap-select
+ *= require bootstrap-tokenfield
  *= require_tree .
  */
 
@@ -24,14 +25,6 @@ a.navbar-brand  {
   padding: 10px 0;
   vertical-align: middle;
   display: inline-block;
-}
-
-.courseName{
-  font-family: Calibri, sans-serif;
-  font-size: 40px;
-  color: #2f96b4;
-  text-align: center;
-  font-weight: 100;
 }
 
 div.error input {

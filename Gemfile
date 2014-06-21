@@ -56,3 +56,6 @@ gem 'koala'
 gem 'geocoder'
 
 gem 'jquery-star-rating-rails'
+
+gem 'bootstrap_tokenfield_rails'
+

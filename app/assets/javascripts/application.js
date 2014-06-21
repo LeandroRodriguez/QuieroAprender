@@ -19,4 +19,5 @@
 //= require typeahead-addresspicker
 //= require jquery-star-rating
 //= require bootstrap-select
+//= require bootstrap-tokenfield
 //= require_tree .

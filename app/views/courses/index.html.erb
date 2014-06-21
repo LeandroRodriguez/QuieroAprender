@@ -1,16 +1,15 @@
-<h1>Listing courses</h1>
+<h2>Cursos</h2>
 
-<table>
-  <thead>
+<hr>
+<table class="table table-bordered table-hover table-condensed">
+  <thead class="courseList">
     <tr>
-      <th>Name </th>
-      <th>Description </th>
-      <th>Longitude </th>
-      <th>Latitude </th>
-      <th>Address </th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Nombre </th>
+      <th>Descripción </th>
+      <th>Longitud </th>
+      <th>Latitud </th>
+      <th>Dirección </th>
+      <th>Opciones</th>
     </tr>
   </thead>
 
@@ -22,9 +21,17 @@
         <td><%= course.longitude %></td>
         <td><%= course.latitude %></td>
         <td><%= course.address %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= button_to course , class: "btn btn-primary btn-xs", :method => :get do %>
+            <span class="glyphicon glyphicon-search "></span>
+          <% end %>
+          <%= button_to edit_course_path(course) , class: "btn btn-primary btn-xs", :method => :get do %>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+          <%= button_to course ,class: "btn btn-danger btn-xs", method: :delete, data: {confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>  
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +39,6 @@
 
 <br>
 
-<%= link_to 'New Course', new_course_path %>
+<%= button_to 'Nuevo Curso', new_course_path , class: "btn btn-primary", :method => :get %>
+<hr>
+

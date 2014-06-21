@@ -11,35 +11,46 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-4">  
-      <div class="field">
-          <%= f.text_field :name %>
+  <div class="row ">
+    <div class="col-md-4 ">  
+      <div class="field" >
+          <%= f.text_field :name, :label => "Nombre del curso", :placeholder => "Nombre" ,:class => 'required'%>
       </div>
     </div>
   </div> 
   <div class="row">
-    <div class="col-md-4">     
+    <div class="col-md-4 ">     
       <div class="field">
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :label => "Descripción", :placeholder => "Descripción" %>
       </div>
     </div>
-  </div>    
-  <div class="row">
     <div class="col-md-4">  
-      <div class="field">
-        <%= f.text_field :address %>
-      </div>
+      <p>
+        <%= f.text_field :address, :label => "Dirección", :placeholder => "Dirección" %>
+      </p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4"> 
-      <%= f.collection_select(:subcategory_id, @subcategories, :id, :name, {:include_blank => "Please select"}) %>
-    </div>  
-  </div>
-  <hr>
-  <hr>
-  <div class="row">
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <div class="col-md-2 ">
+      <p>Categoría</p>
+          <select id="category-select" class="form-control" >
+              <%= options_from_collection_for_select(@categories, 'id', 'name') %>
+          </select>
+  
+    </div>
+    <div class="col-md-2">
+       <%= f.collection_select(:subcategory_id, @subcategories, :id, :name, {:prompt   => "Seleccione una opción"}, {:id => 'subcategory-select'}) %>
+    </div>
 
+    <div class="col-md-4">
+     <p>Tags</p>
+     <input type="text" class="form-control" id="tokenfield" value="red,green,blue" />
+    </div>
+  </div>
+
+  <hr>
+  <hr>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  
 <% end %>

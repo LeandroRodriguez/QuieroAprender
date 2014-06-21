@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140620230207) do
-=======
-ActiveRecord::Schema.define(version: 20140619065104) do
->>>>>>> 52442673d0a0adfeec1c072d9b6b06286815053b
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -68,8 +64,10 @@ ActiveRecord::Schema.define(version: 20140619065104) do
   end
 
   create_table "tags", force: true do |t|
-	t.string   "name"
-  end 	
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

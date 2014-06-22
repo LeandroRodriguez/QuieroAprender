@@ -15,12 +15,22 @@
 				<%= render 'layouts/navigation_links' %>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li>
-					<p class="navbar-text">Conectado como "Nombre Apellidos"</p>
-				</li>
-				<li>
-					<button type="button" class="btn btn-default navbar-btn">Salir</button>
-				</li>
+				<% if current_user %>
+					<li>
+						<p class="navbar-text"><%= current_user.email %></p>
+					</li>
+					<li>
+						<span class="nav navbar-nav navbar-right">
+							<%= link_to "Salir", '/logout' %>
+						</span>
+					</li>
+				<% else %>
+					<li>
+						<span class="nav navbar-nav navbar-right">
+							<%= link_to "Ingrese", '/login' %>
+						</span>
+					</li>
+				<% end %>		
 			</ul>
 		</div>
 	</div>

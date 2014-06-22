@@ -2,7 +2,7 @@ QuieroAprender::Application.routes.draw do
   
   resources :user_sessions
 
-  match 'login2' => "user_sessions#new",  :as => :login2, via: [:get, :post]
+  match 'login' => "user_sessions#new",  :as => :login2, via: [:get, :post]
   match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
 
   resources :users  # give us our some normal resource routes for users
@@ -17,7 +17,6 @@ QuieroAprender::Application.routes.draw do
 
   get '/user_sessions' => "user_facebook_sessions#index"
   #get '/users/:id' => "users#show" #resources :users
-  get '/login' => "user_facebook_sessions#login"
   get '/user_facebook_sessions/facebook_login' => "user_facebook_sessions#facebook_login"
   get '/user_facebook_sessions/facebook_authorization' => "user_facebook_sessions#facebook_authorization"
 

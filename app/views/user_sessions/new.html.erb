@@ -6,7 +6,7 @@
 			</div>
 			<div class="panel-body">
 				<div align="center">
-					<a href="/user_sessions/facebook_login">
+					<a href="/user_facebook_sessions/facebook_login">
 						<%=image_tag("fb_boton.png", class: "facebook-login-image-button")%>
 					</a>
 				</div>
@@ -49,7 +49,7 @@
 				<% end %>
 			</div>
 			<div class="panel-footer">
-				¿No se encuentra registrado? <a href="#" class="">Regístrese ahora</a>
+				¿No se encuentra registrado? <a href="#" class=""><%= link_to "Registrese ahora", signup_url %></a>
 			</div>
 		</div>
 	</div>

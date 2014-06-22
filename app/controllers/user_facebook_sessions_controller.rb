@@ -5,10 +5,10 @@ class UserFacebookSessionsController < ApplicationController
 
   end
 
-  def login
+  #def login
     
-    render 'user_sessions/login'
-  end
+   # render 'user_sessions/login'
+  #end
 
   def facebook_login
     if params[:code]

@@ -27,8 +27,8 @@
 
 				<div class="row">
 					<div class="col-md-3">
-          <h4>Mapa</h4>
-          <input id="map-button" type="checkbox" name="map-checkbox" checked>
+			          <h4>Mapa</h4>
+			          <input id="map-button" type="checkbox" name="map-checkbox" checked>
 					</div>
 
 					<div class="col-md-3">
@@ -64,6 +64,12 @@
 		</div>
 	</div>
 </div>
+
+<!-- estadisticas provisorias -->
+<button id="btnModal" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+  Estadísticas
+</button>
+<%= render "welcome/stats" %>
 
 <%= javascript_tag do %>
 

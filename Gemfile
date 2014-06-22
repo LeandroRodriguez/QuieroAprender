@@ -69,3 +69,5 @@ gem 'jquery-star-rating-rails'
 
 gem 'bootstrap_tokenfield_rails'
 
+gem "highcharts-rails"
+gem 'lazy_high_charts'

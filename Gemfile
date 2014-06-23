@@ -71,3 +71,7 @@ gem 'bootstrap_tokenfield_rails'
 
 gem "highcharts-rails"
 gem 'lazy_high_charts'
+
+# Use font-awesome for icons
+gem 'less-rails'
+gem 'font-awesome-less'

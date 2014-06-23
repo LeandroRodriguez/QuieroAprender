@@ -15,6 +15,7 @@
  *= require bootstrap-select
  *= require bootstrap-tokenfield
  *= require bootstrap-switch
+ *= require font-awesome
  *= require_tree .
  */
 

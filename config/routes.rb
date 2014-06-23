@@ -10,7 +10,8 @@ QuieroAprender::Application.routes.draw do
 
   match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
   
-  
+  resources :teachers
+
   match 'home' => "welcome#index", :as => :home, via: [:get, :post]
   
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'

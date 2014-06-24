@@ -22,4 +22,5 @@
 //= require bootstrap-tokenfield
 //= require bootstrap-switch
 //= require map_style
+//= require highcharts
 //= require_tree .

@@ -1,14 +1,24 @@
 QuieroAprender::Application.routes.draw do
   
+  resources :user_sessions
+
+  match 'login' => "user_sessions#new",  :as => :login, via: [:get, :post]
+  match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
+
+  resources :users  # give us our some normal resource routes for users
+  #resource :user, :as => 'account'  # a convenience route
+
+  match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
+  
+  resources :teachers
+
   match 'home' => "welcome#index", :as => :home, via: [:get, :post]
   
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
 
-  get '/user_sessions' => "user_sessions#index"
-  get '/users/:id' => "users#show" #resources :users
-  get '/login' => "user_sessions#login"
-  get '/user_sessions/facebook_login' => "user_sessions#facebook_login"
-  get '/user_sessions/facebook_authorization' => "user_sessions#facebook_authorization"
+  get '/user_sessions' => "user_facebook_sessions#index"
+  get '/user_facebook_sessions/facebook_login' => "user_facebook_sessions#facebook_login"
+  get '/user_facebook_sessions/facebook_authorization' => "user_facebook_sessions#facebook_authorization"
 
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/plans' => "plans#index"

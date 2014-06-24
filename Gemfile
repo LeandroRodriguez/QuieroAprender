@@ -24,7 +24,15 @@ gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+# MySql database
 gem 'mysql2'
+
+# User Login
+gem 'authlogic'
+
+gem 'bcrypt', '~> 3.1.7'
+gem 'scrypt', '1.2.1'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -61,3 +69,9 @@ gem 'jquery-star-rating-rails'
 
 gem 'bootstrap_tokenfield_rails'
 
+gem "highcharts-rails"
+gem 'lazy_high_charts'
+
+# Use font-awesome for icons
+gem 'less-rails'
+gem 'font-awesome-less'

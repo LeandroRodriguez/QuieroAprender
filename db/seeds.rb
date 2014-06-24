@@ -27,3 +27,7 @@ Subcategory.create(:name => "Capoeira", :category_id => 3)
 Tag.create(:name => "Musica")
 Tag.create(:name => "Idioma")
 Tag.create(:name => "Baile")
+
+Teacher.create(name: 'Juan Perez', description: 'Profesor de guitarra. 12 años de experiencia')
+Teacher.create(name: 'Ernerto Gomez', description: 'Profesor de inglés. 5 años viviendo en Inglaterra. Certificaciones internacionales')
+

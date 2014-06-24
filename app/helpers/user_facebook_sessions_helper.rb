@@ -1,0 +1,2 @@
+module UserFacebookSessionsHelper
+end

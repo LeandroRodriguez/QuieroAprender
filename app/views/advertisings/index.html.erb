@@ -1,0 +1,42 @@
+<h1>Publicidades</h1>
+
+<hr>
+<table class="table table-bordered table-hover table-condensed">
+  <thead class="advertisingList">
+    <tr>
+      <th>Nombre </th>
+      <th>Descripción </th>
+      <th>Dirección </th>
+      <th>Precio </th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @advertisings.each do |advertising| %>
+      <tr>
+        <td><%= advertising.name %></td>
+        <td><%= advertising.description %></td>
+        <td><%= advertising.address %></td>
+        <td><%= advertising.price %></td>
+        <td>
+          <%= button_to advertising , class: "btn btn-primary btn-xs", :method => :get do %>
+            <span class="glyphicon glyphicon-search "></span>
+          <% end %>
+          <%= button_to edit_advertising_path(advertising) , class: "btn btn-primary btn-xs", :method => :get do %>
+            <span class="glyphicon glyphicon-edit"></span>
+          <% end %>
+          <%= button_to advertising ,class: "btn btn-danger btn-xs", method: :delete, data: {confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to 'Nueva publicidad', new_advertising_path , class: "btn btn-primary", :method => :get %>
+<hr>
+

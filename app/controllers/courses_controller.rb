@@ -11,13 +11,24 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
    @course = Course.find(params[:id])
+   @advertisings = []
+   getAdvertisings(@course, @advertisings)
   end
+
+  def getAdvertisings(course, advertisings)
+    @course.tags.each do |t|
+          
+    end 
+ 
+  end  
 
   # GET /courses/new
   def new
     @course = Course.new
     @categories = Category.all
     @subcategories = Category.find(1).subcategories
+    @posibleTags=Tag.all.map{|a| a.name}
+    @selectedTags=[]
   end
 
   # GET /courses/update_subcategories_courses
@@ -37,6 +48,7 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    setTags(@course)
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -46,6 +58,15 @@ class CoursesController < ApplicationController
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def setTags(course)
+    params[:selectedTags].gsub!(/\s/,'')
+      tags = params[:selectedTags].split(',')
+      tags.each do |t|
+          tag = Tag.find_by_name(t)
+          @course.tags << tag
+      end 
   end
 
   # PATCH/PUT /courses/1
@@ -82,6 +103,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id)
+      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags)
     end
 end

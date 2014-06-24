@@ -23,3 +23,7 @@ Subcategory.create(:name => "Italiano", :category_id => 2)
 Subcategory.create(:name => "Salsa", :category_id => 3)
 Subcategory.create(:name => "Tango", :category_id => 3)
 Subcategory.create(:name => "Capoeira", :category_id => 3)
+
+Tag.create(:name => "Musica")
+Tag.create(:name => "Idioma")
+Tag.create(:name => "Baile")

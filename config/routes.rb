@@ -14,6 +14,7 @@ QuieroAprender::Application.routes.draw do
   get '/plans' => "plans#index"
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
   resources :courses
+  resources :advertisings
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

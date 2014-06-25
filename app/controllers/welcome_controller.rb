@@ -13,12 +13,12 @@ class WelcomeController < ApplicationController
 
 	def decode_address
 		@search_address = Geocoder.search(params[:address]).first
+		@subcategory_id = params[:subcategory_id]
 		@results = []
 		
 		Course.all.to_a.each do |c|
 			distance = Geocoder::Calculations.distance_between([c.latitude, c.longitude], [@search_address.latitude, @search_address.longitude], {:units => :km}) if (not c.latitude.nil? and not c.longitude.nil?)
-			puts "distance: #{distance}"
-			@results.push(c) if (distance < 10)
+			@results.push(c) if (distance < 10 and c.subcategory_id.to_s == @subcategory_id)
 		end
 	end
 end

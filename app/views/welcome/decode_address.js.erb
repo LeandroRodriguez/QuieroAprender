@@ -6,9 +6,12 @@ console.log("results: <%= @results %>;");
     $("#no-result").hide();
 <% end %>
 
+// borro resultados anteriores
+$(".list-group-item").remove();
+
 <% @results.each do |c| %>
 
-$("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"#\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \"><%= c.name %></h4><p class=\"list-group-item-text\"><%= c.description %></p></a>" );
+$("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"courses/<%= c.id %>\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \"><%= c.name %></h4><p class=\"list-group-item-text\"><%= c.description %></p></a>" );
 
     console.log("marker");
     map.addMarker({

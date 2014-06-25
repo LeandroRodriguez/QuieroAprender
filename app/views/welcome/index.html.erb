@@ -123,7 +123,8 @@ $('#buscar').click(function() {
 	$.ajax({
 		url: "/decode_address",
 		data: {
-			address : $('#address').val()
+			address : $('#address').val(),
+			subcategory_id: $('#subcategory-select option:selected').val()
 		},
 		dataType: "script"
 	});

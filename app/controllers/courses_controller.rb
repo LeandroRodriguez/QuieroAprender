@@ -12,14 +12,21 @@ class CoursesController < ApplicationController
   def show
    @course = Course.find(params[:id])
    @advertisings = []
-   getAdvertisings(@course, @advertisings)
+   getAdvertising(@course, @advertisings)
+   @cursosRelacionados = []
+   getCursosRelacionados(@course, @cursosRelacionados)
   end
 
-  def getAdvertisings(course, advertisings)
-    @course.tags.each do |t|
-          
-    end 
- 
+  def getAdvertising(course, advertisings)
+#    @course.tags.each do |t|
+      @advertisings = Advertising.all   
+#    end 
+  end 
+
+  def getCursosRelacionados(course, cursosRelacionados) 
+#    @course.tags.each do |t|
+      @cursosRelacionados = Course.all   
+#    end
   end  
 
   # GET /courses/new

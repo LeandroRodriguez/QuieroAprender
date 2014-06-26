@@ -24,3 +24,11 @@ thead th {
   font-size: 15px;
   height: 10px;
 }
+
+.container-results {
+  background-size: auto auto;
+  width: auto;
+  height: 250px;
+  position: relative;
+  overflow-y: auto;
+}

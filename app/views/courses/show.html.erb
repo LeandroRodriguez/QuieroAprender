@@ -50,50 +50,70 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   <div class="col-md-5">
       <h1 ><%= @course.name %></h1>
       <hr>
-      <h4>Descripción</h4>
-        <p><%= @course.description %></p>
-      <h4>Dirección</h4> 
-        <p><%= @course.address %></p>
-      <h4>Subcategoría</h4> 
-      <% if (@course.subcategory != nil) %>
-        <%=h @course.subcategory.name %>
-      
-      <h4>Precio</h4>
-      <p> <span class="glyphicon glyphicon-usd"></span> 100 </p>
+      <p> Descripción: <%= @course.description %></p>
+      <p> Dirección: <%= @course.address %></p>
+      <p>Subcategoría: 
+        <% if (@course.subcategory != nil) %>
+          <%=h @course.subcategory.name %>
+      </p>
+      <p>Precio: <span class="glyphicon glyphicon-usd"></span> 100 </p>
+      <p>Tags: 
+        <% @course.tags.each do |t| %>
+            <%= t.name %>
+         <% end %> 
+      </p>    
       <div class="basic" data-average="12" data-id="1"></div>
 
    <a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
-       <h4>Tags</h4>
-        <% @course.tags.each do |t| %>
-            <%= t.name %>
-        <% end %>      
-
+            
    <hr>     
-     
   </div>
   <div class="col-md-3">
     <div class="panel panel-default">
-          <div class="panel-body" id ="resultados">
-  
+          <div class="panel-body" id ="cursosRelacionados">
+          <h4>Cursos que podrían interesarte </h4>
+            <div class="list-group container-results" id="cursosRelacionados">
+                 <% @cursosRelacionados.each do |c| %>
+                    <a id="cursosRelacionados_<%= c.id %>" class="list-group-item list-group-item-info" href="/courses/<%= c.id %>" > 
+                      <h4 class="list-group-item-heading"> <%= c.name %> </h4>
+                      <p class="list-group-item-text"> <%= c.description %> </p>
+                    </a>
+                <% end %> 
+            </div>    
           </div>
-    </div>
-  </div>  
-</div>
-<div class="row"> 
-  <div class="col-md-7 col-md-offset-2">
-    <div class="panel panel-default">
-      <ul class="nav nav-tabs nav-justified" id="myTab">
-       <li class="active"><a href="#Reseñas" data-toggle="tab">Reseñas</a></li>
-      <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
-      </ul>
-      <div class="tab-content">
-  <div class="tab-pane fade in active" id="Reseñas">bla</div>
-  <div class="tab-pane fade" id="Consultas">ppp</div>
-  
-</div>
     </div>
   </div>
 </div>
+  <div class="row">
+    <div class="col-md-7 col-md-offset-2">
+      <div class="panel panel-default">
+        <ul class="nav nav-tabs nav-justified" id="myTab">
+         <li class="active"><a href="#Reseñas" data-toggle="tab">Reseñas</a></li>
+        <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="Reseñas">reseñas</div>
+          <div class="tab-pane fade" id="Consultas">consultas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 ">     
+      <div class="panel panel-default">    
+         <div class="panel-body" id ="cursosRelacionados">
+           <h4>Te recomendamos</h4>
+            <div class="list-group container-results" id="cursosRelacionados">
+                 <% @advertisings.each do |a| %>
+                    <a id="advertising_<%= a.id %>" class="list-group-item list-group-item-info" href="/advertisings/<%= a.id %>" > 
+                      <h4 class="list-group-item-heading"> <%= a.name %> </h4>
+                      <p class="list-group-item-text"> <%= a.description %> </p>
+                    </a>
+                <% end %> 
+            </div>
+          </div>
+      </div>
+   </div>   
+  </div>
+
 
 <% end %>
 
@@ -101,4 +121,4 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 <%= link_to 'Back', courses_path %>
 
 <%= javascript_tag do %>
-<% end %>
+<% end %>  

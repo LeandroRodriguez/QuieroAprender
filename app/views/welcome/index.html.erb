@@ -27,22 +27,49 @@
 
 				<div class="row">
 					<div class="col-md-3">
-			          <h4>Mapa</h4>
-			          <input id="map-button" type="checkbox" name="map-checkbox" checked>
+						
+						<input id="map-button" type="checkbox" name="map-checkbox" checked>
 					</div>
 
 					<div class="col-md-3">
-						<button id="buscar" type="button" class="btn btn-lg btn-primary">
+						<button id="buscar" type="button" class="btn btn-lg btn-success">
 							Buscar
 						</button>
 					</div>
+				</div>
 
-					<div class="col-md-3">
-						<button id="busqueda-avanzada" type="button" class="btn btn-lg btn-primary">
-							Búsqueda avanzada
-						</button>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+											Búsqueda Avanzada
+										</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<div class="col-md-6">
+											<h4>Radio de búsqueda</h4>
+											<input id="radioBusqueda" data-slider-id='slider' type="text" data-slider-min="0" data-slider-max="20"  data-slider-value="0"/>
+										</div>
+										<div class="col-md-6">
+											<div class="checkbox">
+												<label>
+													<input type="checkbox" value="">
+													Buscar en todas las categorías
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
+
 			</div>
 		</div>
 
@@ -73,6 +100,14 @@
 
 <%= javascript_tag do %>
 
+$("#radioBusqueda").slider({
+	tooltip: 'show',
+	formater: function(num){
+		return num + " Km";
+	},
+	step: 0.25
+});
+
 addressPicker = new AddressPicker();
 $('#address').typeahead(null, {
 	displayKey: 'description',
@@ -86,7 +121,7 @@ $( document ).ready(function() {
 	$("#home_map").hide();
 	$("#no-result").hide();
 
-  $("[name='map-checkbox']").bootstrapSwitch({size: 'normal', onColor: 'success'});
+  $("[name='map-checkbox']").bootstrapSwitch({size: 'normal', onColor: 'success', onText: 'MAPA'});
 });
 
 
@@ -123,7 +158,8 @@ $('#buscar').click(function() {
 	$.ajax({
 		url: "/decode_address",
 		data: {
-			address : $('#address').val()
+			address : $('#address').val(),
+			subcategory_id: $('#subcategory-select option:selected').val()
 		},
 		dataType: "script"
 	});

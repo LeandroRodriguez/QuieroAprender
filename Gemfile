@@ -75,3 +75,4 @@ gem 'lazy_high_charts'
 # Use font-awesome for icons
 gem 'less-rails'
 gem 'font-awesome-less'
+gem 'bootstrap-slider-rails'

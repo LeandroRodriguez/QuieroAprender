@@ -23,4 +23,5 @@
 //= require bootstrap-switch
 //= require map_style
 //= require highcharts
+//= require bootstrap-slider
 //= require_tree .

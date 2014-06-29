@@ -4,6 +4,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title><%= content_for?(:title) ? yield(:title) : "Quiero Aprender" %></title>
 		<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Test" %>">
+		<% if content_for?(:head) %>
+  			<%= yield(:head) %>
+		<% end %>
+		
 		<!-- Se incluye primero porque lo que esta en el application.js depende de esto -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places"> </script>
 

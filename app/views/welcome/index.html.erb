@@ -1,66 +1,63 @@
 <!--  -34.6037232, -58.3815931 es BS AS -->
 <div class="row">
-
 	<div class="col-xs-12 col-sm-9 col-md-6 col-md-push-6 col-lg-5 col-lg-push-7">
 		<div class="row">
 			<div class="container-fluid container-search-form">
-				<div class="row">
-					<div class="col-md-3">
-						<h4>Categoría</h4>
-						<select id="category-select" data-width="100%" class="selectpicker" data-style="btn-primary">
-							<%= options_from_collection_for_select(@categories, 'id', 'name') %>
-						</select>
-					</div>
+				<div class="panel panel-default" style="margin-top: 10px; margin-bottom: 10px;">
+					<div class="panel-body" style="padding-bottom: 0px; padding-top: 5px;">
+						<div class="row">
+							<div class="col-md-3">
+								<h4>Categoría</h4>
+								<select id="category-select" data-width="100%" class="selectpicker" data-style="btn-primary">
+									<%= options_from_collection_for_select(@categories, 'id', 'name') %>
+								</select>
+							</div>
 
-					<div class="col-md-3">
-						<h4>Subcategoría</h4>
-						<select id="subcategory-select" data-width="100%" class="selectpicker" data-style="btn-primary">
-							<%= options_from_collection_for_select(@subcategories, 'id', 'name') %>
-						</select>
-					</div>
+							<div class="col-md-3">
+								<h4>Subcategoría</h4>
+								<select id="subcategory-select" data-width="100%" class="selectpicker" data-style="btn-primary">
+									<%= options_from_collection_for_select(@subcategories, 'id', 'name') %>
+								</select>
+							</div>
 
-					<div class="col-md-6">
-						<h4>Dirección</h4>
-						<input id="address" name="address" data-width="100%" type="text"  class="form-control" placeholder="Ingrese una dirección">
-					</div>
-				</div>
+							<div class="col-md-6">
+								<h4>Dirección</h4>
+								<input id="address" name="address" data-width="100%" type="text"  class="form-control" placeholder="Ingrese una dirección">
+							</div>
+						</div>
 
-				<div class="row">
-					<div class="col-md-3">
-						
-						<input id="map-button" type="checkbox" name="map-checkbox" checked>
-					</div>
+						<div class="row">
+							<div class="col-md-3">
+								<input id="map-button" type="checkbox" name="map-checkbox" checked>
+							</div>
 
-					<div class="col-md-3">
-						<button id="buscar" type="button" class="btn btn-lg btn-success">
-							Buscar
-						</button>
-					</div>
-				</div>
+							<div class="col-md-3">
+								<button id="buscar" type="button" class="btn btn-lg btn-success">
+									Buscar
+								</button>
+							</div>
+						</div>
 
-				<div class="row">
-					<div class="col-md-12">
-						<div class="panel-group" id="accordion">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-											Búsqueda Avanzada
-										</a>
-									</h4>
-								</div>
-								<div id="collapseOne" class="panel-collapse collapse in">
-									<div class="panel-body">
-										<div class="col-md-6">
-											<h4>Radio de búsqueda</h4>
-											<input id="radioBusqueda" data-slider-id='slider' type="text" data-slider-min="0" data-slider-max="20"  data-slider-value="0"/>
-										</div>
-										<div class="col-md-6">
-											<div class="checkbox">
-												<label>
-													<input type="checkbox" value="">
-													Buscar en todas las categorías
-												</label>
+						<div class="row">
+							<div id="accordion" class="panel-group" style="margin-bottom: 0px;">
+								<div class="panel panel-default" style="margin-top: 10px;">
+									<div class="panel-heading">
+										<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Búsqueda avanzada</a></h4>
+									</div>
+									<div id="collapseOne" class="panel-collapse collapse in">
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-md-6">
+													<h4>Radio de búsqueda</h4>
+													<input id="radioBusqueda" data-slider-id='slider' type="text" data-slider-min="0" data-slider-max="20"  data-slider-value="0"/>
+												</div>
+												<div class="col-md-6">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" value="">
+															Buscar en todas las categorías </label>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -69,18 +66,17 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="container-fluid container-search-result">
-        <div class="list-group" id="resultados">
-  				<div id="no-result" class="alert alert-danger alert-dismissable">
-  					No se encontraron resultados que coincidan con la búsqueda.
-  				</div>
-  			</div>
-      </div>
+				<div class="list-group" id="resultados">
+					<div id="no-result" class="alert alert-danger alert-dismissable">
+						No se encontraron resultados que coincidan con la búsqueda.
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

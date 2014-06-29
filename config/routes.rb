@@ -1,28 +1,31 @@
 QuieroAprender::Application.routes.draw do
   
+  resources :welcome
+    
   resources :user_sessions
+    match 'login' => "user_sessions#new",  :as => :login, via: [:get, :post]
+    match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
 
-  match 'login' => "user_sessions#new",  :as => :login, via: [:get, :post]
-  match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
+  resources :user_facebook_sessions
+    match 'fb_login' => "user_facebook_sessions#login", :as => :fb_login, via: [:get, :post]
+    match 'fb_authorization' => "user_facebook_sessions#authorization", :as => :fb_authorization, via: [:get, :post]
 
   resources :users  # give us our some normal resource routes for users
   #resource :user, :as => 'account'  # a convenience route
-
-  match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
+    match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
   
+  resources :plans
+    match 'plans' => "plans#index", :as => :plans_index, via: [:get, :post]
   
-  match 'home' => "welcome#index", :as => :home, via: [:get, :post]
+  resources :teachers
+    match 'home' => "welcome#index", :as => :home, via: [:get, :post]
   
   get '/update_subcategories' => "welcome#update_subcategories", as: 'update_subcategories'
 
-  get '/user_sessions' => "user_facebook_sessions#index"
-  get '/user_facebook_sessions/facebook_login' => "user_facebook_sessions#facebook_login"
-  get '/user_facebook_sessions/facebook_authorization' => "user_facebook_sessions#facebook_authorization"
-
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
-  get '/plans' => "plans#index"
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
   resources :courses
+  resources :advertisings
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

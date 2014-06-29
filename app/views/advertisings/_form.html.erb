@@ -1,0 +1,48 @@
+<%= bootstrap_form_for(@advertising) do |f| %>
+  <% if @advertising.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advertising.errors.count, "error") %> prohibited this advertising from being saved:</h2>
+
+      <ul>
+      <% @advertising.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row ">
+    <div class="col-md-4 ">  
+      <div class="field" >
+         <%= f.text_field :name, :label => "Nombre", :placeholder => "Nombre" %>
+      </div>
+    </div>
+  </div> 
+  <br>
+  <div class="row">
+    <div class="col-md-4 ">     
+      <div class="field">
+        <%= f.text_area :description, :label => "Descripción", :placeholder => "Descripción" %>
+      </div>
+    </div>
+    <div class="col-md-4">  
+      <%= f.text_field :address, :label => "Dirección", :placeholder => "Dirección" ,:class => "required" %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">  
+      <%= f.text_field :price, :label => "Precio", :placeholder => "Precio" ,:class => "required" %>
+    </div>
+    <div class="col-md-4">
+      <p class="control-label">Tags</p>
+      <input type="text" class="form-control" id="tokenfield" name="selectedTags" value="" />
+    </div>
+  </div>
+
+  <hr>
+  <hr>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary">Crear</button>
+  
+<% end %>

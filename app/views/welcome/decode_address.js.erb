@@ -1,4 +1,4 @@
-//console.log("results: <%= @results %>;");
+console.log("results: <%= @results %>;");
 
 <% if @results.empty? %>
     $("#no-result").fadeIn();
@@ -6,41 +6,28 @@
     $("#no-result").hide();
 <% end %>
 
-<% @results.each do |r| %>
-    var lat = <%= r[:lat] %>;
-    var lng = <%= r[:lng] %>;
-    var name = <%= r[:name] %>;
+// borro resultados anteriores
+$(".list-group-item").remove();
 
+<% @results.each do |c| %>
+
+$("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"courses/<%= c.id %>\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \"><%= c.name %></h4><p class=\"list-group-item-text\"><%= c.description %></p></a>" );
+
+    console.log("marker");
     map.addMarker({
-      lat: lat,
-      lng: lng,
-      title: name,
-      mouseout: function(e) {
-            alert("over");
-        },
+      lat: <%= c.latitude %>,
+      lng: <%= c.longitude %>,
+      title: "<%= c.name %>",
       mouseover: function(e) {
-            alert("out");
-        } 
-    });
+        $("#curso_<%= c.id %>").toggleClass("active");
+        setTimeout(function(){
+           // toggle back after 1 second
+           $("#curso_<%= c.id %>").toggleClass("active");
+          },1000);
+        }
+      });
+
 <% end %>
 
-
-<% for i in 0..2 %>
-$("#resultados").append( "<a id=\"curso_<%= i %>\" href=\"#\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \">Nombre del curso</h4><p class=\"list-group-item-text\">Descripcion del curso</p></a>" );
-
-map.addMarker({
-  lat: <%= -34.80123520000001 + i/100.0 %>, 
-  lng: <%= -58.3889046 + i/100.0 %>,
-  title: "Curso",
-  mouseover: function(e) {
-      $("#curso_<%= i %>").toggleClass("active");
-      setTimeout(function(){
-       // toggle back after 1 second
-       $("#curso_<%= i %>").toggleClass("active");
-      },1000);
-  }
-});
-<% end %>
-
-map.setCenter(<%= @address[:lat] %>, <%= @address[:lng] %>);
+map.setCenter(<%= @search_address.latitude %>, <%=@search_address.longitude %>);
 map.setZoom(12);

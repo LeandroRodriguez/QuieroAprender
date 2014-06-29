@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621225660) do
+ActiveRecord::Schema.define(version: 20140621235020) do
+
+  create_table "advertisings", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "address"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "advertisings_tags", id: false, force: true do |t|
+    t.integer "advertising_id"
+    t.integer "tag_id"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -38,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140621225660) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subcategory_id"
+    t.float    "price"
   end
 
   add_index "courses", ["subcategory_id"], name: "index_courses_on_subcategory_id", using: :btree
@@ -65,6 +80,13 @@ ActiveRecord::Schema.define(version: 20140621225660) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.string   "name"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

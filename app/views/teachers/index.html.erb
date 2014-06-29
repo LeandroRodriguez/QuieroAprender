@@ -1,0 +1,68 @@
+<h2>Perfil</h2>
+<br><br>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+		  
+		    <!--div class="panel panel-default"-->
+					<!--div class="panel-body"-->
+		            		<div class="row">
+		                      <div class="col-xs-12 col-sm-4 text-center">
+		                              <img src="http://sp0.fotolog.com/photo/32/23/87/kapanga_a_muerte/1237044707429_f.jpg" alt="" class="center-block img-circle img-responsive">
+		                              <ul class="list-inline ratings text-center" title="Ratings">
+		                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+		                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+		                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+		                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+		                                <li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
+		                              </ul>
+		                      </div><!--/col-->
+		                      <div class="col-xs-12 col-sm-8">
+		                          <h2><%= @teachers.find_by_id(1).name %></h2>
+		                          <p><strong>Descripción: </strong> <%= @teachers.find_by_id(1).description %> </p>
+		                          <p><strong>Hobbies: </strong> Amo la música, los animales y el fútbol</p>
+		                          <p><strong>Géneros: </strong>
+		                              <span class="label label-info tags">Rock</span> 
+		                              <span class="label label-info tags">Tango</span>
+		                              <span class="label label-info tags">Clásicos</span>
+		                              <span class="label label-info tags">Nacional</span>
+		                          </p>
+		                      </div><!--/col-->
+										</div><!--row-->
+										<div class="row">
+		                	<div class="col-xs-12 col-sm-4">
+												<center>		                          
+													<h2><strong> 240 </strong></h2>                    
+		                      <h2><p> Alumnos </p></h2>
+		                      <button class="btn btn-success btn-block">
+														<span class="fa fa-user"/> Ver alumnos 
+													</button>
+												</center>
+		                  </div><!--/col-->
+		                  <div class="col-xs-12 col-sm-4">
+												<center>
+		                    	<h2><strong><center> 4 </center></strong></h2>                    
+		                     	<h2><p> Cursos </p></h2>
+		                     	<button class="btn btn-info btn-block">
+														<span class="fa fa-university"/> Ver Cursos 
+													</button>
+												</center>
+		                  </div><!--/col-->
+		                  <div class="col-xs-12 col-sm-4">
+												<center>
+		                     	<h2><strong><center> 17 </center></strong></h2>                    
+		                     	<h2><p> Recomendaciones </p></h2>
+		                     	<button type="button" class="btn btn-primary btn-block">
+														<span class="fa fa-thumbs-up"/> Recomendar
+													</button>
+												</center>  
+		                	</div><!--/col-->
+		            		</div><!--/row-->
+		            <!--/div--><!--/panel-body-->
+		        <!--/div--><!--/panel-->
+ 
+		  </div><!--/col-->
+		</div><!--/row-->
+	</div><!--container-->
+

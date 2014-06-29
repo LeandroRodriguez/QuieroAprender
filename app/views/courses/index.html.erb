@@ -1,4 +1,4 @@
-<h2>Cursos</h2>
+<h1>Cursos</h1>
 
 <hr>
 <table class="table table-bordered table-hover table-condensed">
@@ -23,14 +23,15 @@
         <td><%= course.address %></td>
         <td>
           <%= button_to course , class: "btn btn-primary btn-xs", :method => :get do %>
-            <span class="glyphicon glyphicon-search "></span>
+            <span class="glyphicon glyphicon-eye-open "></span>
           <% end %>
           <%= button_to edit_course_path(course) , class: "btn btn-primary btn-xs", :method => :get do %>
             <span class="glyphicon glyphicon-edit"></span>
           <% end %>
           <%= button_to course ,class: "btn btn-danger btn-xs", method: :delete, data: {confirm: 'Are you sure?' } do %>
-            <span class="glyphicon glyphicon-remove"></span>
+          <span class="glyphicon glyphicon-remove"></span>
           <% end %>
+         
         </td>  
       </tr>
     <% end %>

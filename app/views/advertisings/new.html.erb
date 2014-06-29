@@ -1,37 +1,29 @@
-<h1>Crear curso</h1>
+<h1>Crear publicidad</h1>
 
 <hr>
 
 <%= render 'form' %>
 
-<%= button_to 'Volver',courses_path , class: "btn btn-primary" , :method => :get %>
+<%= button_to 'Volver',advertisings_path , class: "btn btn-primary" , :method => :get %>
 </div>
 
 <hr>
 
 <script type="text/javascript" >
-		$('#category-select').change(function() {
-		  $.ajax({
-		    url:  "<%= update_subcategories_courses_path %>",
-		    data: {
-		      category_id : $('#category-select').val()
-		    },
-		  	dataType: "script"
-		  });
-		});
-		$('#tokenfield').tokenfield({
+	
+	$('#tokenfield').tokenfield({
 			  autocomplete: {
 			    source: <%= raw @posibleTags %>,
 			    delay: 100
 			  },
 			  showAutocompleteOnFocus: true
-		});
+	});
 </script>
 
 
 <%= javascript_tag do %>
 var addressPicker = new AddressPicker();
-$('#course_address').typeahead(null, {
+$('#advertising_address').typeahead(null, {
   displayKey: 'description',
   source: addressPicker.ttAdapter()
 });

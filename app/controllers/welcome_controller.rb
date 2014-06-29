@@ -13,14 +13,12 @@ class WelcomeController < ApplicationController
 
 	def decode_address
 		@search_address = Geocoder.search(params[:address]).first
-		puts "@search_address #{@search_address.latitude}, #{@search_address.longitude}"
-		@address = {lat: @search_address.latitude, lng: @search_address.longitude}
+		@subcategory_id = params[:subcategory_id]
 		@results = []
 		
 		Course.all.to_a.each do |c|
-			puts "course #{c.latitude}, #{c.longitude}"
-			distance = @search_address.distance_from([c.latitude, c.longitude]) if (not c.latitude.nil? and not c.longitude.nil?)
-			@results.push({lat: c.latitude, lng: c.longitude, name: c.name}) if (distance < 10000)
+			distance = Geocoder::Calculations.distance_between([c.latitude, c.longitude], [@search_address.latitude, @search_address.longitude], {:units => :km}) if (not c.latitude.nil? and not c.longitude.nil?)
+			@results.push(c) if (distance < 10 and c.subcategory_id.to_s == @subcategory_id)
 		end
 	end
 end

@@ -23,3 +23,11 @@ Subcategory.create(:name => "Italiano", :category_id => 2)
 Subcategory.create(:name => "Salsa", :category_id => 3)
 Subcategory.create(:name => "Tango", :category_id => 3)
 Subcategory.create(:name => "Capoeira", :category_id => 3)
+
+Tag.create(:name => "Musica")
+Tag.create(:name => "Idioma")
+Tag.create(:name => "Baile")
+
+Teacher.create(name: 'Juan Perez', description: 'Profesor de guitarra. 12 anios de experiencia')
+Teacher.create(name: 'Ernerto Gomez', description: 'Profesor de ingles. 5 anios viviendo en Inglaterra. Certificaciones internacionales')
+

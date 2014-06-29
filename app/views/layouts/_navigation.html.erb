@@ -20,15 +20,11 @@
 						<p class="navbar-text"><%= current_user.email %></p>
 					</li>
 					<li>
-						<span class="nav navbar-nav navbar-right">
-							<%= link_to "Salir", logout_url %>
-						</span>
+						<%= link_to "Salir", logout_url %>
 					</li>
 				<% else %>
 					<li>
-						<span class="nav navbar-nav navbar-right">
-							<%= link_to "Ingrese", login_url %>
-						</span>
+						<%= link_to "Ingrese", login_url %>
 					</li>
 				<% end %>		
 			</ul>

@@ -85,18 +85,46 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   </div>
 </div>
   <div class="row">
-    <div class="col-md-7 col-md-offset-2">
-      <div class="panel panel-default">
+   <%= bootstrap_form_for [@course, Opinion.new] do |f| %>
+    <div class="col-md-8 col-md-offset-1">
+      <div class="panel panel-default container-opinions">
         <ul class="nav nav-tabs nav-justified" id="myTab">
          <li class="active"><a href="#Reseñas" data-toggle="tab">Reseñas</a></li>
         <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="Reseñas">reseñas</div>
+          <div class="tab-pane fade in active" id="Reseñas">
+            <div class="panel-body" id ="listasReseñas">
+              <h5>Danos tu opinión </h5>
+              <div class="list-group container-results" id="listasReseñas">
+                   <% @course.opinions.each do |o| %>
+                      <a id="opinions_<%= o.id %>" class="list-group-item list-group-item-info" > 
+                        <h4 class="list-group-item-heading"> 
+                        <% unless o.user.nil? %>
+                          <%= o.user.email %>
+                        <% end %> 
+                        </h4>
+                        <p class="list-group-item-text"> <%= o.description %> </p>
+                      </a>
+                  <% end %> 
+              </div>    
+            </div>
+            <div class="col-md-12 col-ms-offset-1" >
+              <a id="newOpinion" class="list-group-item list-group-item-info" > 
+                <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
+                <p class="list-group-item-text">
+                  <textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
+                  <br>
+                  <button id="addOpinion" class="btn btn-primary col-md-offset-11" >Add</button> 
+                </p>
+             </a>
+            </div>
+          </div>
           <div class="tab-pane fade" id="Consultas">consultas</div>
         </div>
       </div>
     </div>
+    <% end %>
     <div class="col-md-3 ">     
       <div class="panel panel-default">    
          <div class="panel-body" id ="cursosRelacionados">

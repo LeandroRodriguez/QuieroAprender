@@ -27,7 +27,9 @@ QuieroAprender::Application.routes.draw do
 
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
-  resources :courses
+  resources :courses do
+    resources :opinions, :only => [:create]
+  end
   resources :advertisings
   
   # The priority is based upon order of creation: first created -> highest priority.

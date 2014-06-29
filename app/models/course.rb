@@ -5,4 +5,6 @@ class Course < ActiveRecord::Base
 	has_many :course_students
 	has_many :users, :through => :course_students
 	has_and_belongs_to_many :tags
+	has_many :opinions
+	has_many :consultations
 end

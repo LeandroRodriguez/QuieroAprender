@@ -1,5 +1,6 @@
 class AdvertisingsController < ApplicationController
-	 before_action :set_advertising, only: [:show, :edit, :update, :destroy]
+	authorize_resource 
+	before_action :set_advertising, only: [:show, :edit, :update, :destroy]
 
   # GET /advertisings
   # GET /advertisings.json

@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
 
   #---<Perms>---
   #authorize_resource
-  #check_authorization
+  check_authorization
 
-  #rescue_from CanCan::AccessDenied do |exception|
-   # redirect_to root_url, :alert => exception.message
-  #end
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
   #---</Perms>---
 
   before_filter do

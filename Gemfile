@@ -33,6 +33,9 @@ gem 'authlogic'
 gem 'bcrypt', '~> 3.1.7'
 gem 'scrypt', '1.2.1'
 
+# User Authorization
+gem 'cancan'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  authorize_resource :class => false
+  
 	def index
 		# Aca deberian estar los cursos que matchean lo que el user busca
 		@courses = Course.all

@@ -24,6 +24,15 @@
 	  	<%= f.password_field :password_confirmation, :class => 'form-control', :placeholder => '' %>
 	  </div>
 	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+	    	<%= f.label :role %>
+		</div>
+  	<div class="col-md-6">
+	    <%= f.select :role, [["Estudiante", User::ROLE_STUDENT], ["Profesor", User::ROLE_TEACHER], ["Admin", User::ROLE_ADMIN]], {}, { :class => 'selectpicker', 'data-style' => "btn-primary"} %>
+	</div>
+	
 
 	<div class="actions col-md-4">
 		<% if !defined? @submit_text then @submit_text = 'Save' end%>

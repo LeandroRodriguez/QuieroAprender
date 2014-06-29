@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+  authorize_resource
   before_action :set_user, :only => [:show, :edit, :update, :destroy]
   before_filter :require_user, :only => [:show, :edit, :update]
 
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user # makes our views "cleaner" and more consistent
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = "Account updated!"
-      redirect_to account_url
+      redirect_to home_url
     else
       render :action => :edit
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
     end
   
   #def show

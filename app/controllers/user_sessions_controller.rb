@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  authorize_resource
   before_filter :require_user, :only => :destroy
 
   def new

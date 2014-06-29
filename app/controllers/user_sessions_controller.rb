@@ -13,10 +13,10 @@ class UserSessionsController < ApplicationController
       if current_user
         username = current_user.email
       end
-      flash[:notice] = "Welcome " +  username + "!"
+      flash[:notice] = "Bienvenido " +  username + "!"
       redirect_back_or_default root_url
     else
-      flash[:error] = "Invalid username or password"
+      flash[:error] = "Email o password invalido"
       # Redirect to not display the error messages in the view
       #redirect_to login_url
       render :action => :new
@@ -25,7 +25,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     current_user_session.destroy
-    flash[:notice] = "Logout successful!"
+    flash[:notice] = "Se ha deslogueado"
     redirect_back_or_default new_user_session_url
     #redirect_back_or_default login_url
   end

@@ -1,3 +1,14 @@
+<% content_for :head do %>
+	<!-- Open Graph Metadata -->
+	<meta property="fb:app_id" content=<%= Facebook::APP_ID%> />
+	<meta property="og:title" content="<%= "Quiero Aprender - " + @course.name %>" />
+	<meta property="og:site_name" content="Quiero Aprender" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="<%= courses_path + "/" + @course.id.to_s %>" />
+	<meta property="og:image" content="http://sndt.ac.in/images/courses/courses-imgs.jpg" />
+	<meta property="og:description" content="<%= @course.description %>" />
+<% end %>
+
 <style>
   #course_map {
      display: block;
@@ -5,6 +16,34 @@
      width: 100%;
   }
 </style>
+
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+		appId : <%=Facebook::APP_ID%>,
+		xfbml : true,
+		version    : 'v2.0'
+		//oauth : true
+	});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_LA/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=588960494557654&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
 <script type="text/javascript" >
   $( document ).ready(function() {
@@ -49,6 +88,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   </div>
   <div class="col-md-5">
       <h1 ><%= @course.name %></h1>
+      <div class="fb-share-button" data-href=<%= courses_path + "/" + @course.id.to_s %>data-type="button"></div>
       <hr>
       <p> Descripción: <%= @course.description %></p>
       <p> Dirección: <%= @course.address %></p>

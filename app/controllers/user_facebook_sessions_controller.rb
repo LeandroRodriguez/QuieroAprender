@@ -1,6 +1,7 @@
 require 'koala'
 
 class UserFacebookSessionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   authorize_resource :class => false
   before_filter :parse_facebook_cookies
   
@@ -50,8 +51,8 @@ class UserFacebookSessionsController < ApplicationController
   def authorization
     session[:oauth] = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET, Facebook::SITE_URL+'fb_authorization_callback')
     puts "Facebook OAuth Session: #{session[:oauth]}"
-    @auth_url = session[:oauth].url_for_oauth_code(:permissions=>"public_profile email user_friends publish_actions")
-    redirect_to @auth_url
+    auth_url = session[:oauth].url_for_oauth_code(:permissions=>"public_profile email user_friends publish_actions")
+    redirect_to auth_url
   end
   
   def authorization_callback
@@ -61,8 +62,18 @@ class UserFacebookSessionsController < ApplicationController
   end
   
   def publish_wall_post
+    puts "Publish wall post params: #{params}"
+    puts "Publish wall post JSON params: #{params[:json]}"
     @graph = Koala::Facebook::API.new(session[:access_token])
-    @graph.put_wall_post(params[:message]) if params[:message]
+    session[:fb_permissions] = @graph.get_connections('me','permissions') unless session[:fb_permissions]
+    puts "Facebook Permissions: #{session[:fb_permissions]}"
+    if params[:message] then
+      if params[:attachment] then
+        @graph.put_wall_post(params[:message], params[:attachment])
+      else
+        @graph.put_wall_post(params[:message])
+      end
+    end
     redirect_to :root
   end
 

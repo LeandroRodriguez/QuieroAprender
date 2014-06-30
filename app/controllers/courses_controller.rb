@@ -56,6 +56,8 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @categories = Category.all
     @subcategories = Category.find(1).subcategories
+    @posibleTags=Tag.all.map{|a| a.name}
+    @selectedTags= []
   end
 
   # POST /courses
@@ -76,17 +78,18 @@ class CoursesController < ApplicationController
 
   def setTags(course)
     params[:selectedTags].gsub!(/\s/,'')
-      tags = params[:selectedTags].split(',')
-      tags.each do |t|
-          tag = Tag.find_by_name(t)
-          @course.tags << tag
-      end 
+    tags = params[:selectedTags].split(',')
+    tags.each do |t|
+    tag = Tag.find_by_name(t)
+      @course.tags << tag
+    end 
   end
 
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
+    setTags(@course)
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }

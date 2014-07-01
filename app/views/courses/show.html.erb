@@ -3,8 +3,8 @@
 	<meta property="fb:app_id" content=<%= Facebook::APP_ID%> />
 	<meta property="og:title" content="<%= "Quiero Aprender - " + @course.name %>" />
 	<meta property="og:site_name" content="Quiero Aprender" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="<%= courses_path + "/" + @course.id.to_s %>" />
+	<!--meta property="og:type" content="website" /-->
+	<meta property="og:url" content="<%= "quieroaprender.com.ar" + courses_path + "/" + @course.id.to_s %>" />
 	<meta property="og:image" content="http://sndt.ac.in/images/courses/courses-imgs.jpg" />
 	<meta property="og:description" content="<%= @course.description %>" />
 <% end %>

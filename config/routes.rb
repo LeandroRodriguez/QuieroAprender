@@ -29,6 +29,7 @@ QuieroAprender::Application.routes.draw do
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
   resources :courses do
     resources :opinions, :only => [:create]
+    resources :consultations, :only => [:create]
   end
   resources :advertisings
   

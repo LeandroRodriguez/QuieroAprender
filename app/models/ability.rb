@@ -12,12 +12,14 @@ class Ability
         can :manage, [UserSession, Course, CourseStudent, Teacher]
         can :manage, User
         can :manage, [:welcome, :user_facebook_session]
+        can :create, Consultation
       else
         can :manage, [UserSession]
         can :manage, User
         can :manage, [:welcome, :user_facebook_session]
         can :read, Course
         can :create, Opinion
+        can :create, Consultation
         #can [:signup, :profile, :edit_profile], User
       end
     end

@@ -17,10 +17,13 @@ class WelcomeController < ApplicationController
 		@search_address = Geocoder.search(params[:address]).first
 		@subcategory_id = params[:subcategory_id]
 		@results = []
-		
+		@radio = (params[:radio].nil?) ? 5 : params[:radio].to_i
+		@buscarTodas= (params[:buscarTodas] == "true") ? true : false
 		Course.all.to_a.each do |c|
 			distance = Geocoder::Calculations.distance_between([c.latitude, c.longitude], [@search_address.latitude, @search_address.longitude], {:units => :km}) if (not c.latitude.nil? and not c.longitude.nil?)
-			@results.push(c) if (distance < 10 and c.subcategory_id.to_s == @subcategory_id)
+			if (distance < @radio) and (@buscarTodas or (c.subcategory_id.to_s == @subcategory_id))
+				@results.push(c)
+			end
 		end
 	end
 end

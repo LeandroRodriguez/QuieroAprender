@@ -1,5 +1,4 @@
 console.log("results: <%= @results %>;");
-
 <% if @results.empty? %>
     $("#no-result").fadeIn();
 <% else %>
@@ -8,6 +7,9 @@ console.log("results: <%= @results %>;");
 
 // borro resultados anteriores
 $(".list-group-item").remove();
+
+//restart del mapa centrado en la nueva direccion
+inicializarMapa(<%= @search_address.latitude %>, <%= @search_address.longitude %>);
 
 <% @results.each do |c| %>
 
@@ -29,5 +31,4 @@ $("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"courses/<%= c.id %>
 
 <% end %>
 
-map.setCenter(<%= @search_address.latitude %>, <%=@search_address.longitude %>);
 map.setZoom(12);

@@ -20,8 +20,8 @@ class CoursesController < ApplicationController
    getAdvertising(@course, @advertisings)
    @cursosRelacionados = []
    getCursosRelacionados(@course, @cursosRelacionados)
-   @opinions = @course.opinions
    @opinion = Opinion.new
+   @consultation = Consultation.new
   end
 
   def getAdvertising(course, advertisings)
@@ -120,6 +120,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags, :opinions)
+      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags, :opinions, :consultations)
     end
 end

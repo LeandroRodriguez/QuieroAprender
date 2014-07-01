@@ -125,7 +125,6 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   </div>
 </div>
   <div class="row">
-   <%= bootstrap_form_for [@course, Opinion.new] do |f| %>
     <div class="col-md-8 col-md-offset-1">
       <div class="panel panel-default container-opinions">
         <ul class="nav nav-tabs nav-justified" id="myTab">
@@ -133,7 +132,9 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
         <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
         </ul>
         <div class="tab-content">
+       
           <div class="tab-pane fade in active" id="Reseñas">
+           <%= bootstrap_form_for [@course, Opinion.new] do |f| %>
 <!--
             <div class="panel-body" id ="listasReseñas">
               <div class="list-group container-opinionsResults" id="listasReseñas">
@@ -153,17 +154,18 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
           <div class="panel-body" id ="listasReseñas">   
             <ul class="media-list container-opinionsResults">
                <% @course.opinions.each do |o| %>
-              <li class="media">
+                <li class="media">
                 <a class="pull-left" href="#">
                   <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
                 </a>
                 <div class="media-body">
-                         <h5 class="media-heading">
+                        <h5 class="media-heading">
                         <% unless o.user.nil? %>
                           <%= o.user.email %>
+                          <%= o.date %>
                         <% end %> 
                         </h5>
-                         <%= o.description %> 
+                        <%= o.description %> 
                  </div>
               </li>
               <% end %>
@@ -180,12 +182,52 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
                 </p>
              </a>
             </div>
+          <% end %>
           </div>
-          <div class="tab-pane fade" id="Consultas">consultas</div>
+          <div class="tab-pane fade" id="Consultas">
+          
+          <%= bootstrap_form_for [@course, Consultation.new] do |f| %>
+             <div class="panel-body" id ="listaConsultas">   
+              <ul class="media-list container-opinionsResults">
+                <% @course.consultations.each do |c| %>
+                  <% if(c.user.role == User::ROLE_TEACHER)  %> 
+                    <li class="media list-group-item-success">
+                  <% else %>    
+                    <li class="media">
+                  <% end %>  
+                  <a class="pull-left" href="#">
+                    <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
+                  </a>
+                  <div class="media-body">
+                          <h5 class="media-heading">
+                          <% unless c.user.nil? %>
+                            <%= c.user.email %>
+                            <%= c.date %>
+                          <% end %> 
+                          </h5>
+                          <%= c.description %> 
+                   </div>
+                </li>
+              <% end %>
+              </ul>
+             </div> 
+              <div class="col-md-12 col-ms-offset-1" >
+                <a id="newOpinion" class="list-group-item " > 
+                  <h4 class="list-group-item-heading"> Preguntas </h4>
+                  <p class="list-group-item-text">
+                    <textarea class="form-control" id="consultation_description" name="consultation[description]" placeholder="Descripción"></textarea>
+                    <br>
+                    <button id="addOpinion" class="btn btn-primary col-md-offset-11" >Add</button> 
+                       
+                  </p>
+               </a>
+            </div>
+          <% end %>
+          </div>
+          
+          </div>
         </div>
       </div>
-    </div>
-    <% end %>
     <div class="col-md-3 ">     
       <div class="panel panel-default">    
          <div class="panel-body" id ="cursosRelacionados">

@@ -20,6 +20,8 @@ class CoursesController < ApplicationController
    getAdvertising(@course, @advertisings)
    @cursosRelacionados = []
    getCursosRelacionados(@course, @cursosRelacionados)
+   @opinion = Opinion.new
+   @consultation = Consultation.new
   end
 
   def getAdvertising(course, advertisings)
@@ -54,6 +56,8 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @categories = Category.all
     @subcategories = Category.find(1).subcategories
+    @posibleTags=Tag.all.map{|a| a.name}
+    @selectedTags= []
   end
 
   # POST /courses
@@ -74,17 +78,18 @@ class CoursesController < ApplicationController
 
   def setTags(course)
     params[:selectedTags].gsub!(/\s/,'')
-      tags = params[:selectedTags].split(',')
-      tags.each do |t|
-          tag = Tag.find_by_name(t)
-          @course.tags << tag
-      end 
+    tags = params[:selectedTags].split(',')
+    tags.each do |t|
+    tag = Tag.find_by_name(t)
+      @course.tags << tag
+    end 
   end
 
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
     @course = Course.find(params[:id])
+    setTags(@course)
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -115,6 +120,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags)
+      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags, :opinions, :consultations)
     end
 end

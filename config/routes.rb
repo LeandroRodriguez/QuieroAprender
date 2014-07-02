@@ -9,7 +9,10 @@ QuieroAprender::Application.routes.draw do
   resources :user_facebook_sessions
     match 'fb_login' => "user_facebook_sessions#login", :as => :fb_login, via: [:get, :post]
     match 'fb_authorization' => "user_facebook_sessions#authorization", :as => :fb_authorization, via: [:get, :post]
-
+    match 'fb_authorization_callback' => "user_facebook_sessions#authorization_callback", :as => :fb_authorization_callbak, via: [:get, :post]
+    match 'fb_publish_wall_post' => "user_facebook_sessions#publish_wall_post", :as => :fb_publish_wall_post, via: [:get, :post]
+    match 'fb_logout' => "user_facebook_sessions#logout", :as => :fb_logout, via: [:get, :post]
+    
   resources :users  # give us our some normal resource routes for users
   #resource :user, :as => 'account'  # a convenience route
     match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
@@ -24,7 +27,10 @@ QuieroAprender::Application.routes.draw do
 
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
-  resources :courses
+  resources :courses do
+    resources :opinions, :only => [:create]
+    resources :consultations, :only => [:create]
+  end
   resources :advertisings
   
   # The priority is based upon order of creation: first created -> highest priority.

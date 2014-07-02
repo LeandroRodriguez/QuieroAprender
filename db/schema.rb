@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629035525) do
-
-  create_table "abilities", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140629170058) do
 
   create_table "advertisings", force: true do |t|
     t.string   "name"
@@ -37,6 +32,18 @@ ActiveRecord::Schema.define(version: 20140629035525) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "consultations", force: true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultations", ["course_id"], name: "index_consultations_on_course_id", using: :btree
+  add_index "consultations", ["user_id"], name: "index_consultations_on_user_id", using: :btree
 
   create_table "course_students", force: true do |t|
     t.integer  "user_id"
@@ -66,6 +73,18 @@ ActiveRecord::Schema.define(version: 20140629035525) do
     t.integer "course_id"
     t.integer "tag_id"
   end
+
+  create_table "opinions", force: true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "opinions", ["course_id"], name: "index_opinions_on_course_id", using: :btree
+  add_index "opinions", ["user_id"], name: "index_opinions_on_user_id", using: :btree
 
   create_table "plans", force: true do |t|
     t.string   "name"

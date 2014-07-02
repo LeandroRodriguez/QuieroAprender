@@ -1,3 +1,14 @@
+<% content_for :head do %>
+	<!-- Open Graph Metadata -->
+	<meta property="fb:app_id" content=<%= Facebook::APP_ID%> />
+	<meta property="og:title" content="<%= "Quiero Aprender - " + @course.name %>" />
+	<meta property="og:site_name" content="Quiero Aprender" />
+	<!--meta property="og:type" content="website" /-->
+	<meta property="og:url" content="<%= "quieroaprender.com.ar" + courses_path + "/" + @course.id.to_s %>" />
+	<meta property="og:image" content="http://sndt.ac.in/images/courses/courses-imgs.jpg" />
+	<meta property="og:description" content="<%= @course.description %>" />
+<% end %>
+
 <style>
   #course_map {
      display: block;
@@ -5,6 +16,34 @@
      width: 100%;
   }
 </style>
+
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit = function() {
+	FB.init({
+		appId : <%=Facebook::APP_ID%>,
+		xfbml : true,
+		version    : 'v2.0'
+		//oauth : true
+	});
+};
+
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_LA/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=588960494557654&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
 <script type="text/javascript" >
   $( document ).ready(function() {
@@ -49,6 +88,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   </div>
   <div class="col-md-5">
       <h1 ><%= @course.name %></h1>
+      <div class="fb-share-button" data-href=<%= courses_path + "/" + @course.id.to_s %>data-type="button"></div>
       <hr>
       <p> Descripción: <%= @course.description %></p>
       <p> Dirección: <%= @course.address %></p>
@@ -56,7 +96,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
         <% if (@course.subcategory != nil) %>
           <%=h @course.subcategory.name %>
       </p>
-      <p>Precio: <span class="glyphicon glyphicon-usd"></span> 100 </p>
+      <p>Precio: <span class="glyphicon glyphicon-usd"></span> <%= @course.price %></p>
       <p>Tags: 
         <% @course.tags.each do |t| %>
             <%= t.name %>
@@ -85,18 +125,109 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
   </div>
 </div>
   <div class="row">
-    <div class="col-md-7 col-md-offset-2">
-      <div class="panel panel-default">
+    <div class="col-md-8 col-md-offset-1">
+      <div class="panel panel-default container-opinions">
         <ul class="nav nav-tabs nav-justified" id="myTab">
          <li class="active"><a href="#Reseñas" data-toggle="tab">Reseñas</a></li>
         <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="Reseñas">reseñas</div>
-          <div class="tab-pane fade" id="Consultas">consultas</div>
+       
+          <div class="tab-pane fade in active" id="Reseñas">
+           <%= bootstrap_form_for [@course, Opinion.new] do |f| %>
+<!--
+            <div class="panel-body" id ="listasReseñas">
+              <div class="list-group container-opinionsResults" id="listasReseñas">
+                   <% @course.opinions.each do |o| %>
+                      <a id="opinions_<%= o.id %>" class="list-group-item " > 
+                        <h4 class="list-group-item-heading"> 
+                        <% unless o.user.nil? %>
+                          <%= o.user.email %>
+                        <% end %> 
+                        </h4>
+                        <p class="list-group-item-text"> <%= o.description %> </p>
+                      </a>
+                  <% end %> 
+              </div>    
+            </div>
+      -->   
+          <div class="panel-body" id ="listasReseñas">   
+            <ul class="media-list container-opinionsResults">
+               <% @course.opinions.each do |o| %>
+                <li class="media">
+                <a class="pull-left" href="#">
+                  <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
+                </a>
+                <div class="media-body">
+                        <h5 class="media-heading">
+                        <% unless o.user.nil? %>
+                          <%= o.user.email %>
+                          <%= o.date %>
+                        <% end %> 
+                        </h5>
+                        <%= o.description %> 
+                 </div>
+              </li>
+              <% end %>
+            </ul>
+           </div> 
+            <div class="col-md-12 col-ms-offset-1" >
+              <a id="newOpinion" class="list-group-item " > 
+                <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
+                <p class="list-group-item-text">
+                  <textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
+                  <br>
+                  <button id="addOpinion" class="btn btn-primary col-md-offset-11" >Add</button> 
+                     
+                </p>
+             </a>
+            </div>
+          <% end %>
+          </div>
+          <div class="tab-pane fade" id="Consultas">
+          
+          <%= bootstrap_form_for [@course, Consultation.new] do |f| %>
+             <div class="panel-body" id ="listaConsultas">   
+              <ul class="media-list container-opinionsResults">
+                <% @course.consultations.each do |c| %>
+                  <% if(c.user.role == User::ROLE_TEACHER)  %> 
+                    <li class="media list-group-item-success">
+                  <% else %>    
+                    <li class="media">
+                  <% end %>  
+                  <a class="pull-left" href="#">
+                    <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
+                  </a>
+                  <div class="media-body">
+                          <h5 class="media-heading">
+                          <% unless c.user.nil? %>
+                            <%= c.user.email %>
+                            <%= c.date %>
+                          <% end %> 
+                          </h5>
+                          <%= c.description %> 
+                   </div>
+                </li>
+              <% end %>
+              </ul>
+             </div> 
+              <div class="col-md-12 col-ms-offset-1" >
+                <a id="newOpinion" class="list-group-item " > 
+                  <h4 class="list-group-item-heading"> Preguntas </h4>
+                  <p class="list-group-item-text">
+                    <textarea class="form-control" id="consultation_description" name="consultation[description]" placeholder="Descripción"></textarea>
+                    <br>
+                    <button id="addOpinion" class="btn btn-primary col-md-offset-11" >Add</button> 
+                       
+                  </p>
+               </a>
+            </div>
+          <% end %>
+          </div>
+          
+          </div>
         </div>
       </div>
-    </div>
     <div class="col-md-3 ">     
       <div class="panel panel-default">    
          <div class="panel-body" id ="cursosRelacionados">
@@ -117,8 +248,8 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 
 <% end %>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
-
+<%= button_to 'Editar', edit_course_path(@course) , class: "btn btn-primary" , :method => :get %> 
+<%= button_to 'Volver',courses_path , class: "btn btn-primary" , :method => :get %>
+<hr>
 <%= javascript_tag do %>
 <% end %>  

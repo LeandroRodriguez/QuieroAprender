@@ -1,4 +1,4 @@
-json.array!(@courses) do |course|
-  json.extract! course, :id, :name, :description, :longitude, :latitude, :address
-  json.url course_url(course, format: :json)
+json.array!(@advertisings) do |advertising|
+  json.extract! advertising, :id, :name, :description, :address, :price
+  json.url advertising_url(advertising, format: :json)
 end

@@ -6,9 +6,8 @@
     <tr>
       <th>Nombre </th>
       <th>Descripción </th>
-      <th>Longitud </th>
-      <th>Latitud </th>
       <th>Dirección </th>
+      <th>Precio</th>      
       <th>Opciones</th>
     </tr>
   </thead>
@@ -18,9 +17,8 @@
       <tr>
         <td><%= course.name %></td>
         <td><%= course.description %></td>
-        <td><%= course.longitude %></td>
-        <td><%= course.latitude %></td>
         <td><%= course.address %></td>
+        <td><%= course.price %></td>
         <td>
           <%= button_to course , class: "btn btn-primary btn-xs", :method => :get do %>
             <span class="glyphicon glyphicon-eye-open "></span>

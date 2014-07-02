@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html prefix="og: http://ogp.me/ns#">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title><%= content_for?(:title) ? yield(:title) : "Quiero Aprender" %></title>
@@ -10,12 +10,13 @@
 		
 		<!-- Se incluye primero porque lo que esta en el application.js depende de esto -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=geometry,places"> </script>
+		
 
 		<%= favicon_link_tag 'logo_tiny.png', :rel => 'shortcut icon' %>
 		<%= stylesheet_link_tag "application", debug: true %>
 		<%= javascript_include_tag "application", debug: true %>
 		<%= csrf_meta_tags %>
-		<%= javascript_include_tag 'jquery_ujs' %>
+
 	</head>
 	<body>
 		<!-- Wrap all page content here -->

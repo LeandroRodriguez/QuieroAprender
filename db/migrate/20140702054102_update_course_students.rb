@@ -1,4 +1,4 @@
-class CreateCourseStudents < ActiveRecord::Migration
+class UpdateCourseStudents < ActiveRecord::Migration
   def change
     create_table :course_students do |t|
       t.references :course, index: true

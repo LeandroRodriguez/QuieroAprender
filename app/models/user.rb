@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-	has_many :course_students
-	has_many :courses, :through => :course_students
 	
 	validates :email, presence: true, uniqueness: true
   validates :password, presence: true, :on => :create

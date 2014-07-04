@@ -1,2 +1,2 @@
-class Teacher < ActiveRecord::Base
+class Teacher < User
 end

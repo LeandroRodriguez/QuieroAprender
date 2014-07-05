@@ -1,19 +1,24 @@
 require 'koala'
 
 class UserFacebookSessionsController < ApplicationController
-  skip_before_filter :verify_authenticity_token
   authorize_resource :class => false
-  before_filter :parse_facebook_cookies
+  #before_filter :parse_facebook_cookies
   
   def index
 
   end
 
   def parse_facebook_cookies
-    @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookie(cookies)
-    puts "Facebook cookies: #{@facebook_cookies}"
+    #@oauth = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET)
     # If you've setup a configuration file as shown above then you can just do
-    # @facebook_cookies ||= Koala::Facebook::OAuth.new.get_user_info_from_cookie(cookies)
+    @oauth = Koala::Facebook::OAuth.new
+    puts "Facebook OAuth Session: #{@oauth}"
+    begin
+      @facebook_cookies ||= @oauth.get_user_info_from_cookie(cookies)
+      puts "Facebook cookies: #{@facebook_cookies}"
+    rescue Exception=>ex
+      puts "Facebook cookie parse exception: #{ex.message}"
+    end
   end
 
   def login
@@ -22,7 +27,7 @@ class UserFacebookSessionsController < ApplicationController
       # acknowledge code and get access token from FB
       session[:access_token] = session[:oauth].get_access_token(params[:code])
     end
-
+    parse_facebook_cookies
     # auth established, now do a graph call:
     @api = Koala::Facebook::API.new(session[:access_token])
     puts "Koala Facebook API: #{@api}"
@@ -61,10 +66,24 @@ class UserFacebookSessionsController < ApplicationController
     redirect_to :root
   end
   
+  # Publish to wall post
+  # Params:
+  # +message+:: Wall post message
+  # +:attachment+:: Wall post attributes in hash
+  #               { "name" => "Link name"
+  #                 "link" => "http://www.example.com/",
+  #                 "caption" => "{*actor*} posted a new review",
+  #                 "description" => "This is a longer description of the attachment",
+  #                 "picture" => "http://www.example.com/thumbnail.jpg"
+  #               }
   def publish_wall_post
     puts "Publish wall post params: #{params}"
-    puts "Publish wall post JSON params: #{params[:json]}"
+    if !session[:access_token] then
+      authorization
+    end
+    puts "Facebook Access Token: #{session[:access_token]}"
     @graph = Koala::Facebook::API.new(session[:access_token])
+    puts "Graph API: #{@graph}"
     session[:fb_permissions] = @graph.get_connections('me','permissions') unless session[:fb_permissions]
     puts "Facebook Permissions: #{session[:fb_permissions]}"
     if params[:message] then
@@ -74,7 +93,7 @@ class UserFacebookSessionsController < ApplicationController
         @graph.put_wall_post(params[:message])
       end
     end
-    redirect_to :root
+    #redirect_to :root
   end
 
-end  
+end

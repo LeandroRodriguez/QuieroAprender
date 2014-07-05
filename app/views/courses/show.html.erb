@@ -4,7 +4,7 @@
 	<meta property="og:title" content="<%= "Quiero Aprender - " + @course.name %>" />
 	<meta property="og:site_name" content="Quiero Aprender" />
 	<!--meta property="og:type" content="website" /-->
-	<meta property="og:url" content="<%= "quieroaprender.com.ar" + courses_path + "/" + @course.id.to_s %>" />
+	<meta property="og:url" content="<%= request.original_url %>" />
 	<meta property="og:image" content="http://sndt.ac.in/images/courses/courses-imgs.jpg" />
 	<meta property="og:description" content="<%= @course.description %>" />
 <% end %>
@@ -74,7 +74,11 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 						<h4 class="modal-title" id="myModalLabel">Comparte el curso con tus amigos de Facebook!</h4>
 					</div>
 					<div class="modal-body">
-						<%= f.text_area :message, value: 'Voy a hacer este curso, va a ser fantástico!', size: '10x8', hide_label: true%>
+						<%= f.text_area 'message', value: 'Voy a hacer este curso, va a ser fantástico!', size: '10x8', hide_label: true%>
+						<%= f.hidden_field 'attachment[name]', value:@course.name + ' - Quiero Aprender' %>
+						<%= f.hidden_field 'attachment[link]', value:request.original_url %>
+						<%= f.hidden_field 'attachment[description]', value:@course.description %>
+						<%= f.hidden_field 'attachment[picture]', value:"http://sndt.ac.in/images/courses/courses-imgs.jpg" %>
 					</div>
 					<div class="modal-footer">
 						<%= f.submit "Publicar", class: "btn btn-primary" %>

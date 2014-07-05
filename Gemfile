@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.4'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+
+# Use MySQL as the database for Active Record
+gem 'mysql2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -18,35 +21,24 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-# Use jquery as the JavaScript library
+# Use jquery as the JavaScript library 
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# MySql database
-gem 'mysql2'
-
-# User Login
-gem 'authlogic'
-
-gem 'bcrypt', '~> 3.1.7'
-gem 'scrypt', '1.2.1'
-
-# User Authorization
-gem 'cancan'
-
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+#gem 'bcrypt', '~> 3.1.7'
+gem 'scrypt', '1.2.1'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -57,10 +49,25 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Use Bootstrap
+# jquery plugins
+gem 'jquery-ui-rails', '4.2.1'
+gem 'jquery-star-rating-rails'
+
+# Use Bootstrap and plugins
 gem 'bootstrap-sass'
-gem 'bootstrap-select-rails'
 gem 'bootstrap_form'
+gem 'bootstrap-select-rails'
+gem 'bootstrap_tokenfield_rails'
+gem 'bootstrap-slider-rails'
+
+# Use Font Awesome for icons
+gem 'font-awesome-sass'
+
+# User Login
+gem 'authlogic'
+
+# User Authorization
+gem 'cancan'
 
 # Use Koala for Facebook API
 gem 'koala'
@@ -68,14 +75,6 @@ gem 'koala'
 # Use geocoder for Google Maps API
 gem 'geocoder'
 
-gem 'jquery-star-rating-rails'
-
-gem 'bootstrap_tokenfield_rails'
-
 gem "highcharts-rails"
 gem 'lazy_high_charts'
-
-# Use font-awesome for icons
-gem 'less-rails'
-gem 'font-awesome-less'
-gem 'bootstrap-slider-rails'
+#gem 'less-rails'

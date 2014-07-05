@@ -3,15 +3,3 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $("#FbShareModal").modal "show"
-
-$("#InfroTextSubmit").click ->
-  if $("#title").val() is ""
-    
-    # invalid
-    $("#title").next(".help-inline").show()
-    false
-  else
-    
-    # submit the form here
-    # $('#InfroText').submit();
-    true

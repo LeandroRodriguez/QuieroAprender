@@ -25,27 +25,6 @@
 });
 </script>
 
-<!-- Carousel Photo Gallery Script -->
-<script type="text/javascript" >
-$('#InfroTextSubmit').click(function(){
-    if ($('#title').val()==="") {
-      // invalid
-      $('#title').next('.help-inline').show();
-      return false;
-    }
-    else {
-      // submit the form here
-      // $('#InfroText').submit();
-      
-      return true;
-    }
-  
-      
-      
-});
-</script>
-
-
 <!-- Toque algo en bootstrap que hace que se vean feas las estrellas, asi que lo incluyo
 de vuelta para que se vean lindas pisando la config que toque arriba :P 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
@@ -86,33 +65,22 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 		<!-- Facebook share modal view -->
 		<div class="modal fade" id="FbShareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
+				<%= bootstrap_form_tag url:fb_publish_wall_post_path do |f| %>
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
 						<h4 class="modal-title" id="myModalLabel">Comparte el curso con tus amigos de Facebook!</h4>
 					</div>
 					<div class="modal-body">
-						<form id="InfroText" method="POST">
-							<input name="InfroText" value="1" type="hidden">
-							<table>
-								<tbody>
-									<tr>
-										<td>Title</td><td>
-										<input name="title" id="title" style="width:300px" type="text">
-										<span class="hide help-inline">This is required</span></td>
-									</tr>
-									<tr>
-										<td>Introudction</td><td><textarea name="contect" style="width:300px;height:100px"></textarea></td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
+						<%= f.text_area :message, value: 'Voy a hacer este curso, va a ser fantástico!', size: '10x8', hide_label: true%>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-						<button type="button" class="btn btn-primary" id="InfroTextSubmit">Compartir</button>
+						<%= f.submit "Publicar", class: "btn btn-primary" %>
 					</div>
 				</div>
+				<% end %> <!-- End Facebook share form -->
 			</div>
 		</div>
 		<!-- End Facebook share modal view-->

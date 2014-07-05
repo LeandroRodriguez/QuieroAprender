@@ -19,7 +19,7 @@
  */
 
 if (!(typeof window.google === 'object' && window.google.maps)) {
-  throw 'Google Maps API is required. Please register the following JavaScript library http://maps.google.com/maps/api/js?sensor=true.'
+  throw 'Google Maps API is required. Please register the following JavaScript library http://maps.google.com/maps/api/js?sensor=true.';
 }
 
 var extend_object = function(obj, new_obj) {
@@ -343,7 +343,7 @@ var GMaps = (function(global) {
 
       doc.body.appendChild(ul);
 
-      var context_menu_element = getElementById('gmaps_context_menu')
+      var context_menu_element = getElementById('gmaps_context_menu');
 
       google.maps.event.addDomListener(context_menu_element, 'mouseout', function(ev) {
         if (!ev.relatedTarget || !this.contains(ev.relatedTarget)) {
@@ -588,7 +588,7 @@ GMaps.prototype.createMarker = function(options) {
       if (options[name]) {
         google.maps.event.addListener(object, name, function(me){
           if(!me.pixel){
-            me.pixel = map.getProjection().fromLatLngToPoint(me.latLng)
+            me.pixel = map.getProjection().fromLatLngToPoint(me.latLng);
           }
           
           options[name].apply(this, [me]);
@@ -1567,9 +1567,9 @@ GMaps.prototype.toImage = function(options) {
     
     static_map_options['polyline'] = {};
     static_map_options['polyline']['path'] = google.maps.geometry.encoding.encodePath(polyline.getPath());
-    static_map_options['polyline']['strokeColor'] = polyline.strokeColor
-    static_map_options['polyline']['strokeOpacity'] = polyline.strokeOpacity
-    static_map_options['polyline']['strokeWeight'] = polyline.strokeWeight
+    static_map_options['polyline']['strokeColor'] = polyline.strokeColor;
+    static_map_options['polyline']['strokeOpacity'] = polyline.strokeOpacity;
+    static_map_options['polyline']['strokeWeight'] = polyline.strokeWeight;
   }
 
   return GMaps.staticMapURL(static_map_options);
@@ -2078,7 +2078,7 @@ if (!Array.prototype.indexOf) {
           }
       }
       return -1;
-  }
+  };
 }
   
 return GMaps;

@@ -35,6 +35,8 @@ class UserFacebookSessionsController < ApplicationController
     begin
       @user_profile = @api.get_object("me")
       puts "User profile: #{@user_profile}"
+      user = User.new
+      user.create_from_facebook(@user_profile)
       redirect_to :root
     rescue Exception=>ex
       puts "User profile exception: #{ex.message}"

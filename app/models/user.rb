@@ -40,6 +40,18 @@ class User < ActiveRecord::Base
     self.role == User::ROLE_ADMIN
   end
   
+  def create_from_facebook(facebook_data)
+    #facebook_data_array = JSON.parse(facebook_data)
+    if !User.exists?(:email => facebook_data["email"])
+      puts "no user with that email"
+      self.email = facebook_data["email"]
+      self.password = '123456'
+      self.password_confirmation = '123456'
+      self.save
+    end
+    
+  end
+  
   private
 
   def default_values

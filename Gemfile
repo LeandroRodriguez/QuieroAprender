@@ -59,6 +59,8 @@ gem 'bootstrap_form'
 gem 'bootstrap-select-rails'
 gem 'bootstrap_tokenfield_rails'
 gem 'bootstrap-slider-rails'
+gem 'bootstrap-datepicker-rails'
+
 
 # Use Font Awesome for icons
 gem 'font-awesome-sass'

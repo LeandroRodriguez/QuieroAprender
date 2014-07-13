@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140703054349) do
     t.string   "name"
     t.text     "description"
     t.string   "address"
-    t.float    "price"
+    t.float    "price",       limit: 24
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(version: 20140703054349) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "longitude"
-    t.float    "latitude"
+    t.float    "longitude",      limit: 24
+    t.float    "latitude",       limit: 24
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "subcategory_id"
-    t.float    "price"
+    t.float    "price",          limit: 24
   end
 
   add_index "courses", ["subcategory_id"], name: "index_courses_on_subcategory_id", using: :btree

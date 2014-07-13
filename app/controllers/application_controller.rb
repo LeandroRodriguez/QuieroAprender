@@ -26,15 +26,13 @@ class ApplicationController < ActionController::Base
     def current_user_session
       return @current_user_session if (defined?(@current_user_session) && @current_user_session)
       @current_user_session = UserSession.find
-      if !@current_user_session
-        puts "HEY YA"
-      end
     end
 
     def current_user
       return @current_user if (defined?(@current_user) && @current_user)
       @current_user = current_user_session && current_user_session.user
-      if session[:access_token]
+      #check for facebook session
+      if (!@current_user && session[:access_token])
         @api = Koala::Facebook::API.new(session[:access_token])
         @user_profile = @api.get_object("me")
         @current_user = User.find_by_email(@user_profile["email"])

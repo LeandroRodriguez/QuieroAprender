@@ -27,10 +27,11 @@ class UserSessionsController < ApplicationController
     if current_user_session
       current_user_session.destroy
     else
+      #destroy facebook session
+      session[:oauth] = nil
       session[:access_token] = nil
     end
     flash[:notice] = "Se ha deslogueado"
-    redirect_back_or_default new_user_session_url
-    #redirect_back_or_default login_url
+    redirect_back_or_default :root
   end
 end

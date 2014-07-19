@@ -4,22 +4,24 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
+    puts "User: #{user}"
     user ||= User.new # guest user (not logged in)
     if user.admin?
       can :manage, :all
     else 
       if user.teacher?
-        can :manage, [UserSession, Course, CourseStudent, Teacher]
+        can :manage, [UserSession, Course, CourseStudent, Teacher, Plan]
         can :manage, User
         can :manage, [:welcome, :user_facebook_session]
         can :create, Consultation
       else
-        can :manage, [UserSession]
+        can :manage, [UserSession, Student]
         can :manage, User
         can :manage, [:welcome, :user_facebook_session]
         can :read, Course
         can :create, Opinion
         can :create, Consultation
+        can :manage, :all
         #can [:signup, :profile, :edit_profile], User
       end
     end

@@ -14,6 +14,7 @@
 
 		<%= favicon_link_tag 'logo_tiny.png', :rel => 'shortcut icon' %>
 		<%= stylesheet_link_tag "application", debug: true %>
+		<%= stylesheet_link_tag "bootstrap-space", debug: true %>
 		<%= javascript_include_tag "application", debug: true %>
 		<%= csrf_meta_tags %>
 
@@ -29,6 +30,7 @@
 				</header>
 				<main role="main">
 					<%= render 'layouts/messages' %>
+					<%= render "welcome/stats" %>
 					<%= yield %>
 				</main>
 			</div>

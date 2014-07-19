@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .container-search-form {
-  background-color: #65A5D1;
+
   background-size: auto auto;
   width: auto;
   height: auto;
@@ -10,7 +10,7 @@
 }
 
 .container-search-result {
-  background-color: #65A5D1;
+
   background-size: auto auto;
   width: auto;
   height: 367px;
@@ -20,13 +20,20 @@
 }
 
 .container-map {
-  background-color: #3E94D1;
+
+  background-image: linear-gradient(#5f8ab9, #3e648d 50%, #385a7f);
   background-size: auto auto;
-  width: auto;
-  height: auto;
   position: relative;
   padding-left: 0px;
   padding-right: 0px;
   margin-left: -15px;
   margin-right: -15px;
+  margin-top: -10px;
+  margin-bottom: -15px;
+}
+
+.round {
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
 }

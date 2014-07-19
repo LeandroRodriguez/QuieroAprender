@@ -8,24 +8,7 @@
 </div>
 
 <hr>
-<script type="text/javascript" >
-    $('#category-select').change(function() {
-      $.ajax({
-        url:  "<%= update_subcategories_courses_path %>",
-        data: {
-          category_id : $('#category-select').val()
-        },
-        dataType: "script"
-      });
-    });
-    $('#tokenfield').tokenfield({
-        autocomplete: {
-          source: <%= raw @posibleTags %>,
-          delay: 100
-        },
-        showAutocompleteOnFocus: true
-    });
-</script>
+
 
 <%= javascript_tag do %>
 var addressPicker = new AddressPicker();

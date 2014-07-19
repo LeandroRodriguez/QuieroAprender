@@ -17,6 +17,7 @@
  *= require bootstrap-switch
  *= require font-awesome
  *= require bootstrap-slider
+ *= require bootstrap-space
  *= require_tree .
  */
 

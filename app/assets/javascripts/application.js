@@ -17,7 +17,7 @@
 //= require bootstrap
 //= require typeahead
 //= require typeahead-addresspicker
-//= require jquery-star-rating
+//= require star-rating.min
 //= require bootstrap-select
 //= require bootstrap-tokenfield
 //= require bootstrap-switch

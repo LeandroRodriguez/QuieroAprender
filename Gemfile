@@ -55,7 +55,7 @@ gem 'json'
 
 # jquery plugins
 gem 'jquery-ui-rails', '4.2.1'
-gem 'jquery-star-rating-rails'
+#gem 'jquery-star-rating-rails'
 
 # Use Bootstrap and plugins
 gem 'bootstrap-sass'
@@ -84,3 +84,5 @@ gem 'geocoder'
 # Others gems
 gem "highcharts-rails"
 gem 'lazy_high_charts'
+gem 'quiet_assets', group: [:development, :test]
+gem 'thin'

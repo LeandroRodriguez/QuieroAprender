@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require jquery.ui.all
- *= require jquery-star-rating
+ *= require star-rating.min
  *= require typeahead
  *= require bootstrap-select
  *= require rails_bootstrap_forms

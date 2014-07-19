@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
+#gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
@@ -40,6 +41,9 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 gem 'scrypt', '1.2.1'
 
+# JSON
+gem 'json'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -60,6 +64,8 @@ gem 'bootstrap_form'
 gem 'bootstrap-select-rails'
 gem 'bootstrap_tokenfield_rails'
 gem 'bootstrap-slider-rails'
+gem 'bootstrap-datepicker-rails'
+
 
 # Use Font Awesome for icons
 gem 'font-awesome-sass'

@@ -24,4 +24,5 @@
 //= require map_style
 //= require highcharts
 //= require bootstrap-slider
+//= require bootstrap-datepicker
 //= require_tree .

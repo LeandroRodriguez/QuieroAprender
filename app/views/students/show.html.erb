@@ -27,10 +27,17 @@ div.ex {
 			<br><br>
 	
 			<p>
-				<b> Fecha de nacimiento: <%= @student.birthdate.strftime("%d/%m/%Y") %></b>
+				<b> Fecha de nacimiento: 
+					<% if @student.birthdate %>
+					<%= @student.birthdate.strftime("%d/%m/%Y") %>
+					<% end %>
+				</b>
 			</p>	
 			<p>
 				<b> Email: <%= @student.email %></b>
+			</p>
+			<p>
+				<b> Descripción: <%= @student.description %></b>
 			</p>
 		</div>
 

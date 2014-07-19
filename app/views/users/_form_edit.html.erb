@@ -1,0 +1,46 @@
+<%= form_for @user, method: :patch  do |f| %>
+
+	<div class="row">
+		<div class="col-md-4">
+	  		<b>Nombre</b>
+		</div>
+	  <div class="col-md-6">
+	  	<%= f.text_field :name, :class => 'form-control', :placeholder => @user.name %>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+	  		<b>Descripción para mostrar</b>
+		</div>
+	  <div class="col-md-6">
+	  	<%= f.text_field :description, :class => 'form-control', :placeholder => @user.description %>
+	  </div>
+	</div>	
+	<div class="row">
+		<div class="col-md-4">
+	  		<b>Imagen</b>
+		</div>
+	  <div class="col-md-6">
+	  	<%= f.text_field :image, :class => 'form-control', :placeholder => @user.image %>
+	  </div>
+	</div>	
+	<div class="row">
+		<div class="col-md-4">
+	  		<b>Fecha de nacimiento</b>
+		</div>
+	  <div class="col-md-6">
+		<%= f.text_field :birthdate, :id => "datepicker", :value => @user.birthdate %>
+	  </div>
+	</div>
+	<script>
+	$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+	</script>
+
+	<div class="actions col-md-4">
+		<% if !defined? @submit_text then @submit_text = 'Save' end%>
+		<%= f.submit @submit_text, :class => 'btn btn-primary' %>
+		<% if defined? @back_link %>
+			<%= link_to 'Back', @back_link, {:class => 'btn btn-primary'} %>
+		<% end %>
+	</div>
+<% end %>

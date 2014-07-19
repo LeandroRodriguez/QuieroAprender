@@ -17,6 +17,7 @@
  *= require bootstrap-tokenfield
  *= require bootstrap-switch
  *= require font-awesome
+ *= require bootstrap-datepicker
  *= require bootstrap-slider
  *= require_tree .
  */

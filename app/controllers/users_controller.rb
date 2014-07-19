@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	      ActiveRecord::Base.connection.execute insert_sql
 	    end
 	    flash[:notice] = "Your account has been created"
-   	  redirect_to signup_url
+   	  redirect_to :root
     else
 	    flash[:notice] = "There was a problem creating you."
 	    render :action => :new

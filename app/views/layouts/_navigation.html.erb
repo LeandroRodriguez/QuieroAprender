@@ -17,7 +17,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
 					<li>
-						<p class="navbar-text"><%= current_user.email %></p>
+						<p class="navbar-text"><%= current_user.name %></p>
 					</li>
 					<li>
 						<%= link_to "Salir", logout_url %>

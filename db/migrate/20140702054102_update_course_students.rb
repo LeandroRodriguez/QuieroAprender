@@ -1,8 +1,8 @@
-class CreateCourseStudents < ActiveRecord::Migration
+class UpdateCourseStudents < ActiveRecord::Migration
   def change
     create_table :course_students do |t|
-      t.references :user, index: true
       t.references :course, index: true
+      t.references :student, index: true
 
       t.timestamps
     end

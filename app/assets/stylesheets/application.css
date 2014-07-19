@@ -10,12 +10,14 @@
  *
  *= require_self
  *= require jquery.ui.all
- *= require jquery-star-rating
+ *= require star-rating.min
  *= require typeahead
  *= require bootstrap-select
+ *= require rails_bootstrap_forms
  *= require bootstrap-tokenfield
  *= require bootstrap-switch
  *= require font-awesome
+ *= require bootstrap-datepicker
  *= require bootstrap-slider
  *= require bootstrap-space
  *= require_tree .

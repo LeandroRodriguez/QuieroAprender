@@ -19,32 +19,32 @@ div.ex {
 			<br><br>
 
 			<p>
-				<font size = 6><b> <%= @teacher.name %> </b></font>
+				<font size = 6><b> <%= @student.name %> </b></font>
 			</p>
 
 			<br>
-            			<img src= "<%= @teacher.image %>" width="400" height="200" alt="..." />
+            			<img src= "<%= @student.image %>" width="400" height="200" alt="..." />
 			<br><br>
 	
 			<p>
 				<b> Fecha de nacimiento: 
-					<% if @teacher.birthdate %>
-					<%= @teacher.birthdate.strftime("%d/%m/%Y") %>
+					<% if @student.birthdate %>
+					<%= @student.birthdate.strftime("%d/%m/%Y") %>
 					<% end %>
 				</b>
 			</p>	
 			<p>
-				<b> Email: <%= @teacher.email %></b>
+				<b> Email: <%= @student.email %></b>
 			</p>
 			<p>
-				<b> Descripción: <%= @teacher.description %></b>
+				<b> Descripción: <%= @student.description %></b>
 			</p>
 		</div>
 
 	<div class="col-md-5">
-		<br>Cursos dictados
+		<br>Cursos realizados
 		<div class = "ex"/>
-			 <% @teacher.courses.each do |course| %>
+			 <% @student.courses.each do |course| %>
 			<tr>
 			<td>Curso: <%= course.name %></td><br>
 			<td>Descripción: <%= course.description %></td><br>

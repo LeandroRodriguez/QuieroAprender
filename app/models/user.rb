@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
-	has_many :course_students
-	has_many :courses, :through => :course_students
 	
 	validates :email, presence: true, uniqueness: true
   validates :password, presence: true, :on => :create
   validates :password_confirmation, presence: true, :on => :create
+  validates :name, presence: true, :on => :create
 	
 	acts_as_authentic do |c|
     c.login_field = 'email'
@@ -40,6 +39,18 @@ class User < ActiveRecord::Base
   
   def admin?
     self.role == User::ROLE_ADMIN
+  end
+  
+  def create_from_facebook(facebook_data)
+    #facebook_data_array = JSON.parse(facebook_data)
+    if !User.exists?(:email => facebook_data["email"])
+      puts "no user with that email"
+      self.email = facebook_data["email"]
+      self.password = '123456'
+      self.password_confirmation = '123456'
+      self.save
+    end
+    
   end
   
   private

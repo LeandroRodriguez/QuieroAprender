@@ -16,6 +16,7 @@ QuieroAprender::Application.routes.draw do
   resources :users  # give us our some normal resource routes for users
   #resource :user, :as => 'account'  # a convenience route
     match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
+    match '/users/edit/:id' => 'users#edit', :as => :update, via: [:get, :post]
   
   resources :plans
     match 'plans' => "plans#index", :as => :plans_index, via: [:get, :post]
@@ -32,6 +33,7 @@ QuieroAprender::Application.routes.draw do
     resources :consultations, :only => [:create]
   end
   resources :advertisings
+  resources :students
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

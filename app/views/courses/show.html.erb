@@ -3,8 +3,8 @@
 	<meta property="fb:app_id" content=<%= Facebook::APP_ID%> />
 	<meta property="og:title" content="<%= "Quiero Aprender - " + @course.name %>" />
 	<meta property="og:site_name" content="Quiero Aprender" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="<%= courses_path + "/" + @course.id.to_s %>" />
+	<!--meta property="og:type" content="website" /-->
+	<meta property="og:url" content="<%= request.original_url %>" />
 	<meta property="og:image" content="http://sndt.ac.in/images/courses/courses-imgs.jpg" />
 	<meta property="og:description" content="<%= @course.description %>" />
 <% end %>
@@ -17,40 +17,12 @@
   }
 </style>
 
-<div id="fb-root"></div>
-<script>
-window.fbAsyncInit = function() {
-	FB.init({
-		appId : <%=Facebook::APP_ID%>,
-		xfbml : true,
-		version    : 'v2.0'
-		//oauth : true
-	});
-};
-
-(function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) {return;}
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/es_LA/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&appId=588960494557654&version=v2.0";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
-
+<!-- Carousel Photo Gallery Script -->
 <script type="text/javascript" >
   $( document ).ready(function() {
       $('.carousel').carousel();
      
 });
-
 </script>
 
 <!-- Toque algo en bootstrap que hace que se vean feas las estrellas, asi que lo incluyo
@@ -59,197 +31,244 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 -->
 <hr>
 <div class="row">
-  <div class="col-md-4">
-    <hr>  
-    <div id="myCarousel" class="carousel slide">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner"> <!-- All slides go inside .carousel-inner -->
-        <div class="item active">
-            <img src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="400" height="300" alt="..." />
-            <div class="carousel-caption">Primer imagen</div>
-        </div>
-        <div class="item">
-            <img src="https://www.coleurope.eu/content/studyprogrammes/law/images/Students%20in%20a%20course.%20nb%20031.jpg"  width="400" height="300" alt="..." />
-            <div class="carousel-caption">Segunda imagen</div>
-        </div>
-        <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNKieMWGkXrXpzTlOl8J04vlc7lrrWwPlmqk2cUlrhN5Btrq1Pnw"  width="400" height="300" alt="..." />
-            <div class="carousel-caption">Tercer imagen</div>
-        </div>
-      </div>  
-      <!-- Carousel nav -->
-      <a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
-  </div>
-  <div class="col-md-5">
-      <h1 ><%= @course.name %></h1>
-      <div class="fb-share-button" data-href=<%= courses_path + "/" + @course.id.to_s %>data-type="button"></div>
-      <hr>
-      <p> Descripción: <%= @course.description %></p>
-      <p> Dirección: <%= @course.address %></p>
-      <p>Subcategoría: 
-        <% if (@course.subcategory != nil) %>
-          <%=h @course.subcategory.name %>
-      </p>
-      <p>Precio: <span class="glyphicon glyphicon-usd"></span> <%= @course.price %></p>
-      <p>Tags: 
-        <% @course.tags.each do |t| %>
-            <%= t.name %>
-         <% end %> 
-      </p>    
-      <div class="basic" data-average="12" data-id="1"></div>
+	<div class="col-md-4">
+		<hr>
+		<div id="myCarousel" class="carousel slide">
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<!-- All slides go inside .carousel-inner -->
+				<div class="item active">
+					<img src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="400" height="300" alt="..." />
+					<div class="carousel-caption">Primer imagen</div>
+				</div>
+				<div class="item">
+					<img src="https://www.coleurope.eu/content/studyprogrammes/law/images/Students%20in%20a%20course.%20nb%20031.jpg"  width="400" height="300" alt="..." />
+					<div class="carousel-caption">Segunda imagen</div>
+				</div>
+				<div class="item">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNKieMWGkXrXpzTlOl8J04vlc7lrrWwPlmqk2cUlrhN5Btrq1Pnw"  width="400" height="300" alt="..." />
+					<div class="carousel-caption">Tercer imagen</div>
+				</div>
+			</div>
+			<!-- Carousel nav -->
+			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+			<a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<h1 ><%= @course.name %></h1>
+		<button role="button" class="btn btn-social btn-facebook" data-toggle="modal" data-target="#FbShareModal"><i class="fa fa-facebook"></i> | Compartir en Facebook</button>
+		<!-- Facebook share modal view -->
+		<div class="modal fade" id="FbShareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<%= bootstrap_form_tag url:fb_publish_wall_post_path do |f| %>
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Comparte el curso con tus amigos de Facebook!</h4>
+					</div>
+					<div class="modal-body">
+						<%= f.text_area 'message', value: 'Voy a hacer este curso, va a ser fantástico!', size: '10x8', hide_label: true%>
+						<%= f.hidden_field 'attachment[name]', value:@course.name + ' - Quiero Aprender' %>
+						<%= f.hidden_field 'attachment[link]', value:request.original_url %>
+						<%= f.hidden_field 'attachment[description]', value:@course.description %>
+						<%= f.hidden_field 'attachment[picture]', value:"http://sndt.ac.in/images/courses/courses-imgs.jpg" %>
+					</div>
+					<div class="modal-footer">
+						<%= f.submit "Publicar", class: "btn btn-primary" %>
+					</div>
+				</div>
+				<% end %> <!-- End Facebook share form -->
+			</div>
+		</div>
+		<!-- End Facebook share modal view-->
 
-   <a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
-            
-   <hr>     
-  </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-          <div class="panel-body" id ="cursosRelacionados">
-          <h4>Cursos que podrían interesarte </h4>
-            <div class="list-group container-results" id="cursosRelacionados">
-                 <% @cursosRelacionados.each do |c| %>
-                    <a id="cursosRelacionados_<%= c.id %>" class="list-group-item list-group-item-info" href="/courses/<%= c.id %>" > 
-                      <h4 class="list-group-item-heading"> <%= c.name %> </h4>
-                      <p class="list-group-item-text"> <%= c.description %> </p>
-                    </a>
-                <% end %> 
-            </div>    
-          </div>
-    </div>
-  </div>
+		<hr>
+		<p>
+			Descripción: <%= @course.description %>
+		</p>
+		<p>
+			Dirección: <%= @course.address %>
+		</p>
+		<p>
+			Subcategoría:
+			<% if (@course.subcategory != nil) %>
+			<%= h @course.subcategory.name %>
+		</p>
+		<p>
+			Precio: <span class="glyphicon glyphicon-usd"></span> <%= @course.price %>
+		</p>
+		<p>
+			Tags:
+			<% @course.tags.each do |t| %>
+			<%= t.name %>
+			<% end %>
+		</p>
+
+		<p><input id="course_rating" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= @rating_average %>" data-size='xs' >
+		</p>
+
+		<div class="basic" data-average="12" data-id="1"></div>
+
+		<a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
+
+		<hr>
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-body" id ="cursosRelacionados">
+				<h4>Cursos que podrían interesarte </h4>
+				<div class="list-group container-results" id="cursosRelacionados">
+					<% @cursosRelacionados.each do |c| %>
+					<a id="cursosRelacionados_<%= c.id %>" class="list-group-item list-group-item-info" href="/courses/<%= c.id %>" > <h4 class="list-group-item-heading"> <%= c.name %> </h4>
+					<p class="list-group-item-text">
+						<%= c.description %>
+					</p> </a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-1">
-      <div class="panel panel-default container-opinions">
-        <ul class="nav nav-tabs nav-justified" id="myTab">
-         <li class="active"><a href="#Reseñas" data-toggle="tab">Reseñas</a></li>
-        <li><a href="#Consultas" data-toggle="tab">Consultas</a></li>
-        </ul>
-        <div class="tab-content">
-       
-          <div class="tab-pane fade in active" id="Reseñas">
-           <%= bootstrap_form_for [@course, Opinion.new] do |f| %>
-<!--
-            <div class="panel-body" id ="listasReseñas">
-              <div class="list-group container-opinionsResults" id="listasReseñas">
-                   <% @course.opinions.each do |o| %>
-                      <a id="opinions_<%= o.id %>" class="list-group-item " > 
-                        <h4 class="list-group-item-heading"> 
-                        <% unless o.user.nil? %>
-                          <%= o.user.email %>
-                        <% end %> 
-                        </h4>
-                        <p class="list-group-item-text"> <%= o.description %> </p>
-                      </a>
-                  <% end %> 
-              </div>    
-            </div>
-      -->   
-          <div class="panel-body" id ="listasReseñas">   
-            <ul class="media-list container-opinionsResults">
-               <% @course.opinions.each do |o| %>
-                <li class="media">
-                <a class="pull-left" href="#">
-                  <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
-                </a>
-                <div class="media-body">
-                        <h5 class="media-heading">
-                        <% unless o.user.nil? %>
-                          <%= o.user.email %>
-                          <%= o.date %>
-                        <% end %> 
-                        </h5>
-                        <%= o.description %> 
-                 </div>
-              </li>
-              <% end %>
-            </ul>
-           </div> 
-            <div class="col-md-12 col-ms-offset-1" >
-              <a id="newOpinion" class="list-group-item " > 
-                <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
-                <p class="list-group-item-text">
-                  <textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
-                  <br>
-                  <button id="addOpinion" class="btn btn-primary col-md-offset-11" > Add </button> 
-                     
-                </p>
-             </a>
-            </div>
-          <% end %>
-          </div>
-          <div class="tab-pane fade" id="Consultas">
-          
-          <%= bootstrap_form_for [@course, Consultation.new] do |f| %>
-             <div class="panel-body" id ="listaConsultas">   
-              <ul class="media-list container-opinionsResults">
-                <% @course.consultations.each do |c| %>
-                  <% if(c.user.role == User::ROLE_TEACHER)  %> 
-                    <li class="media list-group-item-success">
-                  <% else %>    
-                    <li class="media">
-                  <% end %>  
-                  <a class="pull-left" href="#">
-                    <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." />
-                  </a>
-                  <div class="media-body">
-                          <h5 class="media-heading">
-                          <% unless c.user.nil? %>
-                            <%= c.user.email %>
-                            <%= c.date %>
-                          <% end %> 
-                          </h5>
-                          <%= c.description %> 
-                   </div>
-                </li>
-              <% end %>
-              </ul>
-             </div> 
-              <div class="col-md-12 col-ms-offset-1" >
-                <a id="newOpinion" class="list-group-item " > 
-                  <h4 class="list-group-item-heading"> Preguntas </h4>
-                  <p class="list-group-item-text">
-                    <textarea class="form-control" id="consultation_description" name="consultation[description]" placeholder="Descripción"></textarea>
-                    <br>
-                    <button id="addOpinion" class="btn btn-primary col-md-offset-11" >Add</button> 
-                       
-                  </p>
-               </a>
-            </div>
-          <% end %>
-          </div>
-          
-          </div>
-        </div>
-      </div>
-    <div class="col-md-3 ">     
-      <div class="panel panel-default">    
-         <div class="panel-body" id ="cursosRelacionados">
-           <h4>Te recomendamos</h4>
-            <div class="list-group container-results" id="cursosRelacionados">
-                 <% @advertisings.each do |a| %>
-                    <a id="advertising_<%= a.id %>" class="list-group-item list-group-item-info" href="/advertisings/<%= a.id %>" > 
-                      <h4 class="list-group-item-heading"> <%= a.name %> </h4>
-                      <p class="list-group-item-text"> <%= a.description %> </p>
-                    </a>
-                <% end %> 
-            </div>
-          </div>
-      </div>
-   </div>   
-  </div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-1">
+		<div class="panel panel-default container-opinions">
+			<ul class="nav nav-tabs nav-justified" id="myTab">
+				<li class="active">
+					<a href="#Reseñas" data-toggle="tab">Reseñas</a>
+				</li>
+				<li>
+					<a href="#Consultas" data-toggle="tab">Consultas</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="Reseñas">
+					<%= bootstrap_form_for [@course, Opinion.new] do |f| %>
+					<!--
+					<div class="panel-body" id ="listasReseñas">
+					<div class="list-group container-opinionsResults" id="listasReseñas">
+					<% @course.opinions.each do |o| %>
+					<a id="opinions_<%= o.id %>" class="list-group-item " >
+					<h4 class="list-group-item-heading">
+					<% unless o.user.nil? %>
+					<%= o.user.email %>
+					<% end %>
+					</h4>
+					<p class="list-group-item-text"> <%= o.description %> </p>
+					</a>
+					<% end %>
+					</div>
+					</div>
+					-->
+					<div class="panel-body" id ="listasReseñas">
+						<ul class="media-list container-opinionsResults">
+							<% @course.opinions.each do |o| %>
+							<li class="media">
+								<a class="pull-left" href="#"> <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." /> </a>
+								<div class="media-body">
+									<h5 class="media-heading"> <% unless o.user.nil? %>
+									<%= o.user.email %>
+									<%= o.date %>
+									<% end %> </h5>
+									<%= o.description %>
+									<input id="opinion_<%= o.id %>" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= o.rating.nil? ? 0 : o.rating%>" data-size='xs' >
+								</div>
+							</li>
+							<% end %>
+						</ul>
+					</div>
+					<div class="col-md-12 col-ms-offset-1" >
+						<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
+						<p class="list-group-item-text">
+							<textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
+							<br>
+							<input id="opinion_rating" name="opinion[rating]" value="0" type="number" class="rating" min=0 max=5 step=0.5 data-size="xs" >
 
+							<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
+								Add
+							</button>
+
+						</p> </a>
+
+					</div>
+					<% end %>
+				</div>
+				<div class="tab-pane fade" id="Consultas">
+
+					<%= bootstrap_form_for [@course, Consultation.new] do |f| %>
+					<div class="panel-body" id ="listaConsultas">
+						<ul class="media-list container-opinionsResults">
+							<% @course.consultations.each do |c| %>
+							<% if(c.user.role == User::ROLE_TEACHER)  %>
+							<li class="media list-group-item-success">
+								<% else %>
+							<li class="media">
+								<% end %>
+								<a class="pull-left" href="#"> <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." /> </a>
+								<div class="media-body">
+									<h5 class="media-heading"> <% unless c.user.nil? %>
+									<%= c.user.email %>
+									<%= c.date %>
+									<% end %> </h5>
+									<%= c.description %>
+								</div>
+							</li>
+							<% end %>
+						</ul>
+					</div>
+					<div class="col-md-12 col-ms-offset-1" >
+						<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Preguntas </h4>
+						<p class="list-group-item-text">
+							<textarea class="form-control" id="consultation_description" name="consultation[description]" placeholder="Descripción"></textarea>
+							<br>
+							<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
+								Add
+							</button>
+
+						</p> </a>
+					</div>
+					<% end %>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 ">
+		<div class="panel panel-default">
+			<div class="panel-body" id ="cursosRelacionados">
+				<h4>Te recomendamos</h4>
+				<div class="list-group container-results" id="cursosRelacionados">
+					<% @advertisings.each do |a| %>
+					<a id="advertising_<%= a.id %>" class="list-group-item list-group-item-info" href="/advertisings/<%= a.id %>" > <h4 class="list-group-item-heading"> <%= a.name %> </h4>
+					<p class="list-group-item-text">
+						<%= a.description %>
+					</p> </a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <% end %>
 
-<%= button_to 'Editar', edit_course_path(@course) , class: "btn btn-primary" , :method => :get %> 
+<%= button_to 'Editar', edit_course_path(@course) , class: "btn btn-primary" , :method => :get %>
 <%= button_to 'Volver',courses_path , class: "btn btn-primary" , :method => :get %>
 <hr>
+
 <%= javascript_tag do %>
+    jQuery(document).ready(function () {
+        $(".rating-kv").rating({step: 0});
+    });
+
+    <% @course.opinions.each do |o| %>
+    $('#opinion_<%= o.id %>').rating('refresh', {showClear: false, showCaption: false});
+    <% end %>
+    $('#course_rating').rating('refresh', {showClear: false, showCaption: false});
 <% end %>  

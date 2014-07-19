@@ -9,16 +9,28 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
+    if @user.save
+	id = @user.id	
+
+	if user_params[:role].to_i == User::ROLE_STUDENT
+		insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+    	elsif user_params[:role].to_i == User::ROLE_TEACHER
+		insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+    	end
+
+	
+	ActiveRecord::Base.connection.execute insert_sql
+	flash[:notice] = "Your account has been created"
+   	redirect_to signup_url
+    else
+	flash[:notice] = "There was a problem creating you."
+	render :action => :new
+    end
     # Saving without session maintenance to skip
     # auto-login which can't happen here because
     # the User has not yet been activated
-    if @user.save
-      flash[:notice] = "Your account has been created."
-      redirect_to signup_url
-    else
-      flash[:notice] = "There was a problem creating you."
-      render :action => :new
-    end
+    
 
   end
 
@@ -48,7 +60,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :description, :birthdate, :image)
     end
   
   #def show

@@ -1,14 +1,59 @@
-<p id="notice"><%= notice %></p>
+<html>
+<head>
+<style>
+div.ex {
+    width: 700px;
+    height: 500px;
+    padding 10px;
+    border: 2px solid gray;
+    margin: 0px;
+}
+</style>
+</head>
+<body>
 
-<p>
-  <strong>Name:</strong>
-  <%= @teacher.name %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @teacher.description %>
-</p>
+	<div class="row">
+		<div class="col-md-4">
 
-<%= link_to 'Edit', edit_teacher_path(@teacher) %> |
-<%= link_to 'Back', teachers_path %>
+			<br><br>
+
+			<p>
+				<font size = 6><b> <%= @teacher.name %> </b></font>
+			</p>
+
+			<br>
+            			<img src= "<%= @teacher.image %>" width="400" height="200" alt="..." />
+			<br><br>
+	
+			<p>
+				<b> Fecha de nacimiento: 
+					<% if @teacher.birthdate %>
+					<%= @teacher.birthdate.strftime("%d/%m/%Y") %>
+					<% end %>
+				</b>
+			</p>	
+			<p>
+				<b> Email: <%= @teacher.email %></b>
+			</p>
+			<p>
+				<b> Descripción: <%= @teacher.description %></b>
+			</p>
+		</div>
+
+	<div class="col-md-5">
+		<br>Cursos dictados
+		<div class = "ex"/>
+			 <% @teacher.courses.each do |course| %>
+			<tr>
+			<td>Curso: <%= course.name %></td><br>
+			<td>Descripción: <%= course.description %></td><br>
+			</tr>
+				----------------------------------------------<br>
+			<% end %>
+		</div>
+	</div>
+	
+</body>
+</html>
+

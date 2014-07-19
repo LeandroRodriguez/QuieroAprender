@@ -51,11 +51,12 @@ gem 'json'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test] # For Ruby 1.9.x
+gem 'byebug', group: [:development, :test] # For Ruby 2.x
 
 # jquery plugins
 gem 'jquery-ui-rails', '4.2.1'
-gem 'jquery-star-rating-rails'
+#gem 'jquery-star-rating-rails'
 
 # Use Bootstrap and plugins
 gem 'bootstrap-sass'
@@ -63,6 +64,8 @@ gem 'bootstrap_form'
 gem 'bootstrap-select-rails'
 gem 'bootstrap_tokenfield_rails'
 gem 'bootstrap-slider-rails'
+gem 'bootstrap-datepicker-rails'
+
 
 # Use Font Awesome for icons
 gem 'font-awesome-sass'
@@ -82,3 +85,5 @@ gem 'geocoder'
 # Others gems
 gem "highcharts-rails"
 gem 'lazy_high_charts'
+gem 'quiet_assets', group: [:development, :test]
+gem 'thin'

@@ -81,7 +81,7 @@ class UserFacebookSessionsController < ApplicationController
   def publish_wall_post
     puts "Publish wall post params: #{params}"
     if !session[:access_token] then
-      authorization
+      redirect_to :fb_authorization and return
     end
     puts "Facebook Access Token: #{session[:access_token]}"
     @graph = Koala::Facebook::API.new(session[:access_token])
@@ -95,7 +95,7 @@ class UserFacebookSessionsController < ApplicationController
         @graph.put_wall_post(params[:message])
       end
     end
-    #redirect_to :root
+    redirect_to params[:attachment][:link]
   end
 
 end

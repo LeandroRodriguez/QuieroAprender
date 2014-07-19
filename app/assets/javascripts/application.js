@@ -17,11 +17,12 @@
 //= require bootstrap
 //= require typeahead
 //= require typeahead-addresspicker
-//= require jquery-star-rating
+//= require star-rating.min
 //= require bootstrap-select
 //= require bootstrap-tokenfield
 //= require bootstrap-switch
 //= require map_style
 //= require highcharts
 //= require bootstrap-slider
+//= require bootstrap-datepicker
 //= require_tree .

@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
       self.email = facebook_data["email"]
       self.password = '123456'
       self.password_confirmation = '123456'
+      self.name = facebook_data["name"]
       self.save
     end
     

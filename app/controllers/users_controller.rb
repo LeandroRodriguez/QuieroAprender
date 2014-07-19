@@ -11,21 +11,22 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-	id = @user.id	
+	    id = @user.id	
 
-	if user_params[:role].to_i == User::ROLE_STUDENT
-		insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
-    	elsif user_params[:role].to_i == User::ROLE_TEACHER
-		insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
-    	end
+	    if user_params[:role].to_i == User::ROLE_STUDENT
+		    insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+      elsif user_params[:role].to_i == User::ROLE_TEACHER
+		    insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+      end
 
-	
-	ActiveRecord::Base.connection.execute insert_sql
-	flash[:notice] = "Your account has been created"
-   	redirect_to signup_url
+	    if insert_sql
+	      ActiveRecord::Base.connection.execute insert_sql
+	    end
+	    flash[:notice] = "Your account has been created"
+   	  redirect_to signup_url
     else
-	flash[:notice] = "There was a problem creating you."
-	render :action => :new
+	    flash[:notice] = "There was a problem creating you."
+	    render :action => :new
     end
     # Saving without session maintenance to skip
     # auto-login which can't happen here because

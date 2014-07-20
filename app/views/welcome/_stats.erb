@@ -1,21 +1,34 @@
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="width: 700px;">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Estadísticas</h4>
       </div>
       <div class="modal-body">
-      <% categorias = Category.all.to_a.map{|c|c.name}
-      puts categorias
+      <h3> Alumnos por mes</h3>
+      
+      <% categorias = ["Junio", "Julio", "Agosto"]
       @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "Alumnos por categoría")
       f.xAxis(:categories => categorias)
       f.series(:name => "Alumnos", :data => (10..30).to_a.sort{ rand() - 0.5 }[0..(categorias.size - 1)])
       f.legend(:false)
       f.chart({:type=>"column"}) end%>
       <%= high_chart("chart_id", @chart) %>
+      <h3> Alumnos vs Clicks</h3>
+
+      <% 
+      @visitas = (10..30).to_a.sort{ rand() - 0.5 }[0..(categorias.size - 1)]
+      @alumnos = @visitas.collect{|v| rand(v)}
+
+      @clicks = LazyHighCharts::HighChart.new('graph') do |f|
+      f.xAxis(:categories => categorias)
+      f.series(:name => "Clicks", :data => @visitas)
+      f.series(:name => "Alumnos", :data => @alumnos)
+      f.legend(:true)
+      f.chart({:type=>"line"}) end%>
+      <%= high_chart("clicks_chart", @clicks) %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -33,8 +33,11 @@ Teacher.create(name: 'Juan Perez', description: 'Profesor de guitarra. 12 anios 
 Teacher.create(name: 'Ernerto Gomez', description: 'Profesor de ingles. 5 anios viviendo en Inglaterra. Certificaciones internacionales')
 
 Course.create(name: "Guitarra para principiantes", description: "Curso de guitarra en zona sur", longitude: -58.3887, latitude: -34.8029, address: "Avenida Tomás Espora 1007, Adrogué, Buenos Aires Province, Argentina", subcategory_id: 1, price: 150)
+Course.create(name: "Super curso de guitarra", description: "Aprende las canciones que te gustan", longitude: -58.39121840000001, latitude: -34.7970765,  address: "Mitre 1230, Adrogué, Buenos Aires Province, Argentina", subcategory_id: 1, price: 90)
 Course.create(name: "Curso de Piano clásico", description: "Curso de piano, nivel avanzado", longitude: -58.38872439999999, latitude: -34.8103353, address: "Avenida Tomás Espora 1507, Adrogué, Buenos Aires Province, Argentina", subcategory_id: 2, price: 350)
 Course.create(name: "Aprenda ingles con Miss Carla", description: "Clases de ingles para escolares", longitude: -58.3792534, latitude: -34.7678337, address: "Temperley, Buenos Aires Province, Argentina", subcategory_id: 4, price: 200)
 
-Opinion.create(description: "100% recomendado! El profe un genio!", course_id: 1, date: Time.now - 2, rating: 5)
-Opinion.create(description: "El profesor sabe mucho pero no explica bien", course_id: 1, date: Time.now - 1, rating: 1)
+Opinion.create(description: "100% recomendado! El profe un genio!", course_id: 2, date: Time.now - 2, rating: 4)
+Opinion.create(description: "El profesor explica muy bien!", course_id: 2, date: Time.now - 3, rating: 5)
+Opinion.create(description: "El profesor sabe mucho pero no explica bien", course_id: 1, date: Time.now - 1, rating: 2)
+Opinion.create(description: "El profesor es un ladrón!", course_id: 1, date: Time.now - 5, rating: 1)

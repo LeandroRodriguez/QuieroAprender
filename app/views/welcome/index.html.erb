@@ -57,6 +57,12 @@
 															<input id="buscarTodas" type="checkbox" value="">
 															Buscar en todas las categorías </label>
 													</div>
+
+													<div class="checkbox">
+														<label>
+															<input id="ordenRating" type="checkbox" value="">
+															Ordenar por rating </label>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -142,7 +148,8 @@ $('#buscar').click(function() {
 			address : $('#address').val(),
 			radio : $('#radioBusqueda').val(),
 			subcategory_id: $('#subcategory-select option:selected').val(),
-			buscarTodas: $('#buscarTodas').is(':checked')
+			buscarTodas: $('#buscarTodas').is(':checked'),
+			ordenRating: $('#ordenRating').is(':checked')
 		},
 		dataType: "script"
 	});

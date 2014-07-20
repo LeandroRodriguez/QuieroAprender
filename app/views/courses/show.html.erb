@@ -21,7 +21,6 @@
 <script type="text/javascript" >
   $( document ).ready(function() {
       $('.carousel').carousel();
-     
 });
 </script>
 
@@ -116,7 +115,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 
 		<div class="basic" data-average="12" data-id="1"></div>
 
-		<a class="btn btn-lg btn-success" href="../../components/#navbar" role="button">Inscribirme! &raquo;</a>
+		<%= button_to 'Inscribirme!' , enroll_course_path(@course) , class: "btn btn-lg btn-success" , :method => :get  %>
 
 		<hr>
 	</div>

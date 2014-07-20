@@ -61,6 +61,19 @@ class CoursesController < ApplicationController
     @selectedTags= []
   end
 
+  # GET /courses/enroll
+  def enroll
+    @course = Course.find(params[:id])
+    if(current_user.role == User::ROLE_STUDENT) 
+       @courseStudent = CourseStudent.new(:course_id => @course.id, :student_id => current_user.id) 
+       @courseStudent.save
+       flash[:info] = "Se inscribio correctamente!" 
+    else
+      flash[:error] = "Debe ser un estudiante logueado para inscribirse"
+    end 
+    redirect_to @course
+  end  
+
   # POST /courses
   # POST /courses.json
   def create
@@ -68,6 +81,9 @@ class CoursesController < ApplicationController
     setTags(@course)
     respond_to do |format|
       if @course.save
+        if(current_user.role == User::ROLE_TEACHER) 
+           @courseTeacher = CourseTeacher.new(:course_id => @course.id, :teacher_id => current_user.id) 
+           @courseTeacher.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render action: 'show', status: :created, location: @course }
       else

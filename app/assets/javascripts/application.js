@@ -18,7 +18,6 @@
 //= require bootstrap
 //= require typeahead
 //= require typeahead-addresspicker
-//= require star-rating.min
 //= require bootstrap-select
 //= require bootstrap-tokenfield
 //= require bootstrap-switch
@@ -26,4 +25,5 @@
 //= require highcharts
 //= require bootstrap-slider
 //= require bootstrap-datepicker
+//= require star-rating.min
 //= require_tree .

@@ -22,13 +22,7 @@ class CoursesController < ApplicationController
    getCursosRelacionados(@course, @cursosRelacionados)
    @opinion = Opinion.new
    @consultation = Consultation.new
-   @rating_average = 0
-    if @course.opinions.size > 0
-        @course.opinions.each do |op|
-          @rating_average += (op.rating.nil? ? 0 : op.rating)
-        end      
-      @rating_average = @rating_average / @course.opinions.size
-    end
+   @rating_average = @course.get_rating_average
   end
 
   def getAdvertising(course, advertisings)

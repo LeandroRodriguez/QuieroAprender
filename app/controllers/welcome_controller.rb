@@ -1,3 +1,4 @@
+#encoding: utf-8
 class WelcomeController < ApplicationController
   authorize_resource :class => false
   
@@ -20,6 +21,7 @@ class WelcomeController < ApplicationController
 		@radio = (params[:radio].nil?) ? 5 : params[:radio].to_i
 		@buscarTodas= (params[:buscarTodas] == "true") ? true : false
 		Course.all.to_a.each do |c|
+			p "Course #{c.attributes}"
 			distance = Geocoder::Calculations.distance_between([c.latitude, c.longitude], [@search_address.latitude, @search_address.longitude], {:units => :km}) if (not c.latitude.nil? and not c.longitude.nil?)
 			if (distance < @radio) and (@buscarTodas or (c.subcategory_id.to_s == @subcategory_id))
 				@results.push(c)

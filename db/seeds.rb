@@ -29,6 +29,13 @@ Tag.create(:name => "Musica")
 Tag.create(:name => "Idioma")
 Tag.create(:name => "Baile")
 
+Plan.create(:name => "Visitas Básico", :type => "VisitsPlan", :price => 100.00, :active => true)
+Plan.create(:name => "Visitas Full", :type => "VisitsPlan", :price => 300.00, :active => true)
+Plan.create(:name => "Visitas Premium", :type => "VisitsPlan", :price => 1000.00, :active => true)
+Plan.create(:name => "Inscripciones Básico", :type => "RegistrationsPlan", :price => 100.00, :active => true)
+Plan.create(:name => "Inscripciones Full", :type => "RegistrationsPlan", :price => 300.00, :active => true)
+Plan.create(:name => "Inscripciones Premium", :type => "RegistrationsPlan", :price => 1000.00, :active => true)
+
 Teacher.create(name: 'Juan Perez', description: 'Profesor de guitarra. 12 anios de experiencia')
 Teacher.create(name: 'Ernerto Gomez', description: 'Profesor de ingles. 5 anios viviendo en Inglaterra. Certificaciones internacionales')
 

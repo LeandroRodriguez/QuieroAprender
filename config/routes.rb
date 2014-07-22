@@ -20,6 +20,7 @@ QuieroAprender::Application.routes.draw do
   
   resources :plans
     match 'plans' => "plans#index", :as => :plans_index, via: [:get, :post]
+    match 'plans/:id' => "plans#show", :as => :plans_show, via: [:get, :post]
   
   resources :teachers
     match 'home' => "welcome#index", :as => :home, via: [:get, :post]

@@ -10,6 +10,7 @@ class Course < ActiveRecord::Base
 	has_and_belongs_to_many :tags
 	has_many :opinions
 	has_many :consultations
+	has_many :uploads
 
 	def get_rating_average
 		@avg = 0

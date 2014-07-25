@@ -51,7 +51,7 @@ gem 'json'
 # gem 'capistrano', group: :development
 
 # Use debugger
-#gem 'debugger', group: [:development, :test] # For Ruby 1.9.x
+gem 'debugger', group: [:development, :test] # For Ruby 1.9.x
 #gem 'byebug', group: [:development, :test] # For Ruby 2.x
 
 # jquery plugins
@@ -87,3 +87,5 @@ gem "highcharts-rails"
 gem 'lazy_high_charts'
 gem 'quiet_assets', group: [:development, :test]
 gem 'thin'
+gem "jquery-fileupload-rails"
+gem 'paperclip'

@@ -39,7 +39,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
-				<!-- All slides go inside .carousel-inner -->
+				<!-- All slides go inside .carousel-inner 
 				<div class="item active">
 					<img src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="400" height="300" alt="..." />
 					<div class="carousel-caption">Primer imagen</div>
@@ -53,10 +53,31 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 					<div class="carousel-caption">Tercer imagen</div>
 				</div>
 			</div>
+			-->
+			<% if(@course.uploads.size() > 0) %>
+				<div class="item active">
+					<img src="<%= @course.uploads.first().upload %>" style="width:400px;height:300px;" />
+					<div class="carousel-caption">Primer imagen</div>
+				</div>
+				<% @course.uploads.drop(1).each do |u| %>
+					<div class="item ">
+							<img src="<%= u.upload %>" style="width:400px;height:300px;" />
+							<div class="carousel-caption"><%= @course.name %></div>
+					</div>
+				<% end %>
+			<% else %>
+				<div class="item active">
+					<img src="../college.png" style="width:400px;height:300px;" />
+					<div class="carousel-caption"><%= @course.name %></div>
+				</div>
+			<% end %> 	
+			</div>
 			<!-- Carousel nav -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 		</div>
+
+		<%= button_to 'Imagenes' , upload_path(@course) , class: "btn btn-primary" , :method => :get  %>
 	</div>
 	<div class="col-md-5">
 		<h1 ><%= @course.name %></h1>
@@ -114,10 +135,8 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 		</p>
 
 		<div class="basic" data-average="12" data-id="1"></div>
-
 		<%= button_to 'Inscribirme!' , enroll_course_path(@course) , class: "btn btn-lg btn-success" , :method => :get  %>
-
-		<hr>
+			
 	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
@@ -149,22 +168,6 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="Reseñas">
 					<%= bootstrap_form_for [@course, Opinion.new] do |f| %>
-					<!--
-					<div class="panel-body" id ="listasReseñas">
-					<div class="list-group container-opinionsResults" id="listasReseñas">
-					<% @course.opinions.each do |o| %>
-					<a id="opinions_<%= o.id %>" class="list-group-item " >
-					<h4 class="list-group-item-heading">
-					<% unless o.user.nil? %>
-					<%= o.user.email %>
-					<% end %>
-					</h4>
-					<p class="list-group-item-text"> <%= o.description %> </p>
-					</a>
-					<% end %>
-					</div>
-					</div>
-					-->
 					<div class="panel-body" id ="listasReseñas">
 						<ul class="media-list container-opinionsResults">
 							<% @course.opinions.each do |o| %>

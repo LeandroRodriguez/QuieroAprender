@@ -30,9 +30,11 @@ QuieroAprender::Application.routes.draw do
   get '/decode_address' => "welcome#decode_address", as: 'decode_address'
   get '/courses/update_subcategories_courses' , as: 'update_subcategories_courses'
   get '/courses/enroll/:id', to: 'courses#enroll', as: 'enroll_course'
+  get '/uploads/:id', to: 'uploads#index', as: 'upload'
   resources :courses do
     resources :opinions, :only => [:create]
     resources :consultations, :only => [:create]
+    resources :uploads, :only => [:create]
   end
   resources :advertisings
   resources :students

@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   authorize_resource
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  #before_filter :require_user, :only => :new
+  before_filter :require_user, :only => :new
   #examples
   #before_filter :require_user, :all
   #before_filter :require_user, :except => [:show, :index]
@@ -64,7 +64,7 @@ class CoursesController < ApplicationController
   # GET /courses/enroll
   def enroll
     @course = Course.find(params[:id])
-    if(current_user.role == User::ROLE_STUDENT) 
+    if(current_user && (current_user.role == User::ROLE_STUDENT)) 
        @courseStudent = CourseStudent.new(:course_id => @course.id, :student_id => current_user.id) 
        @courseStudent.save
        flash[:info] = "Se inscribio correctamente!" 
@@ -81,7 +81,7 @@ class CoursesController < ApplicationController
     setTags(@course)
     respond_to do |format|
       if @course.save
-        if(current_user.role == User::ROLE_TEACHER) 
+        if(current_user && current_user.role == User::ROLE_TEACHER) 
            @courseTeacher = CourseTeacher.new(:course_id => @course.id, :teacher_id => current_user.id) 
            @courseTeacher.save
         end   
@@ -138,6 +138,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags, :opinions, :consultations)
+      params.require(:course).permit(:name, :description, :longitude, :latitude, :address, :subcategory_id, :price, :tags, :opinions, :consultations,:uploads)
     end
 end

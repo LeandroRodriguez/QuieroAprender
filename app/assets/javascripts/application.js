@@ -26,4 +26,5 @@
 //= require bootstrap-slider
 //= require bootstrap-datepicker
 //= require star-rating.min
+//= require jquery-fileupload
 //= require_tree .

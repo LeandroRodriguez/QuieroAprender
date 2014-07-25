@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
         @user_profile = @api.get_object("me")
         @current_user = User.find_by_email(@user_profile["email"])
       end
+      #puts "User prev: #{@current_user.name}"
     end
 
     def require_user

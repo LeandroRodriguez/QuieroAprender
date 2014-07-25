@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   end
   
   def teacher?
+    puts "al menos entra aca"
+    puts "Rol del user: #{self.role}"
     self.role == User::ROLE_TEACHER
   end
   

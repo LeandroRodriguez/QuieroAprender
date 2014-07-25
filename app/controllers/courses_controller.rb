@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
+  puts "al"
   authorize_resource
+  puts "lo"
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   #before_filter :require_user, :only => :new
   #examples

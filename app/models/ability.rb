@@ -22,6 +22,7 @@ class Ability
         can :create, Opinion
         can :create, Consultation
         can :manage, :all
+        can :create, Upload
         #can [:signup, :profile, :edit_profile], User
       end
     end

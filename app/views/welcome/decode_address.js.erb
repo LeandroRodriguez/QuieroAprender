@@ -1,4 +1,4 @@
-console.log("results: <%= @results %>;");
+console.log("busqueda: <%= [@search_address.latitude, @search_address.longitude] %>;");
 <% if @results.empty? %>
     $("#no-result").fadeIn();
 <% else %>
@@ -13,9 +13,8 @@ inicializarMapa(<%= @search_address.latitude %>, <%= @search_address.longitude %
 
 <% @results.each do |c| %>
 
-$("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"courses/<%= c.id %>\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \"><%= c.name %></h4><p class=\"list-group-item-text\"><%= c.description %></p></a>" );
-
-    console.log("marker");
+$("#resultados").append( "<a id=\"curso_<%= c.id %>\" href=\"courses/<%= c.id %>\" class= \"list-group-item \"><h4 class= \"list-group-item-heading \"><%= c.name %> <button type=\"button\" class=\"btn btn-xs btn-primary\"><span class=\"glyphicon glyphicon-usd\"></span> <%= c.price %></button></h4><p class=\"list-group-item-text\"><%= c.description %></p><p class=\"list-group-item-text\"><%= c.address %></p><p class=\"list-group-item-text\"><input id=\"course_rating_<%= c.id %>\" type=\"number\" class=\"rating\" min=0 max=5 readonly=\"true\" value=\"<%= c.get_rating_average %>\" data-size=\"xs\"></p></a>" );
+    $('#course_rating_<%= c.id %>').rating('refresh', {showClear: false, showCaption: false});
     map.addMarker({
       lat: <%= c.latitude %>,
       lng: <%= c.longitude %>,

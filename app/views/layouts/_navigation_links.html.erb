@@ -2,6 +2,7 @@
  # add navigation links to this file
 %>
 
+
 <% if current_user %>
 	<% if can? :read, Plan %>
 	    <li><%= link_to "Planes", plans_url %></li>
@@ -13,3 +14,4 @@
 	    <li><%= link_to "Cursos", courses_url %></li>
 	<% end %>
 <% end %>
+

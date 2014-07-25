@@ -1,59 +1,55 @@
-<html>
-<head>
-<style>
-div.ex {
-    width: 700px;
-    height: 500px;
-    padding 10px;
-    border: 2px solid gray;
-    margin: 0px;
-}
-</style>
-</head>
-<body>
-
-
-	<div class="row">
-		<div class="col-md-4">
-
-			<br><br>
-
-			<p>
-				<font size = 6><b> <%= @teacher.name %> </b></font>
-			</p>
-
-			<br>
-            			<img src= "<%= @teacher.image %>" width="400" height="200" alt="..." />
-			<br><br>
-	
-			<p>
-				<b> Fecha de nacimiento: 
-					<% if @teacher.birthdate %>
-					<%= @teacher.birthdate.strftime("%d/%m/%Y") %>
-					<% end %>
-				</b>
-			</p>	
-			<p>
-				<b> Email: <%= @teacher.email %></b>
-			</p>
-			<p>
-				<b> Descripción: <%= @teacher.description %></b>
-			</p>
-		</div>
-
-	<div class="col-md-5">
-		<br>Cursos dictados
-		<div class = "ex"/>
-			 <% @teacher.courses.each do |course| %>
-			<tr>
-			<td>Curso: <%= course.name %></td><br>
-			<td>Descripción: <%= course.description %></td><br>
-			</tr>
-				----------------------------------------------<br>
-			<% end %>
+<div class="row">
+	<br>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+			   <b><%= @teacher.name %></b>
+			</div>
+			<div class="panel-body">
+				<% if @teacher.birthdate %>
+					<p><b>Fecha de nacimiento:</b> <%= @teacher.birthdate.strftime("%d/%m/%Y") %></p>
+				<% end %>
+			   <p><b>Email:</b> <%= @teacher.email %></p>
+			   <p><b>Descripción:</b> <%= @teacher.description %></p>
+			   <!-- <img src= "<%= @teacher.image %>" width="400" height="200" alt="..." /> -->
+			</div>
 		</div>
 	</div>
-	
-</body>
-</html>
+
+	<div class="col-md-9">
+		<h1>Cursos dictados</h1>
+		<table class="table table-bordered table-hover table-condensed">
+		  <thead class="courseList">
+		    <tr>
+		      <th>Nombre </th>
+		      <th>Descripción </th>
+		      <th>Precio</th>      
+		      <th>Opciones</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @teacher.courses.each do |course| %>
+		      <tr>
+		        <td ><%= course.name %></td>
+		        <td><%= course.description %></td>
+		        <td class="text-center"><%= course.price %></td>
+		        <td class="text-center">
+		          <%= button_to course , class: "btn btn-primary btn-xs", :method => :get do %>
+		            <span class="glyphicon glyphicon-eye-open "></span>
+		          <% end %>
+		          <%= button_to edit_course_path(course) , class: "btn btn-primary btn-xs", :method => :get do %>
+		            <span class="glyphicon glyphicon-edit"></span>
+		          <% end %>
+		          <%= button_to course ,class: "btn btn-danger btn-xs", method: :delete, data: {confirm: 'Are you sure?' } do %>
+		          <span class="glyphicon glyphicon-remove"></span>
+		          <% end %>
+		         	<button type="button" data-toggle="modal" data-target="#myModal" id="estadisticas_<%= course.id %>" class="btn btn-xs btn-success">Estadísticas</button>
+		        </td>  
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
 

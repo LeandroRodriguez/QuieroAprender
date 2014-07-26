@@ -34,8 +34,6 @@ class User < ActiveRecord::Base
   end
   
   def teacher?
-    puts "al menos entra aca"
-    puts "Rol del user: #{self.role}"
     self.role == User::ROLE_TEACHER
   end
   
@@ -51,7 +49,14 @@ class User < ActiveRecord::Base
       self.password = '123456'
       self.password_confirmation = '123456'
       self.name = facebook_data["name"]
+      self.facebook_id = facebook_data["id"]
       self.save
+    else
+      user = User.find_by_email(facebook_data["email"])
+      if user.facebook_id == 0
+        user.facebook_id = facebook_data["id"]
+        user.save
+      end 
     end
     
   end

@@ -64,6 +64,16 @@ class UserFacebookSessionsController < ApplicationController
   
   def authorization_callback
     session[:access_token] = session[:oauth].get_access_token(params[:code])
+    @api = Koala::Facebook::API.new(session[:access_token])
+    puts "Koala Facebook API: #{@api}"
+    
+    begin
+      @user_profile = @api.get_object("me")
+      user = User.new
+      user.create_from_facebook(@user_profile)
+    rescue Exception=>ex
+      puts "User profile exception: #{ex.message}"
+    end
     puts "Facebook Access Token: #{session[:access_token]}"
     redirect_to :root
   end

@@ -172,7 +172,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 						<ul class="media-list container-opinionsResults">
 							<% @course.opinions.each do |o| %>
 							<li class="media">
-								<a class="pull-left" href="#"> <img  class="media-object" src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="64" height="64" alt="..." /> </a>
+								<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
 								<div class="media-body">
 									<h5 class="media-heading"> <% unless o.user.nil? %>
 									<%= o.user.email %>

@@ -82,7 +82,10 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 		<% end %>
 	</div>
 	<div class="col-md-5">
-		<h1 ><%= @course.name %></h1>
+		<h1><%= @course.name %></h1>
+		<% if is_logued_user_with_facebook_id? %>
+		<h5 style="font-family:Helvetica; color:#3B5998">2 amigos ya hicieron este curso</h5>
+		<% end%>
 		<button role="button" class="btn btn-social btn-facebook" data-toggle="modal" data-target="#FbShareModal"><i class="fa fa-facebook"></i> | Compartir en Facebook</button>
 		<!-- Facebook share modal view -->
 		<div class="modal fade" id="FbShareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

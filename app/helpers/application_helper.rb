@@ -1,4 +1,19 @@
 module ApplicationHelper
+  
+  def is_logued_user_with_facebook_id?
+    if current_user.nil? then
+      return false
+    end
+    if current_user.student? then
+      puts "hay un estudiante conectado"
+      unless current_user.facebook_id.nil? then
+        puts "El estudiante esta conectado con fb"
+        return true
+      end
+    end
+    false
+  end
+  
   def get_profile_picture_for_user(user)
     unless user.nil? then
       puts "User: #{user}"

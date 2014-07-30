@@ -75,8 +75,11 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 		</div>
-
-		<%= button_to 'Imagenes' , upload_path(@course) , class: "btn btn-primary" , :method => :get  %>
+		<% if not current_user.nil?  %>
+			<% if current_user.teacher? %>
+				<%= button_to 'Imagenes' , upload_path(@course) , class: "btn btn-primary" , :method => :get  %>
+			<% end %>
+		<% end %>
 	</div>
 	<div class="col-md-5">
 		<h1 ><%= @course.name %></h1>
@@ -184,20 +187,22 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							<% end %>
 						</ul>
 					</div>
-					<div class="col-md-12 col-ms-offset-1" >
-						<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
-						<p class="list-group-item-text">
-							<textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
-							<br>
-							<input id="opinion_rating" name="opinion[rating]" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
+					<% if current_user %>
+						<div class="col-md-12 col-ms-offset-1" >
+							<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
+							<p class="list-group-item-text">
+								<textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
+								<br>
+								<input id="opinion_rating" name="opinion[rating]" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
 
-							<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
-								Add
-							</button>
+								<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
+									Add
+								</button>
 
-						</p> </a>
+							</p> </a>
 
-					</div>
+						</div>
+					<% end %>
 					<% end %>
 				</div>
 				<div class="tab-pane fade" id="Consultas">

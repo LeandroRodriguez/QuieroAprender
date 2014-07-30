@@ -24,7 +24,8 @@
 		      <th>Nombre </th>
 		      <th>Descripción </th>
 		      <th class="text-center">Precio</th>
-		      <th class="text-center">¿Está pago?</th> 
+		      <th class="text-center">¿Está pago?</th>
+		      <th class="text-center">Review</th>
 		    </tr>
 		  </thead>
 
@@ -35,6 +36,13 @@
 		        <td><%= course.description %></td>
 		        <td class="text-center"><%= course.price %></td>
 		        <td class="text-center"> <b>No</b></td>
+		        <%  opinion = Opinion.where("course_id = ?", course.id).where("user_id = ?", @student.id).first %>
+
+		        <% if opinion.nil? %>
+		        	<td class="text-center"> <b> Pendiente</b> </td>
+		        <% else %>
+		        	<td class="text-center"> <b> <%= opinion.rating %></b></td>
+		        <% end %>
 		      </tr>
 		    <% end %>
 		  </tbody>
@@ -42,3 +50,45 @@
 	</div>
 </div>
 
+<div class="row">
+<% if not @student.courses.empty? %>
+
+	<div class="col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-body" id ="cursosRelacionados">
+				<h4>Cursos que podrían interesarte </h4>
+				<div class="list-group container-results" id="cursosRelacionados">
+					<% Course.where("subcategory_id IN ?", @student.courses.select{|course| course.subcategory_id}).where("id NOT IN ?", @student.courses.select{|course| course.id}).limit(3).to_a.each do |c| %>
+					<a id="curso_<%= c.id %>" href="/courses/<%= c.id %>" class= "list-group-item ">
+					<h4 class= "list-group-item-heading "><%= c.name %><button type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-usd"></span> <%= c.price %></button></h4>
+					<p class="list-group-item-text"><%= c.description %></p>
+					<p class="list-group-item-text"><%= c.address %></p>
+					<p class="list-group-item-text">
+					<input id="course_rating_<%= c.id %>" type="number" class="rating" min=0 max=5 readonly="true" value="<%= c.get_rating_average %>" data-size="xs"></p></a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% else %>
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-body" id ="cursosRelacionados">
+				<h4>Cursos populares </h4>
+				<div class="list-group container-results" id="cursosRelacionados">
+					<% Course.joins(:opinions).order("count(opinions.rating)").group("course_id").limit(3).to_a.each do |c| %>
+					<a id="curso_<%= c.id %>" href="/courses/<%= c.id %>" class= "list-group-item ">
+					<h4 class= "list-group-item-heading "><%= c.name %><button type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-usd"></span> <%= c.price %></button></h4>
+					<p class="list-group-item-text"><%= c.description %></p>
+					<p class="list-group-item-text"><%= c.address %></p>
+					<p class="list-group-item-text">
+					<input id="course_rating_<%= c.id %>" type="number" class="rating" min=0 max=5 readonly="true" value="<%= c.get_rating_average %>" data-size="xs"></p></a>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+</div>

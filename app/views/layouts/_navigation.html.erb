@@ -17,8 +17,12 @@
 			<ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
 					<li>
-						<p class="navbar-text"><%= current_user.name %></p>
+					<% if current_user.student? %>
+						<%= link_to current_user.name, "/students/#{current_user.id}" %>
+					<% elsif current_user.teacher? %>
+						<%= link_to current_user.name, "/teachers/#{current_user.id}" %>
 					</li>
+					<% end %>
 					<li>
 						<%= link_to "Salir", logout_url %>
 					</li>

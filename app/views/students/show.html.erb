@@ -1,59 +1,44 @@
-<html>
-<head>
-<style>
-div.ex {
-    width: 700px;
-    height: 500px;
-    padding 10px;
-    border: 2px solid gray;
-    margin: 0px;
-}
-</style>
-</head>
-<body>
-
-
-	<div class="row">
-		<div class="col-md-4">
-
-			<br><br>
-
-			<p>
-				<font size = 6><b> <%= @student.name %> </b></font>
-			</p>
-
-			<br>
-            			<img src= "<%= @student.image %>" width="400" height="200" alt="..." />
-			<br><br>
-	
-			<p>
-				<b> Fecha de nacimiento: 
-					<% if @student.birthdate %>
-					<%= @student.birthdate.strftime("%d/%m/%Y") %>
-					<% end %>
-				</b>
-			</p>	
-			<p>
-				<b> Email: <%= @student.email %></b>
-			</p>
-			<p>
-				<b> Descripción: <%= @student.description %></b>
-			</p>
-		</div>
-
-	<div class="col-md-5">
-		<br>Cursos realizados
-		<div class = "ex"/>
-			 <% @student.courses.each do |course| %>
-			<tr>
-			<td>Curso: <%= course.name %></td><br>
-			<td>Descripción: <%= course.description %></td><br>
-			</tr>
-				----------------------------------------------<br>
-			<% end %>
+<div class="row">
+	<br>
+	<div class="col-md-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+			   <b><%= @student.name %></b>
+			</div>
+			<div class="panel-body">
+				<% if @student.birthdate %>
+					<p><b>Fecha de nacimiento:</b> <%= @student.birthdate.strftime("%d/%m/%Y") %></p>
+				<% end %>
+			   <p><b>Email:</b> <%= @student.email %></p>
+			   <p><b>Descripción:</b> <%= @student.description %></p>
+			   <img src="http://espndeportes-assets.espn.go.com/2003/photos2013/0930/g_icardi_200x300.jpg" width="200" height="200"/>
+			</div>
 		</div>
 	</div>
-	
-</body>
-</html>
+
+	<div class="col-md-9">
+		<h1>Cursos que estoy haciendo ahora</h1>
+		<table class="table table-bordered table-hover table-condensed">
+		  <thead class="courseList">
+		    <tr>
+		      <th>Nombre </th>
+		      <th>Descripción </th>
+		      <th class="text-center">Precio</th>
+		      <th class="text-center">¿Está pago?</th> 
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @student.courses.each do |course| %>
+		      <tr>
+		        <td ><%= link_to course.name, "/courses/#{course.id}" %></td>
+		        <td><%= course.description %></td>
+		        <td class="text-center"><%= course.price %></td>
+		        <td class="text-center"> <b>No</b></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
 

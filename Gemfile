@@ -89,3 +89,4 @@ gem 'quiet_assets', group: [:development, :test]
 gem 'thin'
 gem "jquery-fileupload-rails"
 gem 'paperclip'
+gem 'redis'

@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="col-md-9">
-		<h1>Cursos que estoy haciendo ahora</h1>
+		<h1>Cursos realizados</h1>
 		<table class="table table-bordered table-hover table-condensed">
 		  <thead class="courseList">
 		    <tr>
@@ -35,7 +35,8 @@
 		        <td ><%= link_to course.name, "/courses/#{course.id}" %></td>
 		        <td><%= course.description %></td>
 		        <td class="text-center"><%= course.price %></td>
-		        <td class="text-center"> <b>No</b></td>
+		        <% @cs = CourseStudent.where("student_id = #{@student.id} AND course_id = #{course.id}").first %>
+		        <td class="text-center"><b><%= @cs.paid.nil? ? "No" : "Si" %></b></td>
 		        <%  opinion = Opinion.where("course_id = ?", course.id).where("user_id = ?", @student.id).first %>
 
 		        <% if opinion.nil? %>
@@ -51,34 +52,16 @@
 </div>
 
 <div class="row">
-<% if not @student.courses.empty? %>
+<% %>
+<% #if not @student.courses.empty? %>
 
-	<div class="col-md-3">
-		<div class="panel panel-default">
-			<div class="panel-body" id ="cursosRelacionados">
-				<h4>Cursos que podrían interesarte </h4>
-				<div class="list-group container-results" id="cursosRelacionados">
-					<% Course.where("subcategory_id IN ?", @student.courses.select{|course| course.subcategory_id}).where("id NOT IN ?", @student.courses.select{|course| course.id}).limit(3).to_a.each do |c| %>
-					<a id="curso_<%= c.id %>" href="/courses/<%= c.id %>" class= "list-group-item ">
-					<h4 class= "list-group-item-heading "><%= c.name %><button type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-usd"></span> <%= c.price %></button></h4>
-					<p class="list-group-item-text"><%= c.description %></p>
-					<p class="list-group-item-text"><%= c.address %></p>
-					<p class="list-group-item-text">
-					<input id="course_rating_<%= c.id %>" type="number" class="rating" min=0 max=5 readonly="true" value="<%= c.get_rating_average %>" data-size="xs"></p></a>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<% else %>
+<% #else %>
 	<div class="col-md-6">
 		<div class="panel panel-default">
 			<div class="panel-body" id ="cursosRelacionados">
 				<h4>Cursos populares </h4>
 				<div class="list-group container-results" id="cursosRelacionados">
-					<% Course.joins(:opinions).order("count(opinions.rating)").group("course_id").limit(3).to_a.each do |c| %>
+					<% @populares.each do |c| %>
 					<a id="curso_<%= c.id %>" href="/courses/<%= c.id %>" class= "list-group-item ">
 					<h4 class= "list-group-item-heading "><%= c.name %><button type="button" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-usd"></span> <%= c.price %></button></h4>
 					<p class="list-group-item-text"><%= c.description %></p>
@@ -90,5 +73,17 @@
 			</div>
 		</div>
 	</div>
-<% end %>
+<% #end %>
 </div>
+
+<%= javascript_tag do %>
+	var ready;
+	ready = function() {
+	<% @populares.each do |c| %>
+		$('#course_rating_<%= c.id %>').rating('refresh', {showClear: false, showCaption: false});
+	<% end %>
+	};
+
+	$(document).ready(ready);
+	$(document).on('page:load', ready);
+<% end %>  

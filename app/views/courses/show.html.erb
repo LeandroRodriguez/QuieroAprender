@@ -116,32 +116,42 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 
 		<hr>
 		<p>
-			Descripción: <%= @course.description %>
+			<b>Descripción:</b> <%= @course.description %>
 		</p>
 		<p>
-			Dirección: <%= @course.address %>
+			<b>Dirección:</b> <%= @course.address %>
 		</p>
 		<p>
-			Subcategoría:
+			<b>Subcategoría:</b>
 			<% if (@course.subcategory != nil) %>
 			<%= h @course.subcategory.name %>
 		</p>
 		<p>
-			Precio: <span class="glyphicon glyphicon-usd"></span> <%= @course.price %>
+			<b>Precio:</b> <span class="glyphicon glyphicon-usd"></span> <%= @course.price %>
 		</p>
 		<p>
-			Tags:
+			<b>Tags:</b>
 			<% @course.tags.each do |t| %>
-			<%= t.name %>
+				<%= t.name %>
 			<% end %>
 		</p>
 
-		<p><input id="course_rating" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= @rating_average %>" data-size='xs' >
-		</p>
+		<div class="row">
+			<div class="col-xs-4 ">
+				<div class="basic" data-average="12" data-id="1"></div>
+				<%= button_to 'Inscribirme!' , enroll_course_path(@course) , class: "btn btn-lg btn-success" , :method => :get  %>
+			</div>			
 
-		<div class="basic" data-average="12" data-id="1"></div>
-		<%= button_to 'Inscribirme!' , enroll_course_path(@course) , class: "btn btn-lg btn-success" , :method => :get  %>
-			
+			<div class="col-xs-3 ">
+				<h4><b>Reviews: </b><%= Opinion.where("course_id = ?", @course.id).count	%></h4>
+			</div>
+
+			<div class="col-xs-5 ">
+				<input id="course_rating" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= @rating_average %>" data-size='sm' >
+			</div>
+
+		</div>
+
 	</div>
 	<div class="col-md-3">
 		<div class="panel panel-default">
@@ -175,16 +185,17 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 					<%= bootstrap_form_for [@course, Opinion.new] do |f| %>
 					<div class="panel-body" id ="listasReseñas">
 						<ul class="media-list container-opinionsResults">
-							<% @course.opinions.each do |o| %>
+							<% @course.opinions.select{|op| not op.user.nil?}.each do |o| %>
 							<li class="media">
 								<div class="media-body">
-									<h5 class="media-heading"> <% unless o.user.nil? %>
+									<h5 class="media-heading">
 									<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
-									<%= o.user.email %>
+									<b><%= o.user.name %></b>
 									<%= o.date %>
-									<% end %> </h5>
-									<%= o.description %>
 									<input id="opinion_<%= o.id %>" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= o.rating.nil? ? 0 : o.rating%>" data-size='xs' >
+								 	</h5>
+									<%= o.description %>
+									
 								</div>
 							</li>
 							<% end %>
@@ -213,7 +224,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 					<%= bootstrap_form_for [@course, Consultation.new] do |f| %>
 					<div class="panel-body" id ="listaConsultas">
 						<ul class="media-list container-opinionsResults">
-							<% @course.consultations.each do |c| %>
+							<% @course.consultations.select{|consulta| not consulta.user.nil?}.each do |c| %>
 							<% if(c.user.role == User::ROLE_TEACHER)  %>
 							<li class="media list-group-item-success">
 								<% else %>
@@ -221,8 +232,8 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<% end %>
 								<div class="media-body">
 									<h5 class="media-heading"> <% unless c.user.nil? %>
-									<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
-									<%= c.user.email %>
+									<a class="pull-left" href="#"> <img  class="media-object " src=<%= get_profile_picture_for_user c.user%>  width="64" height="64" alt="..." /> </a>
+									<b><%= c.user.name %></b>
 									<%= c.date %>
 									<% end %> </h5>
 									<%= c.description %>
@@ -272,8 +283,14 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 <hr>
 
 <%= javascript_tag do %>
-    <% @course.opinions.each do |o| %>
-    $('#opinion_<%= o.id %>').rating('refresh', {showClear: false, showCaption: false});
-    <% end %>
-    $('#course_rating').rating('refresh', {showClear: false, showCaption: false});
+	var ready;
+	ready = function() {
+	<% @course.opinions.each do |o| %>
+	    $('#opinion_<%= o.id %>').rating('refresh', {showClear: false, showCaption: false});
+	<% end %>
+	    $('#course_rating').rating('refresh', {showClear: false, showCaption: false});
+	};
+
+	$(document).ready(ready);
+	$(document).on('page:load', ready);
 <% end %>  

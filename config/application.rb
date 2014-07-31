@@ -7,10 +7,10 @@ require 'sprockets/railtie'
 Bundler.require(:default, Rails.env)
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
-
 module QuieroAprender
   class Application < Rails::Application
     config.assets.enabled = true
+    config.action_controller.perform_caching = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

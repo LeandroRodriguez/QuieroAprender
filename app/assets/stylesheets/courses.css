@@ -37,7 +37,7 @@ thead th {
 .container-opinionsResults {
   background-size: auto auto;
   width: auto;
-  height: 350px;
+  height: auto;
   position: relative;
   overflow-y: auto;
 }
@@ -48,3 +48,4 @@ thead th {
   height: 630px;
   position: relative;
 }
+

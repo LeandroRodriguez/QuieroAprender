@@ -75,15 +75,13 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 			<a class="carousel-control right" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 		</div>
-		<% if not current_user.nil?  %>
-			<% if current_user.teacher? %>
-				<%= button_to 'Imagenes' , upload_path(@course) , class: "btn btn-primary" , :method => :get  %>
-			<% end %>
+		<% if is_logued_teacher? %>
+			<%= button_to 'Imagenes', upload_path(@course), class:"btn btn-primary", :method => :get %>
 		<% end %>
 	</div>
 	<div class="col-md-5">
 		<h1><%= @course.name %></h1>
-		<% if is_logued_user_with_facebook_id? %>
+		<% if is_logued_student_with_facebook_id? %>
 		<h5 style="font-family:Helvetica; color:#3B5998">2 amigos ya hicieron este curso</h5>
 		<% end%>
 		<button role="button" class="btn btn-social btn-facebook" data-toggle="modal" data-target="#FbShareModal"><i class="fa fa-facebook"></i> | Compartir en Facebook</button>

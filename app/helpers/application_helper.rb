@@ -1,7 +1,21 @@
 module ApplicationHelper
   
-  def is_logued_user_with_facebook_id?
+  def is_logued_teacher?
     if current_user.nil? then
+      return false
+    end
+    return current_user.teacher?
+  end
+  
+  def is_logued_student?
+    if current_user.nil? then
+      return false
+    end
+    return current_user.student?
+  end
+  
+  def is_logued_student_with_facebook_id?
+    if current_user.nil? then 
       return false
     end
     if current_user.student? then

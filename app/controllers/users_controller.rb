@@ -73,11 +73,11 @@ class UsersController < ApplicationController
       if insert_sql
         ActiveRecord::Base.connection.execute insert_sql
       end
-      flash[:notice] = "Your account has been created"
-      url = "/teachers/"+id
+      flash[:notice] = "Tu cuenta de profesor ha sido creada exitosamente"
+      url = "/teachers/#{id}"
       redirect_to url
     else
-      flash[:notice] = "There was a problem creating you."
+      flash[:notice] = "Ha ocurrido un error al intentar crear el profesor"
       render :action => :create_teacher
     end
   end

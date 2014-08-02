@@ -13,12 +13,21 @@
 				<br/>
 			</p>
 			<h3>Nombre: <%= @plan.name %></h3>
-			<h3>Precio:$<%= @plan.price %> por mes</h3>
+			<h3>Precio: $<%= @plan.price %> por mes</h3>
 		</div>
 	</div>
 	<div class="row">
-		<% unless is_logued_teacher? %>
-		No hay un profesor conectado
-		<% end %>
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<% unless is_logued_teacher? %>
+				<div class="panel panel-info" style="margin-top:30px; max-width:600px;">
+					<div class="panel-heading">
+						<h4 class="panel-title">Debe crear una cuenta de profesor para contratar el plan</h4>
+					</div>
+					<div class="panel-body">
+						<%= link_to "Registrarse", {controller: "plans"}, class: "btn btn-lg btn-block btn-info" %>
+					</div>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>

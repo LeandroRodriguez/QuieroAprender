@@ -2,19 +2,23 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="page-header text-center">
-				<h2> Planes por cantidad de visitas</h2>
+				<h1><%= @plan.type_title %></h1>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<p style="font-size: 18px">
-				Un plan ideal que le brinda la posibilidad de ofrecer todos los datos de tus cursos para lograr un mayor alcance.
+			<p style="font-size: 16px">
+				<%= @plan.general_description %>
 				<br/>
 			</p>
-			<h1>Name: <%= @plan.name %></h1>
-			<h2>Type: <%= @plan.type %></h2>
-			<h3>Price:$<%= @plan.price %></h3>
+			<h3>Nombre: <%= @plan.name %></h3>
+			<h3>Precio:$<%= @plan.price %> por mes</h3>
 		</div>
+	</div>
+	<div class="row">
+		<% unless is_logued_teacher? %>
+		No hay un profesor conectado
+		<% end %>
 	</div>
 </div>

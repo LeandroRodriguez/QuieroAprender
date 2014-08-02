@@ -1,0 +1,1 @@
+json.extract! @plan, :id, :name, :type, :price, :active, :created_at, :updated_at

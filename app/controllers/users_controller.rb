@@ -53,6 +53,35 @@ class UsersController < ApplicationController
     end
   end
   
+  def new_teacher
+    @user = User.new
+    @user.role = User::ROLE_TEACHER
+  end
+  
+  def create_teacher
+    @user = User.new(user_params)
+    @user.role = User::ROLE_TEACHER
+    if @user.save
+      id = @user.id 
+
+      if user_params[:role].to_i == User::ROLE_STUDENT
+        insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+      elsif user_params[:role].to_i == User::ROLE_TEACHER
+        insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+      end
+
+      if insert_sql
+        ActiveRecord::Base.connection.execute insert_sql
+      end
+      flash[:notice] = "Your account has been created"
+      url = "/teachers/"+id
+      redirect_to url
+    else
+      flash[:notice] = "There was a problem creating you."
+      render :action => :create_teacher
+    end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

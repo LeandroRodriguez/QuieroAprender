@@ -17,6 +17,8 @@ QuieroAprender::Application.routes.draw do
   #resource :user, :as => 'account'  # a convenience route
     match 'signup' => 'users#new', :as => :signup, via: [:get, :post]
     match '/users/edit/:id' => 'users#edit', :as => :update, via: [:get, :post]
+    match 'createTeacher' => 'users#create_teacher', :as => :create_teacher, via: [:get, :post]
+    match 'newTeacher' => 'users#new_teacher', :as => :new_teacher, via: [:get, :post]
   
   resources :plans
     match 'plans' => "plans#index", :as => :plans_index, via: [:get, :post]

@@ -76,3 +76,12 @@ body {
 .dropdown-settings {
   padding: 8px 0;
 }
+
+
+
+.teacherCreation .row{
+	margin-bottom: 10px;
+}
+.teacherCreation .col-md-3{
+	padding-top: 8px;
+}

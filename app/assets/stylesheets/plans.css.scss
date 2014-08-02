@@ -3,10 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .top-section {
-//background:  url('http://25.media.tumblr.com/d55a509993790027240311c9f611aaf8/tumblr_n0hpzpKEfE1st5lhmo1_1280.jpg') top center fixed;
-//background:  url('http://parabuenosaires.com/wp-content/uploads/2013/10/Libros-Viejos-Apilados_Imagenes-de-Libros.jpg') top center fixed;
-background-image:  url('http://static.betazeta.com/www.belelu.com/up/2014/03/libros1.jpg'); //center center no-repeat;// fixed;
-//background-repeat: no-repeat;
+background-image:  url('http://static.betazeta.com/www.belelu.com/up/2014/03/libros1.jpg'); //center center no-repeat;
 background-position: center center;
 background-size:100% auto;
 color: #fff;
@@ -44,12 +41,20 @@ position:relative;
 
 .second-section {
     background:#34495e;
-    color:#fff;
+    color:#fff !important;
+}
+
+.second-section h3 {
+    color:#fff !important;
 }
 
 .features-section {
     background:#2c3e50;
     color:#fff;
+}
+
+.features-section h2 {
+    color:#fff !important;
 }
 
 .features-section small {

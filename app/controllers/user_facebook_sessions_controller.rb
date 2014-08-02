@@ -37,7 +37,7 @@ class UserFacebookSessionsController < ApplicationController
       puts "User profile: #{@user_profile}"
       user = User.new
       user.create_from_facebook(@user_profile)
-      redirect_to :root
+      redirect_back_or_default(root_url)
     rescue Exception=>ex
       puts "User profile exception: #{ex.message}"
       #if user is not logged in and an exception is caught, redirect to the page where logging in is requested
@@ -75,7 +75,14 @@ class UserFacebookSessionsController < ApplicationController
       puts "User profile exception: #{ex.message}"
     end
     puts "Facebook Access Token: #{session[:access_token]}"
-    redirect_to :root
+    puts "PPALAAL : #{session["courseId"]}"
+    if (session["courseId"])
+      url = "/courses/"+session["courseId"]
+    else
+      url = root_url
+    end
+    puts "ALALAL : #{url}"
+    redirect_back_or_default(url)
   end
   
   # Publish to wall post

@@ -69,9 +69,11 @@ class CoursesController < ApplicationController
     if(current_user && (current_user.role == User::ROLE_STUDENT)) 
        @courseStudent = CourseStudent.new(:course_id => @course.id, :student_id => current_user.id) 
        @courseStudent.save
-       flash[:info] = "Se inscribio correctamente!" 
+       flash[:info] = "Se inscribio correctamente!"
+       session["courseId"] = nil 
     else
       flash[:error] = "Debe ser un estudiante logueado para inscribirse"
+      session["courseId"] = params[:id]
     end 
     redirect_to @course
   end  

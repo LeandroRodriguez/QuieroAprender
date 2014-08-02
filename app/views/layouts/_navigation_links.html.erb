@@ -2,7 +2,7 @@
  # add navigation links to this file
 %>
 	    
-<li><h1>QuieroAprender</h1></li>
+<li><h1 style="font-size:20pt; margin: 10px 10px;">QuieroAprender</h1></li>
 <% if current_user %>
 	<% if can? :read, Plan %>
 	    <li><%= link_to "Planes", plans_url %></li>

@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :role, inclusion: {in: ROLES}
 
   after_initialize :default_values
+  after_create :create_role
   
   attr_accessor :role_desc
  
@@ -66,5 +67,19 @@ class User < ActiveRecord::Base
   def default_values
     self.role ||= User::ROLE_STUDENT
   end 
+  
+  def create_role
+    id = self.id 
+
+      if self.role == User::ROLE_STUDENT
+        insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+      elsif self.role == User::ROLE_TEACHER
+        insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+      end
+
+      if insert_sql
+        ActiveRecord::Base.connection.execute insert_sql
+      end
+  end
   
 end

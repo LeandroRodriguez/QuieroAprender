@@ -11,21 +11,21 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-	    id = @user.id	
+	    #id = @user.id	
 
-	    if user_params[:role].to_i == User::ROLE_STUDENT
-		    insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
-      elsif user_params[:role].to_i == User::ROLE_TEACHER
-		    insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
-      end
+	    #if user_params[:role].to_i == User::ROLE_STUDENT
+		  #  insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+      #elsif user_params[:role].to_i == User::ROLE_TEACHER
+		  #  insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+      #end
 
-	    if insert_sql
-	      ActiveRecord::Base.connection.execute insert_sql
-	    end
-	    flash[:notice] = "Your account has been created"
+	    #if insert_sql
+	     # ActiveRecord::Base.connection.execute insert_sql
+	    #end
+	    flash[:notice] = "Tu cuenta ha sido creada"
    	  redirect_to :root
     else
-	    flash[:notice] = "There was a problem creating you."
+	    flash[:notice] = "Hubo un error al intentar crear la cuenta"
 	    render :action => :new
     end
     # Saving without session maintenance to skip
@@ -64,15 +64,15 @@ class UsersController < ApplicationController
     if @user.save
       id = @user.id 
 
-      if user_params[:role].to_i == User::ROLE_STUDENT
-        insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
-      elsif user_params[:role].to_i == User::ROLE_TEACHER
-        insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
-      end
+      #if user_params[:role].to_i == User::ROLE_STUDENT
+       # insert_sql = "insert into quiero_aprender.students (id) values (#{id})"
+      #elsif user_params[:role].to_i == User::ROLE_TEACHER
+       # insert_sql = "insert into quiero_aprender.teachers (id) values (#{id})"
+      #end
 
-      if insert_sql
-        ActiveRecord::Base.connection.execute insert_sql
-      end
+      #if insert_sql
+       # ActiveRecord::Base.connection.execute insert_sql
+      #end
       flash[:notice] = "Tu cuenta de profesor ha sido creada exitosamente"
       url = "/teachers/#{id}"
       redirect_to url

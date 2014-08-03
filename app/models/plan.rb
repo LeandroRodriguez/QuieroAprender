@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Plan < ActiveRecord::Base
 	
 	def type_title

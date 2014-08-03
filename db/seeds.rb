@@ -36,8 +36,8 @@ Plan.create(:name => "Inscripciones Full", :type => "RegistrationsPlan", :price 
 Plan.create(:name => "Inscripciones Premium", :type => "RegistrationsPlan", :price => 1000.00, :active => true)
 
 #PROFES
-User.create(:name => "Juan Perez", :description => "Profesor de guitarra. 12 años de experiencia", :image => "http://www.premierguitar.com/ext/resources/archives/81e5505d-a4b1-43f5-b7c0-69f7680c25cd.JPG?1371672480", :birthdate => "1966-07-08 00:00:00", :email => "juanperez@gmail.com", :role => User::ROLE_TEACHER, :password => "123123", :password_confirmation => "123123")
-User.create(:name => "Carla Gomez", :description => "Profesora de ingles. 5 años viviendo en Inglaterra. Certificaciones internacionales", :image => "http://t3.gstatic.com/images?q=tbn:ANd9GcQYxtzHJGG5qBR0K5gBbixfMfuDieHKYBoGMCBaIiGKQSRIV4CZ8w", :birthdate => "1978-04-19 00:00:00", :email => "carlagomez@gmail.com", :role => User::ROLE_TEACHER, :password => "123123", :password_confirmation => "123123")
+User.create(:name => "Juan Perez", :description => "Profesor de guitarra. 12 años de experiencia", :image => "guitar-teacher1.jpg", :birthdate => "1966-07-08 00:00:00", :email => "juanperez@gmail.com", :role => User::ROLE_TEACHER, :password => "123123", :password_confirmation => "123123")
+User.create(:name => "Carla Gomez", :description => "Profesora de ingles. 5 años viviendo en Inglaterra. Certificaciones internacionales", :image => "english-teacher1.jpg", :birthdate => "1978-04-19 00:00:00", :email => "carlagomez@gmail.com", :role => User::ROLE_TEACHER, :password => "123123", :password_confirmation => "123123")
 #ESTUDIANTES
 User.create(:name => "Mauro Icardi", :description => "Jugador del Inter de Milan", :image => nil, :birthdate => "1990-04-16 00:00:00", :email => "peliculasfinaldvd@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123", :facebook_id => 666474016767940)
 

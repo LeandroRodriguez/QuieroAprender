@@ -6,6 +6,9 @@
 			   <b><%= @teacher.name %></b>
 			</div>
 			<div class="panel-body">
+				<% if @teacher.image %>
+					<%= image_tag "profiles/#{@teacher.image}", :style => "margin-bottom: 20px" %>
+				<% end %>
 				<% if @teacher.birthdate %>
 					<p><b>Fecha de nacimiento:</b> <%= @teacher.birthdate.strftime("%d/%m/%Y") %></p>
 				<% end %>

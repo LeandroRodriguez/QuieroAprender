@@ -11,7 +11,7 @@
 				<% end %>
 			   <p><b>Email:</b> <%= @student.email %></p>
 			   <p><b>Descripción:</b> <%= @student.description %></p>
-			   <img src="http://espndeportes-assets.espn.go.com/2003/photos2013/0930/g_icardi_200x300.jpg" width="200" height="200"/>
+			   <%= image_tag @student.image , :size=>"200x200" %></a>
 			</div>
 		</div>
 	</div>

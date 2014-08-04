@@ -38,25 +38,10 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 			<div class="carousel-inner">
-				<!-- All slides go inside .carousel-inner 
-				<div class="item active">
-					<img src="http://sndt.ac.in/images/courses/courses-imgs.jpg"  width="400" height="300" alt="..." />
-					<div class="carousel-caption">Primer imagen</div>
-				</div>
-				<div class="item">
-					<img src="https://www.coleurope.eu/content/studyprogrammes/law/images/Students%20in%20a%20course.%20nb%20031.jpg"  width="400" height="300" alt="..." />
-					<div class="carousel-caption">Segunda imagen</div>
-				</div>
-				<div class="item">
-					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNKieMWGkXrXpzTlOl8J04vlc7lrrWwPlmqk2cUlrhN5Btrq1Pnw"  width="400" height="300" alt="..." />
-					<div class="carousel-caption">Tercer imagen</div>
-				</div>
-			</div>
-			-->
-			<% if(@course.uploads.size() > 0) %>
+				<% if(@course.uploads.size() > 0) %>
 				<div class="item active">
 					<img src="<%= @course.uploads.first().upload %>" style="width:400px;height:300px;" />
-					<div class="carousel-caption">Primer imagen</div>
+					<div class="carousel-caption"><%= @course.name %></div>
 				</div>
 				<% @course.uploads.drop(1).each do |u| %>
 					<div class="item ">
@@ -64,12 +49,12 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							<div class="carousel-caption"><%= @course.name %></div>
 					</div>
 				<% end %>
-			<% else %>
-				<div class="item active">
-					<img src="../college.png" style="width:400px;height:300px;" />
-					<div class="carousel-caption"><%= @course.name %></div>
-				</div>
-			<% end %> 	
+				<% else %>
+					<div class="item active">
+					<%= image_tag "college.png" , :size=>"300x400" %>
+						<div class="carousel-caption"><%= @course.name %></div>
+					</div>
+				<% end %> 	
 			</div>
 			<!-- Carousel nav -->
 			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -181,24 +166,28 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="Reseñas">
 					<%= bootstrap_form_for [@course, Opinion.new] do |f| %>
-					<div class="panel-body" id ="listasReseñas">
-						<ul class="media-list container-opinionsResults">
+					<div class="panel-body container-opinionsResults" id ="listasReseñas">
+						<ul class="media-list ">
 							<% @course.opinions.select{|op| not op.user.nil?}.each do |o| %>
 							<li class="media">
 								<div class="media-body">
 									<h5 class="media-heading">
-									<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
+									<% if get_profile_picture_for_user o.user %>
+										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
+									<% else %>
+										<a class="pull-left" href="#">
+										<%= image_tag o.user.image , :size=>"64x64" %></a>
+									<% end %>	
 									<b><%= o.user.name %></b>
 									<%= o.date %>
-									<input id="opinion_<%= o.id %>" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= o.rating.nil? ? 0 : o.rating%>" data-size='xs' >
-								 	</h5>
+									</h5>
 									<%= o.description %>
-									
+									<input id="opinion_<%= o.id %>" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= o.rating.nil? ? 0 : o.rating%>" data-size='xs' >
 								</div>
 							</li>
 							<% end %>
 						</ul>
-					</div>
+					
 					<% if current_user %>
 						<div class="col-md-12 col-ms-offset-1" >
 							<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
@@ -206,7 +195,6 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
 								<br>
 								<input id="opinion_rating" name="opinion[rating]" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
-
 								<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
 									Add
 								</button>
@@ -216,30 +204,35 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 						</div>
 					<% end %>
 					<% end %>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="Consultas">
 
 					<%= bootstrap_form_for [@course, Consultation.new] do |f| %>
-					<div class="panel-body" id ="listaConsultas">
-						<ul class="media-list container-opinionsResults">
+					<div class="panel-body container-opinionsResults" id ="listaConsultas">
+						<ul class="media-list ">
 							<% @course.consultations.select{|consulta| not consulta.user.nil?}.each do |c| %>
 							<% if(c.user.role == User::ROLE_TEACHER)  %>
-							<li class="media list-group-item-success">
-								<% else %>
+								<li class="media list-group-item-success">
+							<% else %>
 							<li class="media">
 								<% end %>
 								<div class="media-body">
-									<h5 class="media-heading"> <% unless c.user.nil? %>
-									<a class="pull-left" href="#"> <img  class="media-object " src=<%= get_profile_picture_for_user c.user%>  width="64" height="64" alt="..." /> </a>
-									<b><%= c.user.name %></b>
-									<%= c.date %>
-									<% end %> </h5>
+									<h5 class="media-heading"> 
+									<% unless c.user.nil? %>
+									<% if get_profile_picture_for_user c.user %>
+										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user c.user%>  width="64" height="64" alt="..." /> </a>
+									<% else %>
+										<a class="pull-left" href="#">
+										<%= image_tag c.user.image , :size=>"64x64" %></a>
+									<% end %>
+									<% end %>
+									</h5>
 									<%= c.description %>
 								</div>
 							</li>
 							<% end %>
 						</ul>
-					</div>
 					<div class="col-md-12 col-ms-offset-1" >
 						<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Preguntas </h4>
 						<p class="list-group-item-text">
@@ -250,6 +243,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							</button>
 
 						</p> </a>
+					</div>
 					</div>
 					<% end %>
 				</div>

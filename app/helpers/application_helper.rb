@@ -32,11 +32,13 @@ module ApplicationHelper
   def get_profile_picture_for_user(user)
     unless user.nil? then
       puts "User: #{user}"
-      if user.facebook_id then
-        puts "http://graph.facebook.com/#{user.facebook_id}/picture?type=large"
+      if not user.facebook_id.nil? and user.facebook_id != 0 then
+        #puts "http://graph.facebook.com/#{user.facebook_id}/picture?type=large"
         return "http://graph.facebook.com/#{user.facebook_id}/picture?type=large"
+      else
+        return nil
       end
-    end
+    end  
     return "http://sndt.ac.in/images/courses/courses-imgs.jpg"
   end
 

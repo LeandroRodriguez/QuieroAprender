@@ -6,32 +6,28 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 -->
 <hr>
 <div class="row">
-  <div class="col-md-4">
-    <hr>  
-
   <div class="col-md-5">
-      <h1 ><%= @advertising.name %></h1>
-      <hr>
-      <h4>Descripción</h4>
-        <p><%= @advertising.description %></p>
-      <h4>Dirección</h4> 
-        <p><%= @advertising.address %></p>
-      
-      <h4>Precio</h4>
-      <p> <span class="glyphicon glyphicon-usd"></span> 100 </p>
-      <div class="basic" data-average="12" data-id="1"></div>
-
- </div>
-   <hr>     
-
-  
-
-    </div>
+     <%= image_tag @advertising.image , :size=>"300x300" %></a>  
   </div>
+  <div class="col-md-6">
+   
+      <h1><%= @advertising.name %></h1>
+      <hr>
 
+      <p>
+        <b>Descripción:</b> <%= @advertising.description %>
+      </p>
+      <p>
+        <b>Dirección:</b> <%= @advertising.address %>
+      </p>
+      <p> <b>Precio:</b>
+      <span class="glyphicon glyphicon-usd"></span> <%= @advertising.price %> </p>
+       <br><br> 
+      <button type="button" class="btn btn-success">Consultar</button>
+ </div>
+     
+</div>
 
-<%= link_to 'Edit', edit_advertising_path(@advertising) %> |
-<%= link_to 'Back', advertisings_path %>
 
 <%= javascript_tag do %>
 <% end %>

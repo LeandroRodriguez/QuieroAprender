@@ -113,7 +113,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 			<b>Precio:</b> <span class="glyphicon glyphicon-usd"></span> <%= @course.price %>
 		</p>
 		<p>
-			<b>Tags:</b>
+			<b>Características:</b>
 			<% @course.tags.each do |t| %>
 				<%= t.name %>
 			<% end %>
@@ -257,7 +257,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 				<h4>Te recomendamos</h4>
 				<div class="list-group container-results" id="cursosRelacionados">
 					<% @advertisings.each do |a| %>
-					<a id="advertising_<%= a.id %>" class="list-group-item list-group-item-info" href="/advertisings/<%= a.id %>" > <h4 class="list-group-item-heading"> <%= a.name %> </h4>
+					<a id="advertising_<%= a.id %>" class="list-group-item list-group-item-success" href="/advertisings/<%= a.id %>" > <h4 class="list-group-item-heading"> <%= a.name %> </h4>
 					<p class="list-group-item-text">
 						<%= a.description %>
 					</p> </a>
@@ -270,7 +270,9 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 
 <% end %>
 
+<% if is_logued_teacher? %>
 <%= button_to 'Editar', edit_course_path(@course) , class: "btn btn-primary" , :method => :get %>
+<% end %>	
 <%= button_to 'Volver',courses_path , class: "btn btn-primary" , :method => :get %>
 <hr>
 

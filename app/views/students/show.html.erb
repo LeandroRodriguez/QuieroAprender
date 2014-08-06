@@ -6,12 +6,12 @@
 			   <b><%= @student.name %></b>
 			</div>
 			<div class="panel-body">
+				<%= image_tag @student.image , :size=>"200x200", :style => "margin-bottom: 20px" %></a>
 				<% if @student.birthdate %>
 					<p><b>Fecha de nacimiento:</b> <%= @student.birthdate.strftime("%d/%m/%Y") %></p>
 				<% end %>
 			   <p><b>Email:</b> <%= @student.email %></p>
 			   <p><b>Descripción:</b> <%= @student.description %></p>
-			   <%= image_tag @student.image , :size=>"200x200" %></a>
 			</div>
 		</div>
 	</div>

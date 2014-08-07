@@ -55,7 +55,9 @@ Course.create(name: "Curso de Piano clásico", description: "Curso de piano, niv
 Course.create(name: "Aprenda ingles con Miss Carla", description: "Clases de ingles para escolares", longitude: -58.3792534, latitude: -34.7678337, address: "Temperley, Buenos Aires Province, Argentina", subcategory_id: 4, price: 200)
 Course.create(name: "Francés para todas las edades!", description: "Clases de francés en todos los niveles, para todas las edades. Más de 50 años de experiencia.", longitude: -58.3945, latitude: -34.7789, address: "Avenida Eva Perón, Temperley, Buenos Aires, Argentina 280", subcategory_id: 5, price: 300)
 
-#CourseStudent.create(:student_id => 1, :course_id => 1)
+CourseStudent.create(:student_id => 4, :course_id => 3)
+CourseStudent.create(:student_id => 4, :course_id => 4)
+
 CourseTeacher.create(:teacher_id => 1, :course_id => 1)
 CourseTeacher.create(:teacher_id => 1, :course_id => 2)
 CourseTeacher.create(:teacher_id => 2, :course_id => 4)
@@ -63,8 +65,8 @@ CourseTeacher.create(:teacher_id => 2, :course_id => 5)
 CourseTeacher.create(:teacher_id => 3, :course_id => 3)
 
 #Curso 1 - Guitarra
-Opinion.create(description: "El profesor sabe mucho pero no explica bien", course_id: 1, date: Time.now - 1, rating: 2, user_id: 6)
-Opinion.create(description: "El curso es muy interesante, se aprende un montón", course_id: 1, date: Time.now - 5, rating: 4, user_id: 4)
+Opinion.create(description: "El profesor sabe mucho, mis nietos están muy contentos", course_id: 1, date: Time.now - 1, rating: 2, user_id: 6)
+Opinion.create(description: "El curso es muy interesante, se aprende un montón", course_id: 1, date: Time.now - 5, rating: 4, user_id: 5)
 Consultation.create(description: "Buenas tardes, quería saber los días en los que se dicta el curso. Gracias!", course_id: 1, date: Time.now - 10, user_id: 8)
 Consultation.create(description: "Buenas tardes Micaela, los cursos se dictan de lunes a viernes, en horarios acordados con el alumno. Saludos ", course_id: 1, date: Time.now - 3, user_id: 1)
 

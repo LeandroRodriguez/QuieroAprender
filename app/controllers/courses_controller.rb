@@ -28,14 +28,16 @@ class CoursesController < ApplicationController
   end
 
   def getAdvertising(course, advertisings)
-    @course.tags.each do |t|
+  #  @course.tags.each do |t|
       @advertisings = Advertising.all   
-    end 
+  #  end
   end 
 
   def getCursosRelacionados(course, cursosRelacionados) 
-    @course.tags.each do |t|
-      @cursosRelacionados = Course.all   
+    Course.all.each do |c|
+      if(c.id != course.id)
+        @cursosRelacionados << c
+       end 
     end 
   end  
 

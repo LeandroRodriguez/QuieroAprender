@@ -172,10 +172,11 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							<li class="media">
 								<div class="media-body">
 									<h5 class="media-heading">
+									
 									<% if get_profile_picture_for_user o.user %>
 										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
 									<% else %>
-										<a class="pull-left" href="#">
+									<a class="pull-left" href="#">
 										<%= image_tag o.user.image , :size=>"64x64" %></a>
 									<% end %>	
 									<b><%= o.user.name %></b>
@@ -190,13 +191,13 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 					
 					<% if current_user %>
 						<div class="col-md-12 col-ms-offset-1" >
-							<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Dejanos tu comentario </h4>
+							<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Contanos que te gustó del curso </h4>
 							<p class="list-group-item-text">
 								<textarea class="form-control" id="opinion_description" name="opinion[description]" placeholder="Descripción"></textarea>
 								<br>
 								<input id="opinion_rating" name="opinion[rating]" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="xs" >
 								<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
-									Add
+									Agregar
 								</button>
 
 							</p> </a>
@@ -227,6 +228,8 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 										<%= image_tag c.user.image , :size=>"64x64" %></a>
 									<% end %>
 									<% end %>
+									<b><%= c.user.name %></b>
+									<%= c.date %>
 									</h5>
 									<%= c.description %>
 								</div>
@@ -239,7 +242,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							<textarea class="form-control" id="consultation_description" name="consultation[description]" placeholder="Descripción"></textarea>
 							<br>
 							<button id="addOpinion" class="btn btn-primary col-md-offset-11" >
-								Add
+								Agregar
 							</button>
 
 						</p> </a>

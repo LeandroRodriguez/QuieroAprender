@@ -218,11 +218,11 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<div class="media-body">
 									<h5 class="media-heading"> 
 									<% unless c.user.nil? %>
-									<a class="pull-left" href="#">
+									<a class="pull-left opinionProfileImage" href="#">
 									<%= image_tag (get_profile_picture_for_user c.user) , :size=>"64x64" %></a>
 									<b><%= c.user.name %></b>
 									<% end %>
-									<%= c.date %>
+									<%= c.date.strftime("%m/%d/%Y %H:%M:%S") %>
 									</h5>
 									<%= c.description %>
 								</div>

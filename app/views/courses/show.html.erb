@@ -173,12 +173,9 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<div class="media-body">
 									<h5 class="media-heading">
 									
-									<% if get_profile_picture_for_user o.user %>
-										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
-									<% else %>
 									<a class="pull-left" href="#">
-										<%= image_tag o.user.image , :size=>"64x64" %></a>
-									<% end %>	
+										<%= image_tag (get_profile_picture_for_user o.user) , :size=>"64x64" %></a>
+									
 									<b><%= o.user.name %></b>
 									<%= o.date %>
 									</h5>
@@ -221,14 +218,10 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<div class="media-body">
 									<h5 class="media-heading"> 
 									<% unless c.user.nil? %>
-									<% if get_profile_picture_for_user c.user %>
-										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user c.user%>  width="64" height="64" alt="..." /> </a>
-									<% else %>
-										<a class="pull-left" href="#">
-										<%= image_tag c.user.image , :size=>"64x64" %></a>
-									<% end %>
-									<% end %>
+									<a class="pull-left" href="#">
+									<%= image_tag (get_profile_picture_for_user c.user) , :size=>"64x64" %></a>
 									<b><%= c.user.name %></b>
+									<% end %>
 									<%= c.date %>
 									</h5>
 									<%= c.description %>
@@ -236,6 +229,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							</li>
 							<% end %>
 						</ul>
+				<% if current_user %>		
 					<div class="col-md-12 col-ms-offset-1" >
 						<a id="newOpinion" class="list-group-item " > <h4 class="list-group-item-heading"> Preguntas </h4>
 						<p class="list-group-item-text">
@@ -247,6 +241,7 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 
 						</p> </a>
 					</div>
+				<% end %>	
 					</div>
 					<% end %>
 				</div>

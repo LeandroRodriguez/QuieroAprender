@@ -66,13 +66,13 @@ CourseTeacher.create(:teacher_id => 3, :course_id => 3)
 
 #Curso 1 - Guitarra
 Opinion.create(description: "El profesor sabe mucho, mis nietos están muy contentos", course_id: 1, date: Time.now - 1000000, rating: 2, user_id: 6)
-Opinion.create(description: "El curso es muy interesante, se aprende un montón", course_id: 1, date: Time.now - 5000, rating: 4, user_id: 5)
+Opinion.create(description: "El curso es muy interesante, se aprende un montón", course_id: 1, date: Time.now - 50005, rating: 4, user_id: 5)
 Consultation.create(description: "Buenas tardes, quería saber los días en los que se dicta el curso. Gracias!", course_id: 1, date: Time.now - 10, user_id: 8)
 Consultation.create(description: "Buenas tardes Micaela, los cursos se dictan de lunes a viernes, en horarios acordados con el alumno. Saludos ", course_id: 1, date: Time.now - 3, user_id: 1)
 
 #Curso 2 - Guitarra
-Opinion.create(description: "100% recomendado! El profe un genio!", course_id: 2, date: Time.now - 2, rating: 4, user_id: 7)
-Opinion.create(description: "El profesor explica muy bien!", course_id: 2, date: Time.now - 3, rating: 5, user_id: 5)
+Opinion.create(description: "100% recomendado! El profe un genio!", course_id: 2, date: Time.now - 3000980, rating: 4, user_id: 7)
+Opinion.create(description: "El profesor explica muy bien!", course_id: 2, date: Time.now - 200000, rating: 5, user_id: 5)
 
 #Curso 4 - Ingles
 Opinion.create(description: "Las profesoras son muy agradables, en la clase se habla todo el tiempo en inglés.", course_id: 4, date: Time.now - 10, rating: 4, user_id: 7)

@@ -91,7 +91,7 @@ class CoursesController < ApplicationController
            @courseTeacher = CourseTeacher.new(:course_id => @course.id, :teacher_id => current_user.id) 
            @courseTeacher.save
         end   
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to @course, notice: 'El curso se creo exitosamente.' }
         format.json { render action: 'show', status: :created, location: @course }
       else
         format.html { render action: 'new' }

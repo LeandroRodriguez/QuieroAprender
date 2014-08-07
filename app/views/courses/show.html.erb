@@ -173,11 +173,11 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<div class="media-body">
 									<h5 class="media-heading">
 									
-									<a class="pull-left" href="#">
+									<a class="pull-left opinionProfileImage" href="#">
 										<%= image_tag (get_profile_picture_for_user o.user) , :size=>"64x64" %></a>
 									
 									<b><%= o.user.name %></b>
-									<%= o.date %>
+									<%= o.date.strftime("%m/%d/%Y %H:%M:%S") %>
 									</h5>
 									<%= o.description %>
 									<input id="opinion_<%= o.id %>" type="number" class="rating" min=0 max=5 readonly="true" data-container-class='text-right' value="<%= o.rating.nil? ? 0 : o.rating%>" data-size='xs' >

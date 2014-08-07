@@ -30,6 +30,7 @@ module ApplicationHelper
   end
   
   def get_profile_picture_for_user(user)
+    return user.image
     unless user.nil? then
       puts "User: #{user}"
       if not user.facebook_id.nil? and user.facebook_id != 0 then

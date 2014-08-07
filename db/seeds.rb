@@ -43,7 +43,7 @@ User.create(:name => "Carla Gomez", :description => "Profesora de ingles y franc
 User.create(:name => "Amanda González", :description => "Profesora de piano. Reconocida internacionalmente.", :image => "profesoraPiano.jpg", :birthdate => "1950-04-19 00:00:00", :email => "amandaGonzalez@gmail.com", :role => User::ROLE_TEACHER, :password => "123123", :password_confirmation => "123123")
 
 #ESTUDIANTES
-User.create(:name => "Mauro Icardi", :description => "Jugador del Inter de Milan", :image => nil, :birthdate => "1990-04-16 00:00:00", :email => "peliculasfinaldvd@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123", :facebook_id => 666474016767940)
+User.create(:name => "Mauro Icardi", :description => "Jugador del Inter de Milan",  :image => "icardi.jpg", :birthdate => "1990-04-16 00:00:00", :email => "peliculasfinaldvd@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123", :facebook_id => 666474016767940)
 User.create(:name => "Esteban Garcia", :description => "Economista", :image => "economista.jpg", :birthdate => "1974-06-20 00:00:00", :email => "estebanGarcia@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123")
 User.create(:name => "Susana Rinaldi", :description => "Jubilada", :image => "jubilada.jpg", :birthdate => "1950-09-16 00:00:00", :email => "susanaRinaldi@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123")
 User.create(:name => "Lucas Estevez", :description => "Ingeniero", :image => "ingeniero.jpg", :birthdate => "1985-02-07 00:00:00", :email => "lucasEstevez@gmail.com", :role => User::ROLE_STUDENT, :password => "123123", :password_confirmation => "123123")

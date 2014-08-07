@@ -172,12 +172,8 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 							<li class="media">
 								<div class="media-body">
 									<h5 class="media-heading">
-									<% if get_profile_picture_for_user o.user %>
-										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user o.user%>  width="64" height="64" alt="..." /> </a>
-									<% else %>
 										<a class="pull-left" href="#">
-										<%= image_tag o.user.image , :size=>"64x64" %></a>
-									<% end %>	
+										<%= image_tag (get_profile_picture_for_user o.user) , :size=>"64x64" %></a>
 									<b><%= o.user.name %></b>
 									<%= o.date %>
 									</h5>
@@ -219,14 +215,9 @@ de vuelta para que se vean lindas pisando la config que toque arriba :P
 								<% end %>
 								<div class="media-body">
 									<h5 class="media-heading"> 
-									<% unless c.user.nil? %>
-									<% if get_profile_picture_for_user c.user %>
-										<a class="pull-left" href="#"> <img  class="media-object" src=<%= get_profile_picture_for_user c.user%>  width="64" height="64" alt="..." /> </a>
-									<% else %>
 										<a class="pull-left" href="#">
-										<%= image_tag c.user.image , :size=>"64x64" %></a>
-									<% end %>
-									<% end %>
+										<%= image_tag (get_profile_picture_for_user o.user) , :size=>"64x64" %></a>
+
 									</h5>
 									<%= c.description %>
 								</div>
